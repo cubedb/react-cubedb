@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 type Props = {
@@ -11,7 +13,7 @@ class SvgLoadingAnimation extends React.Component {
   render() {
     const width = this.props.width||15
     const height = this.props.height||9
-    
+
     const circleToAnimateSize = height*0.1
     const circleVerticalPosition = height/2
     const circleHorizontalPosition = width/2 - circleToAnimateSize*2.5

@@ -26,7 +26,9 @@
     "lintfix": "eslint ./src --fix",
     "testonly": "mocha $npm_package_options_mocha",
     "test": "npm run lint && npm run testonly",
-    "test-watch": "npm run testonly -- --watch --watch-extensions js"
+    "test-watch": "npm run testonly -- --watch --watch-extensions js",
+    "doc": "react-doc-generator src -o DOCUMENTATION.md"
+
   },
   "devDependencies": {
     "babel-cli": "^6.6.4",
@@ -57,6 +59,8 @@
   "dependencies": {
     "babel-runtime": "^6.6.1",
     "d3": "^4.9.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react-bootstrap": "^0.31.0",
+    "react-doc-generator": "^1.2.5"
   }
 }
