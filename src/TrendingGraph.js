@@ -11,14 +11,13 @@ const dayParseTime = d3.timeParse("%Y-%m-%d")
 
 const TRIM_LENGTH = 2
 
-type Props = {
-  data: ?{[string]: number}[],
-  width?: number,
-  height?: number
-}
 
-class TrendingGraph extends React.Component {
-  props: Props
+export default class TrendingGraph extends React.Component {
+  props: {
+    data: ?{[string]: number}[],
+    width?: number,
+    height?: number
+  }
 
   render() {
     const width = this.props.width||200
@@ -61,5 +60,3 @@ class TrendingGraph extends React.Component {
           </svg>
   }
 }
-
-export default TrendingGraph
