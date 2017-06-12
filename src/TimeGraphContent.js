@@ -3,8 +3,22 @@ import * as d3 from 'd3'
 
 import React from 'react'
 
-import PropTypes from 'prop-types'
 
+
+
+const saveData = (filename = String, blob = Blob) => {
+  let uri = URL.createObjectURL(blob)
+  let link = document.createElement('a');
+  if (typeof link.download === 'string') {
+    document.body.appendChild(link); //Firefox requires the link to be in the body
+    link.download = filename;
+    link.href = uri;
+    link.click();
+    document.body.removeChild(link); //remove the link when done
+  } else {
+    location.replace(uri);
+  }
+}
 
 const numberFormat = d3.format(",d")
 
@@ -803,22 +817,22 @@ export default class TimeGraphContent extends React.Component {
 }
 
 TimeGraphContent.propTypes = {
-  aggregation: PropTypes.string,
-  timeDisplay: PropTypes.func,
-  timeFormatter: PropTypes.func,
-  onClickCompare: PropTypes.any,
-  onFilterChange: PropTypes.func,
-  timeUnitLengthSec: PropTypes.number,
-  tooltipValue: PropTypes.number,
-  xScale: PropTypes.func,
-  yScale: PropTypes.func,
-  margin: PropTypes.object,
-  numberFormat: PropTypes.func,
-  data: PropTypes.array,
-  range: PropTypes.array,
-  type: PropTypes.string,
-  metadata: PropTypes.object,
-  mouseIteractions: PropTypes.bool
+  aggregation: React.PropTypes.string,
+  timeDisplay: React.PropTypes.func,
+  timeFormatter: React.PropTypes.func,
+  onClickCompare: React.PropTypes.any,
+  onFilterChange: React.PropTypes.func,
+  timeUnitLengthSec: React.PropTypes.number,
+  tooltipValue: React.PropTypes.number,
+  xScale: React.PropTypes.func,
+  yScale: React.PropTypes.func,
+  margin: React.PropTypes.object,
+  numberFormat: React.PropTypes.func,
+  data: React.PropTypes.array,
+  range: React.PropTypes.array,
+  type: React.PropTypes.string,
+  metadata: React.PropTypes.object,
+  mouseIteractions: React.PropTypes.bool
 };
 
 

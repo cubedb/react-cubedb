@@ -5,7 +5,6 @@ import ReactFauxDOM from 'react-faux-dom';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 import TimeGraphContent from './TimeGraphContent';
 
 import './style/TimeGraph.scss'
