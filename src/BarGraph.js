@@ -4,10 +4,11 @@ import _ from 'lodash'
 import React from 'react'
 import {Glyphicon } from 'react-bootstrap'
 
-import * as d3 from 'd3';
+import * as d3 from 'd3'
+
+import './style/BarGraph.scss'
 
 const numberFormat = d3.format(",d")
-
 
 const getCommonPrefix = (array) => {
     // return empty string for arrays withe less then two elements

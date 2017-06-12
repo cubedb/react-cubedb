@@ -6,6 +6,8 @@ import { filter, isUndefined, maxBy, size, sortBy, toPairs } from 'lodash'
 
 import SvgLoadingAnimation from './utils/SvgLoadingAnimation'
 
+import './style/TrendingGraph.scss'
+
 const hourParseTime = d3.timeParse("%Y-%m-%d %H")
 const dayParseTime = d3.timeParse("%Y-%m-%d")
 
@@ -48,11 +50,10 @@ export default class TrendingGraph extends React.Component {
                       
       const d = getLine(data)
       
-      path = <path d={d} stroke={'rgb(49, 130, 189)'}
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="trending_line"/>
+      path = <path d={d} fill="none"
+                         strokeLinecap="round"
+                         strokeLinejoin="round"
+                         className="trending_graph__line"/>
     }
 
     return <svg className="trending_graph" viewBox={`0 0 ${width} ${height}`} width={width} height={height}>

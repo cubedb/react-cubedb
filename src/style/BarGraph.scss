@@ -1,0 +1,130 @@
+@import 'colors';
+
+
+.dimension-graph {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 0;
+  display: table-row;
+  table-layout: fixed;
+  cursor: pointer;
+
+  &__bar-container,
+  &__label,
+  &__value,
+  &__variation {
+      padding: 0 1rem;
+      white-space: nowrap;
+      &__wrapper {
+          display: table-cell;
+          table-layout: fixed;
+          vertical-align: middle;
+      }
+  }
+  &__bar-container,
+  &__value {
+      &__wrapper {
+          border-left: 1px solid $border-bold;
+      }
+  }
+  &:hover,
+  &.selected {
+      background-color: $highlight;
+  }
+  &__bar-container {
+      padding: .2rem 1.2rem;
+      position: relative;
+      &__wrapper {
+          width: 100%;
+      }
+  }
+  &__bar {
+      background-color: $primary;
+      //box-shadow: inset 0 -4px 6px rgba(0,0,0,0.2);
+      display: inline-block;
+      height: 1.4rem;
+      line-height: 1.4rem;
+      text-align: right;
+      vertical-align: top;
+
+      &__tooltip {
+          margin-top: 40px;
+      }
+
+      &__percentage {
+          font-size: 1.1rem;
+          padding-right: .2rem;
+          overflow: hidden;
+          line-height: 1.2rem;
+          position: absolute;
+          top: 0;
+          right: 0;
+          pointer-events : none;
+      }
+      &-wrap {
+          position: relative;
+          display: block;
+          vertical-align: top;
+          background: $white;
+          border: 1px solid $border-soft;
+          //box-shadow: 0px 1px 1px $border-soft;
+          border-radius: 10px;
+          overflow: hidden;
+          width: 100%;
+          height: 1.4rem;
+      }
+  }
+  &__label {
+      font-size: 1.2rem;
+      position: relative;
+      max-width: 20rem;
+      /* letter-spacing: -.1rem; */
+      text-overflow: ellipsis;
+      overflow: hidden;
+  }
+  &__percentage {
+      font-size: 1.1rem;
+      text-align: right;
+  }
+  &__value {
+      font-size: 1.1rem;
+  }
+  &__variation {
+      &__wrapper {
+          min-width: 4rem;
+          padding:  0 .6rem;    
+          text-align: center;
+          border-right: 1px solid $border-bold;
+      }
+
+      &--down,
+      &--up,
+      & {
+          font-size: .8rem;
+
+          & .variation__icon {
+              &--infinity {
+                  font-size: 1.2rem;
+                  font-weight: 100;
+              }
+
+              &,
+              &--infinity {
+                  display: block;    
+                  line-height: .5rem;
+              }
+          }
+      }
+
+      &--up {
+          color: green;
+      }
+
+      &--down {
+          color: red;
+      }
+      
+  }
+}
