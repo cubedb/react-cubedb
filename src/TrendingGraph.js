@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import * as d3 from 'd3'
 import { filter, isUndefined, maxBy, size, sortBy, toPairs } from 'lodash'
@@ -15,15 +13,23 @@ const TRIM_LENGTH = 2
 
 
 export default class TrendingGraph extends React.Component {
-  props: {
-    data: ?{[string]: number}[],
-    width?: number,
-    height?: number
+  static propTypes = {
+    /**
+     * Dictionary of dates and values
+     */
+    data: React.PropTypes.object,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number
+  }
+
+  static defaultProps = {
+    width: 200,
+    height: 50
   }
 
   render() {
-    const width = this.props.width||200
-    const height = this.props.height||50
+    const width = this.props.width
+    const height = this.props.height
     
     let path = <SvgLoadingAnimation width={width} height={height}/>
     

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import _ from 'lodash'
 import { Glyphicon } from 'react-bootstrap'
@@ -9,13 +7,13 @@ import './style/Filters.scss'
 
 export default class Filters extends React.Component {
 
-  props: {
-    lookup: Function,
-    onChange: Function,
-    getColor: Function,
-    group: string,
-    filters: Object,
-    aggregation: string,
+  static propTypes = {
+    lookup: React.PropTypes.func,
+    onChange: React.PropTypes.func,
+    getColor: React.PropTypes.func,
+    group: React.PropTypes.string,
+    filters: React.PropTypes.object,
+    aggregation: React.PropTypes.string,
   }
 
   lookup(k,d) {

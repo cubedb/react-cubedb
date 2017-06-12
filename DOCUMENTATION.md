@@ -36,12 +36,12 @@ windowVolume||yes||
 
 Property | Type | Required | Default value | Description
 :--- | :--- | :--- | :--- | :---
-lookup||yes||
-onChange||yes||
-getColor||yes||
-group||yes||
-filters||yes||
-aggregation||yes||
+lookup|func|no||
+onChange|func|no||
+getColor|func|no||
+group|string|no||
+filters|object|no||
+aggregation|string|no||
 -----
 **src/TimeGraph.js**
 
@@ -101,6 +101,19 @@ range|array|no||
 type|string|no||
 metadata|object|no||
 mouseIteractions|bool|no|true|
+-----
+**src/TrendingGraph.js**
+
+### 1. 
+
+
+
+
+Property | Type | Required | Default value | Description
+:--- | :--- | :--- | :--- | :---
+data|object|no||Dictionary of dates and values
+width|number|no|200|
+height|number|no|50|
 -----
 **src/utils/SvgLoadingAnimation.js**
 

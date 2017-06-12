@@ -44,6 +44,36 @@ const STACK_LIMIT = 10
 
 export default class TimeGraph extends React.Component {
 
+  static propTypes = {
+    height: React.PropTypes.number,
+    width: React.PropTypes.number,
+    data: React.PropTypes.object,
+    hideMetadata: React.PropTypes.bool,
+    metadata: React.PropTypes.object,
+    timeParser: React.PropTypes.func,
+    timeDisplay: React.PropTypes.func,
+    timeFormatter: React.PropTypes.func,
+    countFormatter: React.PropTypes.func,
+    lookup: React.PropTypes.func,
+    filter: React.PropTypes.array,
+    comparing: React.PropTypes.bool,
+    onClickCompare: React.PropTypes.any,
+    onChange: React.PropTypes.func,
+    timeUnitLengthSec: React.PropTypes.number,
+    numUnits: React.PropTypes.number,
+    group: React.PropTypes.string,
+    type: React.PropTypes.string,
+    getColor: React.PropTypes.func,
+    aggregation: React.PropTypes.string,
+    mouseIteractions: React.PropTypes.bool,
+    toDate: React.PropTypes.any,
+    fromDate: React.PropTypes.any,
+  }
+
+  static defaultProps = {
+    mouseIteractions: true
+  }
+
 
   constructor(props) {
     super(props)
@@ -358,34 +388,3 @@ export default class TimeGraph extends React.Component {
     </svg>
   }
 }
-
-TimeGraph.propTypes = {
-  height: React.PropTypes.number,
-  width: React.PropTypes.number,
-  data: React.PropTypes.object,
-  hideMetadata: React.PropTypes.bool,
-  metadata: React.PropTypes.object,
-  timeParser: React.PropTypes.func,
-  timeDisplay: React.PropTypes.func,
-  timeFormatter: React.PropTypes.func,
-  countFormatter: React.PropTypes.func,
-  lookup: React.PropTypes.func,
-  filter: React.PropTypes.array,
-  comparing: React.PropTypes.bool,
-  onClickCompare: React.PropTypes.any,
-  onChange: React.PropTypes.func,
-  timeUnitLengthSec: React.PropTypes.number,
-  numUnits: React.PropTypes.number,
-  group: React.PropTypes.string,
-  type: React.PropTypes.string,
-  getColor: React.PropTypes.func,
-  aggregation: React.PropTypes.string,
-  mouseIteractions: React.PropTypes.bool,
-  toDate: React.PropTypes.any,
-  fromDate: React.PropTypes.any,
-};
-
-
-TimeGraph.defaultProps = {
-  mouseIteractions: true
-};

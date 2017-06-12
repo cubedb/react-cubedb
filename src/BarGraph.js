@@ -1,5 +1,3 @@
-// @flow
-
 import _ from 'lodash'
 import React from 'react'
 import { Glyphicon } from 'react-bootstrap'
@@ -7,7 +5,7 @@ import { Glyphicon } from 'react-bootstrap'
 import * as d3 from 'd3'
 
 import './style/BarGraph.scss'
-
+  
 const numberFormat = d3.format(",d")
 
 const getCommonPrefix = (array) => {
@@ -31,14 +29,14 @@ const getCommonPrefix = (array) => {
 
 class Bar extends React.Component {
 
-  props: {
-    count: number,
-    stack: Object,
-    max: number,
-    group: string,
-    getColor: Function,
-    serie: Object,
-    proportion: number,
+  static propTypes = {
+    count: React.PropTypes.number,
+    stack: React.PropTypes.object,
+    max: React.PropTypes.number,
+    group: React.PropTypes.string,
+    getColor: React.PropTypes.function,
+    serie: React.PropTypes.object,
+    proportion: React.PropTypes.number,
   }
 
   shouldComponentUpdate(){
