@@ -1,0 +1,235 @@
+@import 'colors';
+
+.time_graph {
+
+    .tooltip {
+        &__background {
+            stroke: none;
+            pointer-events: none;
+            fill: white;
+            fill-opacity: .8;
+            stroke: $mark;
+            stroke-opacity: 1;
+        }
+        &__background-arrow {
+            stroke: none;
+            pointer-events: none;
+            fill: $mark;
+            fill-opacity: 1;
+        }
+        &__label {
+            font-size: 11px;
+            stroke: none;
+            pointer-events: none;
+
+            &--title {
+                font-weight: bolder;
+                font-size: 11px;
+                stroke: none;
+                pointer-events: none;
+            }
+        }
+        &__color {
+            stroke-width: 1px;
+            stroke: lighten(black, 40%);
+            pointer-events: none;
+        }
+    }
+
+
+    .ruler {
+        fill: $primary;
+        stroke: none;
+
+        &--compare {
+            cursor: pointer;
+        }
+
+        &__background {
+            stroke: none;
+            pointer-events: none;
+            fill: $primary;
+        }
+        
+
+        &__helper {
+            fill: $mark;
+            stroke: none;
+        }
+
+        &__label {
+            font-size: 11px;
+            stroke: none;
+
+            &__background {
+                stroke: none;
+                fill: $mark;
+            }
+        }
+
+        &__mark {
+            stroke: $mark;
+            fill: none;
+            pointer-events: none;
+            opacity: 0.8;
+            shape-rendering: crispEdges;
+
+            &__background {
+                stroke: none;
+                pointer-events: none;
+                fill: $mark;
+            }
+
+            &__close {
+                stroke: $white;
+                fill: transparent;
+                stroke-linecap: round;
+                stroke-width: 2;
+
+                &__background {
+                    fill: lighten(black, 40%);
+                    stroke: none
+                }
+            }
+        }
+
+        &__metadata {
+            fill: $metadata;
+            stroke: darken($metadata, 20%);
+            shape-rendering: optimizeQuality;
+
+            &--release {
+                fill: $release;
+                stroke: darken($release, 20%);
+                shape-rendering: optimizeQuality;
+            }
+
+            &--experiment {
+                fill: $experiment;
+                stroke: darken($experiment, 20%);
+                shape-rendering: optimizeQuality;
+            }
+        }
+    }
+    
+    .fullscreen & {
+        margin: 0 auto;
+    }
+
+    .axis {
+        pointer-events: none;
+        path {
+            stroke-width: 1;
+            stroke: $selection;
+            fill: none;
+        }
+        line,
+        .domain {
+            stroke: $axis;
+            fill: none;
+            opacity: 0.8;
+            shape-rendering: crispEdges;
+        }
+        
+        text {
+            font-size: 9px;
+            stroke: none;
+            pointer-events: none;
+        }
+    }
+
+    .line {
+        pointer-events: none;
+        fill: none;
+        stroke-width: 2;
+        shape-rendering: geometricPrecision;
+        stroke-linejoin: round;
+    }
+
+    .area {
+        pointer-events: none;
+        fill-opacity: .8;
+        stroke-opacity: .8;
+        stroke-width: .5;
+        shape-rendering: geometricPrecision;
+    }
+
+    .bar {
+        pointer-events: none;
+        stroke: none;
+        stroke-width: 1;
+        shape-rendering: optimizeSpeed;
+        opacity: 1;
+        
+        &.no-group {
+            fill: $primary;
+
+            &.hovered {
+                fill: darken($primary, 20%);
+            }
+        }
+
+        &.no-active {
+            fill: $axis;
+        }
+
+        .shadow {
+            fill-opacity: .125;
+        }
+    }
+    .overlay {
+        .background {
+            cursor: crosshair;
+            stroke: none;
+            stroke-width: 1;
+            fill: rgba(0, 0, 0, 0);
+
+            &.resizing {
+                cursor: ew-resize;
+            }
+
+            &.focused {
+                cursor: move;
+                cursor: grab;
+                cursor: -moz-grab;
+                cursor: -webkit-grab;
+            }
+
+            &.dragging {
+                cursor: move;
+                cursor: grabbing;
+                cursor: -moz-grabbing;
+                cursor: -webkit-grabbing;
+            }
+        }
+        .extent {
+            fill: $primary;
+            fill-opacity: .125;
+            pointer-events: none;
+        }
+        .extent__reflect {
+            fill-opacity: .125;
+            pointer-events: none;
+        }
+    }
+
+    &__download-button {
+        cursor: pointer;
+        fill: white;
+        stroke: none;
+        &__icon {
+            cursor: pointer;
+        }
+    }
+
+    &__metadata-button {
+        cursor: pointer;
+        fill: white;
+        stroke: $axis;
+        shape-rendering: optimizeQuality;
+        &__text {
+            cursor: pointer;
+            font-size: 8px;
+        }
+    }
+}
