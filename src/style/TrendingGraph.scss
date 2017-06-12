@@ -3,7 +3,7 @@
 .trending_graph {
     display: inline-block;
     background: $background;
-    border: 1px solid $border-soft;
+    border: 1px solid $border-bold;
 
     &__line {
         stroke: $primary;
