@@ -27,6 +27,81 @@ windowVolume||yes||
 
 
 -----
+**src/Filters.js**
+
+### 1. 
+
+
+
+
+Property | Type | Required | Default value | Description
+:--- | :--- | :--- | :--- | :---
+lookup||yes||
+onChange||yes||
+getColor||yes||
+group||yes||
+filters||yes||
+aggregation||yes||
+-----
+**src/TimeGraph.js**
+
+### 1. 
+
+
+
+
+Property | Type | Required | Default value | Description
+:--- | :--- | :--- | :--- | :---
+height|number|no||
+width|number|no||
+data|object|no||
+hideMetadata|bool|no||
+metadata|object|no||
+timeParser|func|no||
+timeDisplay|func|no||
+timeFormatter|func|no||
+countFormatter|func|no||
+lookup|func|no||
+filter|array|no||
+comparing|bool|no||
+onClickCompare|any|no||
+onChange|func|no||
+timeUnitLengthSec|number|no||
+numUnits|number|no||
+group|string|no||
+type|string|no||
+getColor|func|no||
+aggregation|string|no||
+mouseIteractions|bool|no|true|
+toDate|any|no||
+fromDate|any|no||
+-----
+**src/TimeGraphContent.js**
+
+### 1. 
+
+
+
+
+Property | Type | Required | Default value | Description
+:--- | :--- | :--- | :--- | :---
+aggregation|string|no||
+timeDisplay|func|no||
+timeFormatter|func|no||
+onClickCompare|any|no||
+onFilterChange|func|no||
+timeUnitLengthSec|number|no||
+tooltipValue|number|no||
+xScale|func|no||
+yScale|func|no||
+margin|object|no||
+numberFormat|func|no||
+data|array|no||
+range|array|no||
+type|string|no||
+metadata|object|no||
+mouseIteractions|bool|no|true|
+-----
 **src/utils/SvgLoadingAnimation.js**
 
 ### 1. 
