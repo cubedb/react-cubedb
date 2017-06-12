@@ -35,28 +35,29 @@ export default class Filters extends React.Component {
     if(aggregation) {
       filterEl.push(<span className="graph-filters__element" 
                            key={'aggregation'}>
-                      <div className="graph-filters__element__icon">
+                      <span className="graph-filters__element__icon">
                         <Glyphicon glyph={ aggregation == 'day' ? 'calendar' : 'time'}/>
-                      </div> {aggregation}
+                      </span> {aggregation}
                     </span>)
     }
 
     if(group) {
       filterEl.push(<span className="graph-filters__element" 
                            key={'group'}>
-                      <div className="graph-filters__element__icon">
+                      <span className="graph-filters__element__icon">
                         <Glyphicon glyph="indent-left"/>
-                      </div> split by {(group)}
+                      </span> split by {(group)}
                     </span>)
     }
 
            
     _.map(filters, (f, dimension) => {
       _.map(f, (value, i) => {
-        let iconEl = <Glyphicon glyph="filter"/>
-
+        let iconEl = <span className="graph-filters__element__icon">
+                       <Glyphicon glyph="filter"/>
+                     </span>
         if(getColor) {
-          iconEl = <div className="graph-filters__element__color" style={{backgroundColor: this.props.getColor(value, dimension) }} />
+          iconEl = <span className="graph-filters__element__color" style={{backgroundColor: this.props.getColor(value, dimension) }} />
         }
 
         filterEl.push(<span className={`graph-filters__element ${_.isUndefined(onChange) ? "" : "graph-filters__element--with-action"}`} 
