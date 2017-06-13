@@ -11,8 +11,7 @@ const numberFormat = d3.format(",d")
 const getCommonPrefix = (array) => {
     // return empty string for arrays withe less then two elements
   if (!array || array.length <= 1)
-    return ''
-            // Sorting an array and comparing the first and last elements
+    return '' // Sorting an array and comparing the first and last elements
   var A = array.concat().sort(),
     a1 = A[0],
     a2 = A[A.length - 1],
@@ -24,7 +23,7 @@ const getCommonPrefix = (array) => {
   if (prefix[prefix.length - 1] === '_' && !/\d/.test(prefix))
     return prefix
   else
-        return ''
+    return ''
 }
 
 class Bar extends React.Component {
@@ -39,24 +38,24 @@ class Bar extends React.Component {
     proportion: React.PropTypes.number,
   }
 
-  shouldComponentUpdate(){
-    return true;
-  }
+  // shouldComponentUpdate(){
+  //   return true;
+  // }
   
-  render(){
+  render() {
     let bars = []
     const limit = 5
     let amount = this.props.count
     const highlights = _.chain(this.props.stack).sortBy('c').reverse().slice(0,limit).map('name').value()
 
     _.mapValues(this.props.stack, (bar, i) => {
-                      if(highlights.includes(bar.name)){
-                        amount -= bar.c
-                        let proportion = this.props.max > 0 ? bar.c/this.props.max : 0
-                        let width = `${(proportion*100)}%`
-                        bars.push(<div key={bar.name+this.props.group} title={`${bar.name}: ${numberFormat(bar.c)} (${(bar.c/this.props.count*100).toFixed(3)}%)`} className="bar-graph__bar" style={{width: width, backgroundColor: this.props.getColor(i, this.props.group||this.props.serie) }}></div>)
-                      } 
-                    })
+                  if(highlights.includes(bar.name)){
+                    amount -= bar.c
+                    let proportion = this.props.max > 0 ? bar.c/this.props.max : 0
+                    let width = `${(proportion*100)}%`
+                    bars.push(<div key={bar.name+this.props.group} title={`${bar.name}: ${numberFormat(bar.c)} (${(bar.c/this.props.count*100).toFixed(3)}%)`} className="bar-graph__bar" style={{width: width, backgroundColor: this.props.getColor(i, this.props.group||this.props.serie) }}></div>)
+                  } 
+                })
 
     if(amount > 0){
       let percentage = this.props.max > 0 ? amount/this.props.max*100 : 0
@@ -71,22 +70,22 @@ class Bar extends React.Component {
   }
 }
 
-class BarContainer extends React.Component {
-  props: {
-    changeSelection: Function,
-    container: any,
-    count: number,
-    getColor: Function,
-    group: string,
-    label: string,
-    max: number,
-    selected: true,
-    serie: any,
-    stack: any,
-    stretched: boolean,
-    volume: number,
-    window: any,
-    windowVolume: number,
+class BarLine extends React.Component {
+  static propTypes = {
+    changeSelection: React.PropTypes.func,
+    container: React.PropTypes.any,
+    count: React.PropTypes.number,
+    getColor: React.PropTypes.func,
+    group: React.PropTypes.string,
+    label: React.PropTypes.string,
+    max: React.PropTypes.number,
+    selected: React.PropTypes.true,
+    serie: React.PropTypes.any,
+    stack: React.PropTypes.any,
+    stretched: React.PropTypes.bool,
+    volume: React.PropTypes.number,
+    window: React.PropTypes.any,
+    windowVolume: React.PropTypes.number,
   }
 
   shouldComponentUpdate(){
@@ -122,10 +121,10 @@ class BarContainer extends React.Component {
                   {numberFormat(this.props.count||0)}
                 </div>
               </div>
-            : 
-            <div className="bar-graph__value__wrapper">
-              <div className="bar-graph__value">{numberFormat(this.props.count||0)}</div>
-            </div>}  
+              : 
+              <div className="bar-graph__value__wrapper">
+                <div className="bar-graph__value">{numberFormat(this.props.count||0)}</div>
+              </div>}  
             <div className="bar-graph__bar-container__wrapper">
               <div className="bar-graph__bar-container">
                 {this.props.window ? 
@@ -154,32 +153,40 @@ class BarContainer extends React.Component {
 
 
 export default class BarGraph extends React.Component {
-  props: {
-    data: Object,
-    getColor: Function,
-    group: string,
-    serie: Object,
-    stretched: boolean,
-    volume: number,
-    windowData: Object,
-    windowVolume: number,
+  static propTypes = {
+    data: React.PropTypes.object,
+
+    hideCommonPrefix: React.PropTypes.bool,
+    stretched: React.PropTypes.bool,
+
+    getColor: React.PropTypes.func,
+    group: React.PropTypes.string,
+    serie: React.PropTypes.object,
+    volume: React.PropTypes.number,
+    windowData: React.PropTypes.object,
+    windowVolume: React.PropTypes.number,
   }
 
-  shouldComponentUpdate(){
-    return true;
+  static defaultProps = {
+    hideCommonPrefix: false,
+    stretched: false,
   }
+
+  // shouldComponentUpdate(){
+  //   return true;
+  // }
 
   render(){
-    if (this.props.data.length) {
+    if (this.props.data && this.props.data.length) {
       const max = _.max(this.props.data, 'count').count
       const maxWindow = this.props.windowData && _.max(this.props.windowData, 'count') ? _.max(this.props.windowData, 'count').count : 0
-      const prefix = getCommonPrefix(_.map(this.props.data.filter((d) => { return d.name!=='<not defined>'}), 'name'));
+      const prefix = this.props.hideCommonPrefix ? getCommonPrefix(_.map(this.props.data.filter((d) => { return d.name!=='<not defined>'}), 'name')) : '';
       return <div className="cube_bars__list__content">
               {_.map(this.props.data, (d, i) => {
-                return <BarContainer 
+                return <BarLine 
                           key={d.key}
                           serie={this.props.serie}
-                          label={d.name.startsWith(prefix)?d.name.substring(prefix.length):d.name}
+                          label={prefix ? d.name.startsWith(prefix)?d.name.substring(prefix.length):d.name : d.name}
                           volume={this.props.volume}
                           windowVolume={this.props.windowVolume}
                           max={Math.max(max, maxWindow)}

@@ -1,6 +1,6 @@
 import React from 'react'
 import * as d3 from 'd3'
-import { filter, isUndefined, maxBy, size, sortBy, toPairs } from 'lodash'
+import { filter, isUndefined, maxBy, size, sortBy, mapValues, toPairs } from 'lodash'
 
 import SvgLoadingAnimation from './utils/SvgLoadingAnimation'
 
@@ -34,7 +34,7 @@ export default class TrendingGraph extends React.Component {
     let path = <SvgLoadingAnimation width={width} height={height}/>
     
     if (this.props.data) {
-      let data = sortBy(filter(toPairs(this.props.data), (val, key) => {
+      let data = sortBy(filter(toPairs(mapValues(this.props.data, 'c')), (val, key) => {
                   return !isUndefined(val) && val.length == 2
                  }), 0)
                  .slice(TRIM_LENGTH, -TRIM_LENGTH)

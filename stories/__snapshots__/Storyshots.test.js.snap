@@ -1,0 +1,1194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Cube DB client package 1`] = `
+<div
+  style={
+    Object {
+      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
+      "lineHeight": 1.4,
+      "margin": 15,
+      "maxWidth": 600,
+    }
+  }
+>
+  <h1>
+    Welcome to STORYBOOK
+  </h1>
+  <p>
+    This is a UI component dev environment for your app.
+  </p>
+  <p>
+    We've added some basic stories inside the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories
+    </code>
+     
+    directory.
+    <br />
+    A story is a single state of one or more UI components. You can have as many stories as you want.
+    <br />
+    (Basically a story is like a visual test case.)
+  </p>
+  <p>
+    See these sample
+     
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      tabIndex="0"
+    >
+      stories
+    </a>
+     
+    for a component called
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+    .
+  </p>
+  <p>
+    Just like that, you can add your own components as stories.
+    <br />
+    You can also edit those components and see changes right away.
+    <br />
+    (Try editing the 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+     component located at 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories/Button.js
+    </code>
+    .)
+  </p>
+  <p>
+    This is just one thing you can do with Storybook.
+    <br />
+    Have a look at the
+     
+    <a
+      href="https://github.com/storybooks/storybook"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      target="_blank"
+    >
+      Storybook
+    </a>
+     
+    repo for more information.
+  </p>
+  <p
+    style={
+      Object {
+        "opacity": 0.5,
+      }
+    }
+  >
+    <b>
+      NOTE:
+    </b>
+    <br />
+    Have a look at the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      .storybook/webpack.config.js
+    </code>
+     
+    to add webpack loaders and plugins you are using in this project.
+  </p>
+</div>
+`;
+
+exports[`Storyshots Cube DB overview 1`] = `
+<div
+  style={
+    Object {
+      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
+      "lineHeight": 1.4,
+      "margin": 15,
+      "maxWidth": 600,
+    }
+  }
+>
+  <h1>
+    Welcome to STORYBOOK
+  </h1>
+  <p>
+    This is a UI component dev environment for your app.
+  </p>
+  <p>
+    We've added some basic stories inside the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories
+    </code>
+     
+    directory.
+    <br />
+    A story is a single state of one or more UI components. You can have as many stories as you want.
+    <br />
+    (Basically a story is like a visual test case.)
+  </p>
+  <p>
+    See these sample
+     
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      tabIndex="0"
+    >
+      stories
+    </a>
+     
+    for a component called
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+    .
+  </p>
+  <p>
+    Just like that, you can add your own components as stories.
+    <br />
+    You can also edit those components and see changes right away.
+    <br />
+    (Try editing the 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+     component located at 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories/Button.js
+    </code>
+    .)
+  </p>
+  <p>
+    This is just one thing you can do with Storybook.
+    <br />
+    Have a look at the
+     
+    <a
+      href="https://github.com/storybooks/storybook"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      target="_blank"
+    >
+      Storybook
+    </a>
+     
+    repo for more information.
+  </p>
+  <p
+    style={
+      Object {
+        "opacity": 0.5,
+      }
+    }
+  >
+    <b>
+      NOTE:
+    </b>
+    <br />
+    Have a look at the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      .storybook/webpack.config.js
+    </code>
+     
+    to add webpack loaders and plugins you are using in this project.
+  </p>
+</div>
+`;
+
+exports[`Storyshots react-cubedb BarGraph 1`] = `
+<div
+  style={
+    Object {
+      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
+      "lineHeight": 1.4,
+      "margin": 15,
+      "maxWidth": 600,
+    }
+  }
+>
+  <h1>
+    Welcome to STORYBOOK
+  </h1>
+  <p>
+    This is a UI component dev environment for your app.
+  </p>
+  <p>
+    We've added some basic stories inside the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories
+    </code>
+     
+    directory.
+    <br />
+    A story is a single state of one or more UI components. You can have as many stories as you want.
+    <br />
+    (Basically a story is like a visual test case.)
+  </p>
+  <p>
+    See these sample
+     
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      tabIndex="0"
+    >
+      stories
+    </a>
+     
+    for a component called
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+    .
+  </p>
+  <p>
+    Just like that, you can add your own components as stories.
+    <br />
+    You can also edit those components and see changes right away.
+    <br />
+    (Try editing the 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+     component located at 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories/Button.js
+    </code>
+    .)
+  </p>
+  <p>
+    This is just one thing you can do with Storybook.
+    <br />
+    Have a look at the
+     
+    <a
+      href="https://github.com/storybooks/storybook"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      target="_blank"
+    >
+      Storybook
+    </a>
+     
+    repo for more information.
+  </p>
+  <p
+    style={
+      Object {
+        "opacity": 0.5,
+      }
+    }
+  >
+    <b>
+      NOTE:
+    </b>
+    <br />
+    Have a look at the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      .storybook/webpack.config.js
+    </code>
+     
+    to add webpack loaders and plugins you are using in this project.
+  </p>
+</div>
+`;
+
+exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
+<div
+  style={
+    Object {
+      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
+      "lineHeight": 1.4,
+      "margin": 15,
+      "maxWidth": 600,
+    }
+  }
+>
+  <h1>
+    Welcome to STORYBOOK
+  </h1>
+  <p>
+    This is a UI component dev environment for your app.
+  </p>
+  <p>
+    We've added some basic stories inside the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories
+    </code>
+     
+    directory.
+    <br />
+    A story is a single state of one or more UI components. You can have as many stories as you want.
+    <br />
+    (Basically a story is like a visual test case.)
+  </p>
+  <p>
+    See these sample
+     
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      tabIndex="0"
+    >
+      stories
+    </a>
+     
+    for a component called
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+    .
+  </p>
+  <p>
+    Just like that, you can add your own components as stories.
+    <br />
+    You can also edit those components and see changes right away.
+    <br />
+    (Try editing the 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+     component located at 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories/Button.js
+    </code>
+    .)
+  </p>
+  <p>
+    This is just one thing you can do with Storybook.
+    <br />
+    Have a look at the
+     
+    <a
+      href="https://github.com/storybooks/storybook"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      target="_blank"
+    >
+      Storybook
+    </a>
+     
+    repo for more information.
+  </p>
+  <p
+    style={
+      Object {
+        "opacity": 0.5,
+      }
+    }
+  >
+    <b>
+      NOTE:
+    </b>
+    <br />
+    Have a look at the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      .storybook/webpack.config.js
+    </code>
+     
+    to add webpack loaders and plugins you are using in this project.
+  </p>
+</div>
+`;
+
+exports[`Storyshots react-cubedb Filters 1`] = `
+<div
+  style={
+    Object {
+      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
+      "lineHeight": 1.4,
+      "margin": 15,
+      "maxWidth": 600,
+    }
+  }
+>
+  <h1>
+    Welcome to STORYBOOK
+  </h1>
+  <p>
+    This is a UI component dev environment for your app.
+  </p>
+  <p>
+    We've added some basic stories inside the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories
+    </code>
+     
+    directory.
+    <br />
+    A story is a single state of one or more UI components. You can have as many stories as you want.
+    <br />
+    (Basically a story is like a visual test case.)
+  </p>
+  <p>
+    See these sample
+     
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      tabIndex="0"
+    >
+      stories
+    </a>
+     
+    for a component called
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+    .
+  </p>
+  <p>
+    Just like that, you can add your own components as stories.
+    <br />
+    You can also edit those components and see changes right away.
+    <br />
+    (Try editing the 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+     component located at 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories/Button.js
+    </code>
+    .)
+  </p>
+  <p>
+    This is just one thing you can do with Storybook.
+    <br />
+    Have a look at the
+     
+    <a
+      href="https://github.com/storybooks/storybook"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      target="_blank"
+    >
+      Storybook
+    </a>
+     
+    repo for more information.
+  </p>
+  <p
+    style={
+      Object {
+        "opacity": 0.5,
+      }
+    }
+  >
+    <b>
+      NOTE:
+    </b>
+    <br />
+    Have a look at the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      .storybook/webpack.config.js
+    </code>
+     
+    to add webpack loaders and plugins you are using in this project.
+  </p>
+</div>
+`;
+
+exports[`Storyshots react-cubedb TimeGraph 1`] = `
+<div
+  style={
+    Object {
+      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
+      "lineHeight": 1.4,
+      "margin": 15,
+      "maxWidth": 600,
+    }
+  }
+>
+  <h1>
+    Welcome to STORYBOOK
+  </h1>
+  <p>
+    This is a UI component dev environment for your app.
+  </p>
+  <p>
+    We've added some basic stories inside the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories
+    </code>
+     
+    directory.
+    <br />
+    A story is a single state of one or more UI components. You can have as many stories as you want.
+    <br />
+    (Basically a story is like a visual test case.)
+  </p>
+  <p>
+    See these sample
+     
+    <a
+      onClick={[Function]}
+      role="button"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      tabIndex="0"
+    >
+      stories
+    </a>
+     
+    for a component called
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+    .
+  </p>
+  <p>
+    Just like that, you can add your own components as stories.
+    <br />
+    You can also edit those components and see changes right away.
+    <br />
+    (Try editing the 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      Button
+    </code>
+     component located at 
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      src/stories/Button.js
+    </code>
+    .)
+  </p>
+  <p>
+    This is just one thing you can do with Storybook.
+    <br />
+    Have a look at the
+     
+    <a
+      href="https://github.com/storybooks/storybook"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "borderBottom": "1px solid #1474f3",
+          "color": "#1474f3",
+          "paddingBottom": 2,
+          "textDecoration": "none",
+        }
+      }
+      target="_blank"
+    >
+      Storybook
+    </a>
+     
+    repo for more information.
+  </p>
+  <p
+    style={
+      Object {
+        "opacity": 0.5,
+      }
+    }
+  >
+    <b>
+      NOTE:
+    </b>
+    <br />
+    Have a look at the
+     
+    <code
+      style={
+        Object {
+          "backgroundColor": "#f3f2f2",
+          "border": "1px solid #eae9e9",
+          "borderRadius": 4,
+          "color": "#3a3a3a",
+          "fontSize": 15,
+          "fontWeight": 600,
+          "padding": "2px 5px",
+        }
+      }
+    >
+      .storybook/webpack.config.js
+    </code>
+     
+    to add webpack loaders and plugins you are using in this project.
+  </p>
+</div>
+`;
+
+exports[`Storyshots react-cubedb TrendingGraph 1`] = `
+<div>
+  <h2>
+    Trending Graph
+  </h2>
+  <section>
+    <p>
+      Default:
+    </p>
+    <svg
+      className="trending_graph"
+      height={50}
+      viewBox="0 0 200 50"
+      width={200}
+    >
+      <path
+        className="trending_graph__line"
+        d="M0,10L2,8L4,11L6,20L8,20L11,32L13,36L15,40L17,39L19,37L21,37L23,34L25,32L27,29L29,30L32,31L34,26L36,28L38,26L40,24L42,22L44,17L46,23L48,21L51,20L53,16L55,15L57,19L59,24L61,29L63,34L65,37L67,41L69,38L72,37L74,30L76,26L78,27L80,22L82,23L84,25L86,15L88,22L91,22L93,21L95,19L97,11L99,15L101,15L103,17L105,10L107,21L109,22L112,29L114,32L116,34L118,34L120,38L122,35L124,29L126,25L128,16L131,15L133,18L135,19L137,14L139,15L141,11L143,9L145,10L147,8L149,4L152,6L154,3L156,11L158,17L160,24L162,31L164,37L166,39L168,41L171,38L173,37L175,44L177,31L179,32L181,29L183,30L185,27L187,27L189,29L192,27L194,27L196,27L198,27L200,29"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    <p>
+      Without data:
+    </p>
+    <svg
+      className="trending_graph"
+      height={50}
+      viewBox="0 0 200 50"
+      width={200}
+    >
+      <g>
+        <circle
+          cx={92.5}
+          cy={25}
+          r={5}
+        >
+          <animate
+            attributeName="r"
+            begin="0s"
+            calcMode="linear"
+            dur="1.2s"
+            from={5}
+            repeatCount="indefinite"
+            to={5}
+            values="5;3;5"
+          />
+          <animate
+            attributeName="fill-opacity"
+            begin="0s"
+            calcMode="linear"
+            dur="1.2s"
+            from={0.5}
+            repeatCount="indefinite"
+            to={0.5}
+            values="0.5;0.2;0.5"
+          />
+        </circle>
+        <circle
+          cx={102.5}
+          cy={25}
+          fillOpacity={0.5}
+          r={3}
+        >
+          <animate
+            attributeName="r"
+            begin="0s"
+            calcMode="linear"
+            dur="1.2s"
+            from={3}
+            repeatCount="indefinite"
+            to={3}
+            values="3;5;3"
+          />
+          <animate
+            attributeName="fill-opacity"
+            begin="0s"
+            calcMode="linear"
+            dur="1.2s"
+            from={0.2}
+            repeatCount="indefinite"
+            to={0.2}
+            values="0.2;0.5;0.2"
+          />
+        </circle>
+        <circle
+          cx={112.5}
+          cy={25}
+          r={5}
+        >
+          <animate
+            attributeName="r"
+            begin="0s"
+            calcMode="linear"
+            dur="1.2s"
+            from={5}
+            repeatCount="indefinite"
+            to={5}
+            values="5;3;5"
+          />
+          <animate
+            attributeName="fill-opacity"
+            begin="0s"
+            calcMode="linear"
+            dur="1.2s"
+            from={0.5}
+            repeatCount="indefinite"
+            to={0.5}
+            values="0.5;0.2;0.5"
+          />
+        </circle>
+      </g>
+    </svg>
+  </section>
+  <section>
+    <p>
+      With custom dimension:
+    </p>
+    <svg
+      className="trending_graph"
+      height={80}
+      viewBox="0 0 200 80"
+      width={200}
+    >
+      <path
+        className="trending_graph__line"
+        d="M0,17L2,13L4,18L6,32L8,32L11,50L13,57L15,65L17,63L19,60L21,59L23,55L25,51L27,46L29,47L32,49L34,42L36,45L38,41L40,39L42,35L44,28L46,37L48,33L51,32L53,25L55,25L57,31L59,39L61,47L63,55L65,59L67,65L69,61L72,59L74,48L76,42L78,44L80,35L82,36L84,40L86,24L88,36L91,36L93,34L95,31L97,18L99,24L101,25L103,27L105,17L107,33L109,35L112,46L114,50L116,54L118,55L120,60L122,56L124,47L126,39L128,26L131,24L133,29L135,31L137,23L139,24L141,18L143,14L145,16L147,13L149,6L152,10L154,4L156,18L158,27L160,39L162,50L164,59L166,62L168,65L171,61L173,58L175,71L177,49L179,51L181,46L183,49L185,43L187,44L189,46L192,43L194,44L196,43L198,43L200,46"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </section>
+</div>
+`;
