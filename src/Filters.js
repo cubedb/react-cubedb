@@ -8,7 +8,7 @@ import './style/Filters.scss'
 export default class Filters extends React.Component {
 
   static propTypes = {
-    lookup: React.PropTypes.func,
+    lookup: React.PropTypes.object,
     onChange: React.PropTypes.func,
     getColor: React.PropTypes.func,
     group: React.PropTypes.string,
@@ -17,7 +17,7 @@ export default class Filters extends React.Component {
   }
 
   lookup(k,d) {
-    return this.props.lookup ? this.props.lookup(k,d) : d
+    return this.props.lookup && this.props.lookup[k] && this.props.lookup[k][d] || d
   }
 
   onClick = (dimension, value) => {
@@ -53,8 +53,8 @@ export default class Filters extends React.Component {
       _.map(f, (value, i) => {
         let iconEl = <span className="graph-filters__element__icon">
                        <Glyphicon glyph="filter"/>
-                     </span>
-        if(getColor) {
+                      </span>
+          if(getColor) {
           iconEl = <span className="graph-filters__element__color" style={{backgroundColor: this.props.getColor(value, dimension) }} />
         }
 
