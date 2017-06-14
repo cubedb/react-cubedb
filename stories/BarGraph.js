@@ -51,4 +51,12 @@ export default ({children}) =>
               onChange={action('change-value')}
               lookup={object('Lookup', lookup)}/>
     </section>
+    <section>
+    <h3>Comparing data:</h3>
+    <BarGraph name={'My Data'} 
+              data={object('Data', mock.response.dimension_g)}
+              comparingTo={object('Comparing to', mock.response.dimension_g_comparing)}
+              onChange={action('change-value')}
+              lookup={object('Lookup', lookup)}/>
+    </section>
   </div>

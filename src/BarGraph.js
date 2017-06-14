@@ -3,6 +3,7 @@ import React from 'react'
 import { FormGroup, FormControl, Button, ButtonGroup, ButtonToolbar, Panel, OverlayTrigger, Popover, Glyphicon } from 'react-bootstrap'
 import * as d3 from 'd3'
 
+import saveData from './utils/saveData'
 import normalizeData from './utils/normalizeData'
 import './style/BarGraph.scss'
   
@@ -100,24 +101,24 @@ class BarLine extends React.Component {
   getIcon(val1, val2){
     let percentage = (Math.abs(1-val1/val2)*100).toFixed(1)
     if(val1 > val2){
-      return <div className="bar-graph__variation__wrapper"><span className="bar-graph__variation--up"><Glyphicon glyph="arrow-up" />{isFinite(percentage) ? <span className="variation__icon">{`${percentage}% `}</span> : <span className="variation__icon--infinity">∞</span>}</span></div>
+      return <div className="bar-graph__variation__wrapper"><span className="bar-graph__variation--up">{'▲'}{isFinite(percentage) ? <span className="variation__icon">{`${percentage}% `}</span> : <span className="variation__icon--infinity">∞</span>}</span></div>
     } else if(val2 > val1){
-      return <div className="bar-graph__variation__wrapper"><span className="bar-graph__variation--down"><Glyphicon glyph="arrow-down" />{isFinite(percentage) ? <span className="variation__icon">{`${percentage}% `}</span> : <span className="variation__icon--infinity">∞</span>}</span></div>
+      return <div className="bar-graph__variation__wrapper"><span className="bar-graph__variation--down">{'▼'}{isFinite(percentage) ? <span className="variation__icon">{`${percentage}% `}</span> : <span className="variation__icon--infinity">∞</span>}</span></div>
     } else {
-      return <div className="bar-graph__variation__wrapper"><span className="bar-graph__variation"><Glyphicon glyph="option-horizontal" /></span></div>
+      return <div className="bar-graph__variation__wrapper"><span className="bar-graph__variation">{'='}</span></div>
     }
   }
 
   render(){
 
     return <div className={'bar-graph' + (this.props.selected ? ' selected' : '')} onClick={() => this.props.onChange(this.props.name, this.props.data.key)}>
-            {this.props.window ? this.getIcon(this.props.data.c, this.props.comparingData.c) : null }
+            {this.props.comparingData ? this.getIcon(this.props.data.c, this.props.comparingData.c) : null }
             <div className="bar-graph__label__wrapper">
                   <div className="bar-graph__label">
                   {this.props.label}
                   </div>
             </div>
-            {this.props.window ? 
+            {this.props.comparingData ? 
               <div className="bar-graph__value__wrapper">
                 <div className={`bar-graph__value`}>
                   {numberFormat(this.props.comparingData.c||0)}
@@ -132,10 +133,10 @@ class BarLine extends React.Component {
               </div>}  
             <div className="bar-graph__bar-container__wrapper">
               <div className="bar-graph__bar-container">
-                {this.props.window ? 
-                  <Bar key="window" 
+                {this.props.comparingData ? 
+                  <Bar key="comparing" 
                        container={this.props.container} 
-                       data={this.props.data} 
+                       data={this.props.comparingData} 
                        group={this.props.group}
                        name={this.props.name}
                        max={this.props.stretched ? this.props.comparingData.c : this.props.max} 
@@ -165,9 +166,7 @@ class BarList extends React.Component {
     getColor: React.PropTypes.func,
     group: React.PropTypes.string,
     name: React.PropTypes.string,
-    volume: React.PropTypes.number,
-    windowData: React.PropTypes.object,
-    windowVolume: React.PropTypes.number,
+    comparingTo: React.PropTypes.object,
     lookup: React.PropTypes.object,
     selected: React.PropTypes.object
   }
@@ -185,10 +184,15 @@ class BarList extends React.Component {
   render() {
     const {serie, max, total} = this.props.dimension
     if (!_.isEmpty(serie)) {
-      const maxWindow = this.props.comparingTo ? this.props.comparingTo.max : 0
+      const comparingMax = this.props.comparingTo ? this.props.comparingTo.max : 0
       const prefix = this.props.hideCommonPrefix ? getCommonPrefix(_.map(this.props.data, (d) => { if (d.name!=='<not defined>') return d.name })) : ''
+
       return <div className="cube_bars__list__content">
-              {_(serie).sortBy('c').reverse().map((d, i) => {
+              {_(serie).sortBy('c').reverse().map((d, i) => {      
+                let comparingData = null
+                if(this.props.comparingTo && this.props.comparingTo.serie) {
+                  comparingData = this.props.comparingTo.serie[d.key] ? this.props.comparingTo.serie[d.key] : {c:0}
+                }
                 if(!this.props.filter || RegExp(this.props.filter, 'i').test(d.name)) {
                   return <BarLine 
                             key={d.key}
@@ -196,13 +200,13 @@ class BarList extends React.Component {
                             label={prefix ? d.name.startsWith(prefix)?d.name.substring(prefix.length):d.name : d.name}
                             total={total}
                             comparingTotal={this.props.comparingTo ? this.props.comparingTo.total : null}
-                            max={Math.max(max, maxWindow)}
+                            max={Math.max(max, comparingMax)}
                             data={d}
                             group={this.props.group}
                             stretched={this.props.stretched}
                             container={this}
                             onChange={this.props.onChange}
-                            comparingData={this.props.comparingTo ? (this.props.comparingTo[d.key] ? this.props.comparingTo[d.key] : {c:0}) : null }
+                            comparingData={comparingData}
                             getColor={this.props.getColor}
                             selected={this.props.selected.indexOf(d.key) >= 0} />
                 }
@@ -215,6 +219,53 @@ class BarList extends React.Component {
 }
 
 class BarGraphHeader extends React.Component {
+
+  onDownload = (dataLabel, volume, dataSerie, comparingTo) => () => {
+    // logAction("graphs", "bar", "download")
+    const defaultDimension = {c: 0}
+    let stacksLabel = ''
+    const delimiter = ','
+    const endLine = '\r\n'
+
+    const createLine = (name, count = 0, stack= []) => {
+      const proportion = volume > 0  && count > 0 ? (count||0)/volume : 0
+      let stacks = ''
+
+      if(this.props.group){
+        _.each(this.props.allData[this.props.group], (d, i) => {
+          stacks += `${delimiter}${(stack[i]||defaultDimension).c}`
+        })
+      }
+
+      stacks += `${delimiter}${count}`
+
+      return `${name}${delimiter}${(proportion*100).toFixed(3)}%${stacks}${endLine}`
+    }
+
+    const body = _.map(dataSerie, (el)=>{
+      if(comparingTo){
+        let window = comparingTo[el.key] || {count: 0, stack:[]}
+        return `${createLine(`${el.name}${delimiter}A`, window.c, window.stack)}${createLine(`${el.name}${delimiter}B`, el.c, el.stack)}`
+      } else {
+        return createLine(el.name, el.c, el.stack)
+      }
+    }).join("")
+
+    if(this.props.group){
+      _.each(this.props.allData[this.props.group], (d, i) => {
+        stacksLabel += `${delimiter}${d[i].name}`
+      })
+    }
+
+    stacksLabel += `${delimiter}event count`
+
+    const header = `${dataLabel}${delimiter}${comparingTo ? `window${delimiter}` : ''}percentage${stacksLabel}${endLine}`
+    const fileData = header+body
+
+    const blob = new Blob([fileData], {type: 'text/plain'})
+    
+    saveData(`event_${this.props.name}_serie_${dataLabel}${this.props.group ? `_grouped_by_${this.props.group }`:''}.csv`, blob)
+  }
 
   onClickAddAll = (e) => {
     e.preventDefault()
@@ -235,7 +286,7 @@ class BarGraphHeader extends React.Component {
               {this.props.name} <small>({this.props.size})</small>
             </h4>
             <ButtonGroup className="bar-graph-group__actions">
-                <Button title="Click to save as csv" onClick={this.props.onDownload}><Glyphicon glyph="save"/></Button>
+                <Button title="Click to save as csv" onClick={this.onDownload(this.props.name, this.props.total, this.props.dimension, this.props.comparingTo)}><Glyphicon glyph="save"/></Button>
                 <OverlayTrigger container={this} trigger="click" rootClose placement="bottom" overlay={
                     <Popover className="bar-graph-group__filter__dimension" id={`popover-${this.props.name}`} title="">
                           <div>
@@ -274,7 +325,7 @@ class BarGraphHeader extends React.Component {
                 </OverlayTrigger>
                 {this.props.onStretch ? <Button title="Click to change the view mode" bsStyle={this.props.stretched ? 'primary' : 'default'} onClick={this.props.onStretch}><Glyphicon glyph="tasks"/></Button> : null }
                 <Button title="Click to change the stacking based in this group" 
-                        bsStyle={this.props.groupedBy ? 'primary' : 'default'} 
+                        bsStyle={this.props.group === this.props.name ? 'primary' : 'default'} 
                         onClick={() => {this.props.onChange('group', this.props.name)}}>
                           <Glyphicon glyph="indent-left"/>
                 </Button>
@@ -287,12 +338,14 @@ class BarGraphHeader extends React.Component {
 
 export default class BarGraph extends React.Component {
   static propTypes = {
-    name: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object,
     comparingTo: React.PropTypes.object,
-    selected: React.PropTypes.array,
+    data: React.PropTypes.object,
+    getColor: React.PropTypes.func,
     group: React.PropTypes.string,
-    onChange: React.PropTypes.func
+    lookup: React.PropTypes.object,
+    name: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func,
+    selected: React.PropTypes.array
   }
 
   static defaultProps = {
@@ -344,11 +397,16 @@ export default class BarGraph extends React.Component {
     const comparing = this.props.comparingTo ? normalizeData(this.props.comparingTo, this.props.lookup[this.props.name], this.props.lookup[this.props.group]) : null
     let filter = this.state.search
     const isGroupSource = (this.props.group && this.props.group === this.props.name)
+
+
     return <Panel bsStyle={isGroupSource ? 'info' : 'default'} 
                   header={
                     <BarGraphHeader 
                       name={this.props.name}
-                      dimensions={_.map(dimension.serie, 'key')}
+                      dimensionKeys={_.map(dimension.serie, 'key')}
+                      total={dimension.total}
+                      comparingTo={comparing && comparing.serie}
+                      dimension={dimension.serie}
                       selectedItems={this.props.selected}
                       onSearch={this.onSearch}
                       filter={filter}

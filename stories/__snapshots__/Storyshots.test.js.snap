@@ -255,7 +255,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
               className="btn btn-default"
               disabled={false}
               onClick={[Function]}
-              title="Click to change the applied filters"
+              title="Click to change the applied tags"
               type="button"
             >
               <span
@@ -326,7 +326,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
               className="btn btn-default"
               disabled={false}
               onClick={[Function]}
-              title="Click to change the applied filters"
+              title="Click to change the applied tags"
               type="button"
             >
               <span
@@ -496,7 +496,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
               className="btn btn-default"
               disabled={false}
               onClick={[Function]}
-              title="Click to change the applied filters"
+              title="Click to change the applied tags"
               type="button"
             >
               <span
@@ -666,7 +666,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
               className="btn btn-default"
               disabled={false}
               onClick={[Function]}
-              title="Click to change the applied filters"
+              title="Click to change the applied tags"
               type="button"
             >
               <span
@@ -976,7 +976,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
 </div>
 `;
 
-exports[`Storyshots react-cubedb Filters 1`] = `
+exports[`Storyshots react-cubedb TagGroup 1`] = `
 <div
   style={
     Object {

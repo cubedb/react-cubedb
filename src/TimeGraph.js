@@ -1,28 +1,14 @@
 import _ from 'lodash'
 import * as d3 from 'd3'
 
-import ReactFauxDOM from 'react-faux-dom';
+import ReactFauxDOM from 'react-faux-dom'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TimeGraphContent from './TimeGraphContent';
+import TimeGraphContent from './TimeGraphContent'
+import saveData from './utils/saveData'
 
 import './style/TimeGraph.scss'
-
-
-const saveData = (filename = String, blob = Blob) => {
-  let uri = URL.createObjectURL(blob)
-  let link = document.createElement('a');
-  if (typeof link.download === 'string') {
-    document.body.appendChild(link); //Firefox requires the link to be in the body
-    link.download = filename;
-    link.href = uri;
-    link.click();
-    document.body.removeChild(link); //remove the link when done
-  } else {
-    location.replace(uri);
-  }
-}
 
 const NUM_DAYS = 100
 
@@ -148,7 +134,7 @@ export default class TimeGraph extends React.Component {
     }
 
     const body = _(dataSerie).sortBy(0).map((d)=>{
-                    return createLine(this.props.timeDisplay(d[0]), d[1].c, d[1].stack)
+                    return createLine(d[0], d[1].c, d[1].stack)
                 }).join("")
 
     if(this.props.group){

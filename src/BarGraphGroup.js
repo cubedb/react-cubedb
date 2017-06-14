@@ -22,57 +22,6 @@ class BarGraphColumn extends React.Component {
     }
   }
 
-  // shouldComponentUpdate(){
-  //   return true
-  // }
-
-  onDownload = (dataLabel, volume, dataSerie, comparingTo) => () => {
-    // logAction("graphs", "bar", "download")
-    const defaultDimension = {c: 0}
-    let stacksLabel = ''
-    const delimiter = ','
-    const endLine = '\r\n'
-
-    const createLine = (name, count = 0, stack= []) => {
-      const proportion = volume > 0  && count > 0 ? (count||0)/volume : 0
-      let stacks = ''
-
-      if(this.props.group){
-        _.each(this.props.allData[this.props.group], (d, i) => {
-          stacks += `${delimiter}${(stack[i]||defaultDimension).c}`
-        })
-      }
-
-      stacks += `${delimiter}${count}`
-
-      return `${name}${delimiter}${(proportion*100).toFixed(3)}%${stacks}${endLine}`
-    }
-
-    const body = _.map(dataSerie, (el)=>{
-      if(comparingTo){
-        let window = comparingTo[el.key] || {count: 0, stack:[]}
-        return `${createLine(`${el.name}${delimiter}A`, window.count, window.stack)}${createLine(`${el.name}${delimiter}B`, el.count, el.stack)}`
-      } else {
-        return createLine(el.name, el.count, el.stack)
-      }
-    }).join("")
-
-    if(this.props.group){
-      _.each(this.props.allData[this.props.group], (d, i) => {
-        stacksLabel += `${delimiter}${d[i].name}`
-      })
-    }
-
-    stacksLabel += `${delimiter}event count`
-
-    const header = `${dataLabel}${delimiter}${comparingTo ? `window${delimiter}` : ''}percentage${stacksLabel}${endLine}`
-    const fileData = header+body
-
-    const blob = new Blob([fileData], {type: 'text/plain'})
-    
-    saveData(`event_${this.props.name.key}_serie_${dataLabel}${this.props.group ? `_grouped_by_${this.props.group }`:''}.csv`, blob)
-  }
-
   onStretch = (serie) => () => {
     // logAction("graphs", "bar stretch", serie)
     this.setState({
@@ -112,7 +61,6 @@ class BarGraphColumn extends React.Component {
 
   render() {
     return <div className='cube_graph__column'>
-          
           {_.map(this.props.data, (serie, key) => {
             return <div key={key} className={`bar-graph-group__list`}>
                       <BarGraph 
@@ -125,39 +73,6 @@ class BarGraphColumn extends React.Component {
                         lookup={this.props.lookup}
                         getColor={this.props.getColor}
                         />
-                      {/*<Panel bsStyle={(this.props.selectedItems[p[0]] ? 'info' : 'default')} header={
-                            <BarGraphHeader serie={p[0]}
-                                             dimensions={_.map(list, 'name')}
-                                             validSelectedItems={serie.filters}
-                                             selectedItems={this.props.selectedItems[p[0]]}
-                                             onSearch={this.onSearch(p[0])}
-                                             searchTerm={searchTerm}
-                                             size={_.size(dimensionData)}
-                                             onDownload={this.onDownload(p[0], serie.volume, dimensionData, comparingTo)} 
-                                             onStretch={this.props.group && this.props.group !== p[0] && this.onStretch(p[0])}
-                                             stretched={this.props.group && this.props.group !== p[0] && this.state.stretched[p[0]]}
-                                             onChange={this.props.onChange}
-                                             groupedBy={this.props.group === p[0]}/>
-                      }>
-                        {searchTerm ?
-                          <div className="bar-graph-group__search-help">Search result for "{searchTerm}"</div>
-                        :
-                          null
-                        }
-                        <BarGraph
-                          serie={p[0]}
-                          volume={serie.volume}
-                          data={list}
-                          comparingTo={comparingTo}
-                          windowVolume={window.volume}
-                          group={this.props.group}
-                          groupedBy={this.props.group === p[0]}
-                          stretched={this.props.group && this.props.group !== p[0] && this.state.stretched[p[0]]}
-                          lookup={this.lookup(p[0]) }
-                          getColor={this.props.getColor}
-                          />
-                      </Panel>*/}
-
                     </div>
           })}
       </div>
@@ -195,11 +110,6 @@ export default class BarGraphGroup extends React.Component {
   getColumns = () => {
     return this.props.columns || Math.floor(this.props.width/420)
   }
-
-  // shouldComponentUpdate(nextProps){
-  //   return true //this.props.height != nextProps.height || this.props.width != nextProps.width || !_.isEqual(this.props.data, nextProps.data) || !_.isEqual(this.props.comparingTo, nextProps.comparingTo)
-  // }
-
 
   render() {
     let n = 0;

@@ -10,6 +10,7 @@ import { linkTo } from '@storybook/addon-links';
 import Welcome from './Welcome';
 import TrendingGraph from './TrendingGraph';
 import BarGraph from './BarGraph';
+import BarGraphGroup from './BarGraphGroup';
 import CubeDB from './CubeDB';
 
 storiesOf('Cube DB', module)
@@ -19,8 +20,8 @@ storiesOf('Cube DB', module)
 storiesOf('react-cubedb', module)
   .addDecorator(withKnobs)
   .add('BarGraph', () => <BarGraph/>)
-  .add('BarGraphGroup', () => <Welcome showApp={linkTo('Button')} />)
-  .add('Filters', () => <Welcome showApp={linkTo('Button')} />)
+  .add('BarGraphGroup', () => <BarGraphGroup/>)
+  .add('TagGroup', () => <Welcome showApp={linkTo('Button')} />)
   .add('TimeGraph', () => <Welcome showApp={linkTo('Button')} />)
   .add('TrendingGraph', () => <TrendingGraph/>)
 
