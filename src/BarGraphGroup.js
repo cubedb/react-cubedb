@@ -69,6 +69,7 @@ class BarGraphColumn extends React.Component {
                         comparingTo={this.props.comparingTo && this.props.comparingTo[key]}
                         selected={this.props.selectedItems && this.props.selectedItems[key]}
                         onChange={this.props.onChange}
+                        slice={this.props.slice}
                         group={this.props.group}
                         lookup={this.props.lookup}
                         getColor={this.props.getColor}
@@ -82,6 +83,7 @@ class BarGraphColumn extends React.Component {
 export default class BarGraphGroup extends React.Component {
 
   static propTypes = {
+    slice: React.PropTypes.number,
     width: React.PropTypes.number,
     columns: React.PropTypes.number,
     onChange: React.PropTypes.func,
@@ -136,6 +138,7 @@ export default class BarGraphGroup extends React.Component {
                             lookup={this.props.lookup}
                             group={this.props.group}
                             onChange={this.props.onChange}
+                            slice={this.props.slice}
                             selectedItems={this.props.selectedItems}
                             getColor={this.props.getColor}/>
                 })

@@ -159,7 +159,7 @@ class BarLine extends React.Component {
 class BarList extends React.Component {
   static propTypes = {
     dimension: React.PropTypes.object,
-
+    slice: React.PropTypes.number,
     hideCommonPrefix: React.PropTypes.bool,
     stretched: React.PropTypes.bool,
     filter: React.PropTypes.string,
@@ -188,7 +188,7 @@ class BarList extends React.Component {
       const prefix = this.props.hideCommonPrefix ? getCommonPrefix(_.map(this.props.data, (d) => { if (d.name!=='<not defined>') return d.name })) : ''
 
       return <div className="cube_bars__list__content">
-              {_(serie).sortBy('c').reverse().map((d, i) => {      
+              {_(serie).sortBy('c').reverse().slice(0, this.props.slice||serie.length).map((d, i) => {      
                 let comparingData = null
                 if(this.props.comparingTo && this.props.comparingTo.serie) {
                   comparingData = this.props.comparingTo.serie[d.key] ? this.props.comparingTo.serie[d.key] : {c:0}
@@ -283,7 +283,7 @@ class BarGraphHeader extends React.Component {
   render(){
     return <div>
             <h4>
-              {this.props.name} <small>({this.props.size})</small>
+              {this.props.name} <small>({(this.props.slice && this.props.slice < this.props.size ? `${this.props.slice} of ` : '')+ this.props.size})</small>
             </h4>
             <ButtonGroup className="bar-graph-group__actions">
                 <Button title="Click to save as csv" onClick={this.onDownload(this.props.name, this.props.total, this.props.dimension, this.props.comparingTo)}><Glyphicon glyph="save"/></Button>
@@ -414,6 +414,7 @@ export default class BarGraph extends React.Component {
                       onStretch={!isGroupSource && this.onStretch}
                       stretched={!isGroupSource && this.state.stretched}
                       onChange={this.onChange}
+                      slice={this.props.slice}
                       group={this.props.group}/>} 
                     >
                 {filter ?
@@ -431,6 +432,7 @@ export default class BarGraph extends React.Component {
                   lookup={this.props.lookup}
                   selected={this.props.selected}
                   onChange={this.onChange}
+                  slice={this.props.slice}
                   getColor={this.props.getColor}  />
               </Panel>
   }

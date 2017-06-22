@@ -45,6 +45,14 @@ export default ({children}) =>
               }}/>
     </section>
     <section>
+    <h3>With slice definition:</h3>
+    <BarGraph name={'My Data'} 
+              data={object('Data', mock.response.dimension_g)}
+              onChange={action('change-value')}
+              slice={2}
+              lookup={object('Lookup', lookup)}/>
+    </section>
+    <section>
     <h3>With change event:</h3>
     <BarGraph name={'My Data'} 
               data={object('Data', mock.response.dimension_g)}
