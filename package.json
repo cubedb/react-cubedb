@@ -2,6 +2,7 @@
   "name": "react-cubedb",
   "version": "0.3.1",
   "description": "Ract client to CubeDB",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jrfferreira/react-cubedb.git"
