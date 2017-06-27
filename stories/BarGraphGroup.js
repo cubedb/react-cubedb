@@ -3,7 +3,7 @@ import React from 'react';
 import * as d3 from 'd3';
 import {pickBy} from 'lodash';
 
-import { BarGraphGroup } from 'react-cubedb';
+import { BarGraphGroup } from '../src';
 import { object, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 

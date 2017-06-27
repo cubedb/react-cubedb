@@ -44,6 +44,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.24.1",
     "cpy-cli": "^1.0.1",
+    "css-loader": "^0.28.4",
     "enzyme": "^2.2.0",
     "eslint": "^2.7.0",
     "eslint-plugin-babel": "^3.1.0",
@@ -52,12 +53,15 @@
     "eslint-plugin-react": "^4.2.3",
     "jest": "^20.0.4",
     "jsdom": "^8.1.0",
+    "node-sass": "^4.5.3",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.0.0",
     "react-doc-generator": "^1.2.5",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2"
   },
   "peerDependencies": {
     "react": "^15.5.4",
