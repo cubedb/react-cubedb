@@ -26,4 +26,10 @@ describe('TrendingGraph', () => {
 
     expect(component).toMatchSnapshot()
   })
+
+  it('is loading', () => {
+    const component = shallow(<TrendingGraph {...defaultProps} isLoading={true} />)
+
+    expect(component).toMatchSnapshot()
+  })
 })

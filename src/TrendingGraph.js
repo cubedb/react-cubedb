@@ -19,7 +19,8 @@ export default class TrendingGraph extends React.Component {
      */
     data: React.PropTypes.object,
     width: React.PropTypes.number,
-    height: React.PropTypes.number
+    height: React.PropTypes.number,
+    isLoading: React.PropTypes.bool
   }
 
   static defaultProps = {
@@ -30,10 +31,11 @@ export default class TrendingGraph extends React.Component {
   render() {
     const width = this.props.width
     const height = this.props.height
+    let path
 
-    let path = <SvgLoadingAnimation width={width} height={height}/>
-
-    if (this.props.data) {
+    if (this.props.isLoading) {
+      path = <SvgLoadingAnimation width={width} height={height}/>
+    } else if (this.props.data) {
       let data = sortBy(filter(toPairs(mapValues(this.props.data, 'c')), (val) => {
                   return !isUndefined(val) && val.length === 2
                  }), 0)
