@@ -1,10 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved, import/extensions */
-
-import React from 'react';
+import React from 'react';  // eslint-disable-line no-unused-vars
 
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';  // eslint-disable-line no-unused-vars
 import { linkTo } from '@storybook/addon-links';
 
 import Welcome from './Welcome';
@@ -24,4 +22,3 @@ storiesOf('react-cubedb', module)
   .add('TagGroup', () => <Welcome showApp={linkTo('Button')} />)
   .add('TimeGraph', () => <Welcome showApp={linkTo('Button')} />)
   .add('TrendingGraph', () => <TrendingGraph/>)
-
