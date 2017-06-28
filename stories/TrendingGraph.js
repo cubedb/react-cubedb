@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { TrendingGraph } from 'react-cubedb';
+import { TrendingGraph } from '../src';
 import { object, number } from '@storybook/addon-knobs';
 
 const mock = require('./_mock.json');
@@ -19,9 +19,9 @@ export default ({children}) =>
     </section>
     <section>
     <p>With custom dimension:</p>
-    <TrendingGraph 
-      data={mock.response.p} 
-      width={number('width', 200)} 
+    <TrendingGraph
+      data={mock.response.p}
+      width={number('width', 200)}
       height={number('height',80)}/>
     </section>
   </div>

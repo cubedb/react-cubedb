@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as d3 from 'd3';
 
-import { BarGraph } from 'react-cubedb';
+import { BarGraph } from '../src';
 import { object, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
@@ -25,14 +25,14 @@ export default ({children}) =>
     </section>
     <section>
     <h3>With lookup:</h3>
-    <BarGraph name={'My Data'} 
+    <BarGraph name={'My Data'}
               data={object('Data', mock.response.dimension_g)}
               onChange={action('change-value')}
               lookup={object('Lookup', lookup)}/>
     </section>
     <section>
     <h3>With custom colors:</h3>
-    <BarGraph name={'My Data'} 
+    <BarGraph name={'My Data'}
               data={object('Data', mock.response.dimension_g)}
               lookup={object('Lookup', lookup)}
               onChange={action('change-value')}
@@ -46,7 +46,7 @@ export default ({children}) =>
     </section>
     <section>
     <h3>With slice definition:</h3>
-    <BarGraph name={'My Data'} 
+    <BarGraph name={'My Data'}
               data={object('Data', mock.response.dimension_g)}
               onChange={action('change-value')}
               slice={2}
@@ -54,14 +54,14 @@ export default ({children}) =>
     </section>
     <section>
     <h3>With change event:</h3>
-    <BarGraph name={'My Data'} 
+    <BarGraph name={'My Data'}
               data={object('Data', mock.response.dimension_g)}
               onChange={action('change-value')}
               lookup={object('Lookup', lookup)}/>
     </section>
     <section>
     <h3>Comparing data:</h3>
-    <BarGraph name={'My Data'} 
+    <BarGraph name={'My Data'}
               data={object('Data', mock.response.dimension_g)}
               comparingTo={object('Comparing to', mock.response.dimension_g_comparing)}
               onChange={action('change-value')}
