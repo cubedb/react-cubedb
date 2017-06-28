@@ -1,0 +1,412 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrendingGraph default 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <svg
+    className="trending_graph"
+    height={50}
+    viewBox="0 0 200 50"
+    width={200}
+>
+    <path
+        className="trending_graph__line"
+        d={null}
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    />
+</svg>,
+  "nodes": Array [
+    <svg
+      className="trending_graph"
+      height={50}
+      viewBox="0 0 200 50"
+      width={200}
+>
+      <path
+            className="trending_graph__line"
+            d={null}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+      />
+</svg>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance":  {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <TrendingGraph
+        data={
+                Object {
+                        "2017-01-01 01": Object {
+                          "c": 1,
+                        },
+                        "2017-01-01 02": Object {
+                          "c": 2,
+                        },
+                        "2017-01-01 03": Object {
+                          "c": 3,
+                        },
+                      }
+        }
+        height={50}
+        width={200}
+/>,
+      "_debugID": 1,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": TrendingGraph {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "data": Object {
+            "2017-01-01 01": Object {
+              "c": 1,
+            },
+            "2017-01-01 02": Object {
+              "c": 2,
+            },
+            "2017-01-01 03": Object {
+              "c": 3,
+            },
+          },
+          "height": 50,
+          "width": 200,
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <svg
+          className="trending_graph"
+          height={50}
+          viewBox="0 0 200 50"
+          width={200}
+>
+          <path
+                    className="trending_graph__line"
+                    d={null}
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+          />
+</svg>,
+        "_debugID": 2,
+        "_renderedOutput": <svg
+          className="trending_graph"
+          height={50}
+          viewBox="0 0 200 50"
+          width={200}
+>
+          <path
+                    className="trending_graph__line"
+                    d={null}
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+          />
+</svg>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <TrendingGraph
+    data={
+        Object {
+            "2017-01-01 01": Object {
+              "c": 1,
+            },
+            "2017-01-01 02": Object {
+              "c": 2,
+            },
+            "2017-01-01 03": Object {
+              "c": 3,
+            },
+          }
+    }
+    height={50}
+    width={200}
+/>,
+}
+`;
+
+exports[`TrendingGraph is loading 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <svg
+    className="trending_graph"
+    height={50}
+    viewBox="0 0 200 50"
+    width={200}
+>
+    <SvgLoadingAnimation
+        height={50}
+        width={200}
+    />
+</svg>,
+  "nodes": Array [
+    <svg
+      className="trending_graph"
+      height={50}
+      viewBox="0 0 200 50"
+      width={200}
+>
+      <SvgLoadingAnimation
+            height={50}
+            width={200}
+      />
+</svg>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance":  {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <TrendingGraph
+        data={
+                Object {
+                        "2017-01-01 01": Object {
+                          "c": 1,
+                        },
+                        "2017-01-01 02": Object {
+                          "c": 2,
+                        },
+                        "2017-01-01 03": Object {
+                          "c": 3,
+                        },
+                      }
+        }
+        height={50}
+        isLoading={true}
+        width={200}
+/>,
+      "_debugID": 5,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": TrendingGraph {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "data": Object {
+            "2017-01-01 01": Object {
+              "c": 1,
+            },
+            "2017-01-01 02": Object {
+              "c": 2,
+            },
+            "2017-01-01 03": Object {
+              "c": 3,
+            },
+          },
+          "height": 50,
+          "isLoading": true,
+          "width": 200,
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 3,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <svg
+          className="trending_graph"
+          height={50}
+          viewBox="0 0 200 50"
+          width={200}
+>
+          <SvgLoadingAnimation
+                    height={50}
+                    width={200}
+          />
+</svg>,
+        "_debugID": 6,
+        "_renderedOutput": <svg
+          className="trending_graph"
+          height={50}
+          viewBox="0 0 200 50"
+          width={200}
+>
+          <SvgLoadingAnimation
+                    height={50}
+                    width={200}
+          />
+</svg>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <TrendingGraph
+    data={
+        Object {
+            "2017-01-01 01": Object {
+              "c": 1,
+            },
+            "2017-01-01 02": Object {
+              "c": 2,
+            },
+            "2017-01-01 03": Object {
+              "c": 3,
+            },
+          }
+    }
+    height={50}
+    isLoading={true}
+    width={200}
+/>,
+}
+`;
+
+exports[`TrendingGraph no data 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <svg
+    className="trending_graph"
+    height={50}
+    viewBox="0 0 200 50"
+    width={200}
+/>,
+  "nodes": Array [
+    <svg
+      className="trending_graph"
+      height={50}
+      viewBox="0 0 200 50"
+      width={200}
+/>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance":  {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <TrendingGraph
+        data={undefined}
+        height={50}
+        width={200}
+/>,
+      "_debugID": 3,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": TrendingGraph {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "data": undefined,
+          "height": 50,
+          "width": 200,
+        },
+        "refs": Object {},
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 2,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <svg
+          className="trending_graph"
+          height={50}
+          viewBox="0 0 200 50"
+          width={200}
+/>,
+        "_debugID": 4,
+        "_renderedOutput": <svg
+          className="trending_graph"
+          height={50}
+          viewBox="0 0 200 50"
+          width={200}
+/>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <TrendingGraph
+    data={undefined}
+    height={50}
+    width={200}
+/>,
+}
+`;
