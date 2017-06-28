@@ -52,6 +52,7 @@
     "eslint-plugin-jasmine": "^2.6.2",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^4.2.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
@@ -76,5 +77,10 @@
     "node-sass": "^4.5.3",
     "react-bootstrap": "^0.31.0",
     "react-faux-dom": "^4.0.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.scss$": "identity-obj-proxy"
+    }
   }
 }
