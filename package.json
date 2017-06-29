@@ -7,7 +7,11 @@
     "type": "git",
     "url": "https://github.com/jrfferreira/react-cubedb.git"
   },
-  "author": "sztanko, jrfferreira",
+  "contributors": [
+    "sztanko",
+    "jrfferreira",
+    "Daniele Esposti <daniele.esposti@gmail.com>"
+  ],
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/jrfferreira/react-cubedb/issues"
