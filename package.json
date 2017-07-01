@@ -28,7 +28,7 @@
   "scripts": {
     "prepublish": "npm run dist",
     "dist": "npm run dist:clean && npm run dist:js && npm run dist:scss",
-    "dist:js": "babel ./src -d ./dist",
+    "dist:js": "babel --ignore *.test.js ./src -d ./dist",
     "dist:clean": "rimraf ./dist",
     "dist:scss": "cpy './src/style/*.scss' ./dist/style",
     "lint": "eslint ./src",
