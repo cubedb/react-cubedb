@@ -2,6 +2,7 @@ import _ from 'lodash'
 import * as d3 from 'd3'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 
 
@@ -238,7 +239,7 @@ export default class TimeGraphContent extends React.Component {
         const value = this.flattenData[xPoint].c
         const posY = this.props.yScale(value)
         const labels = this.props.group ? _(this.flattenData[xPoint].stack).filter('c').map('name').value() : [""]
-        const maxValue = (_(this.flattenData[xPoint].stack).sortBy((d,e) => { 
+        const maxValue = (_(this.flattenData[xPoint].stack).sortBy((d,e) => {
                               return `${d.c}`.length
                             }).reverse().head() || this.flattenData[xPoint]).c
         const rectHeight = this.props.group ? (labels.length * 16) : 16
@@ -484,7 +485,7 @@ export default class TimeGraphContent extends React.Component {
       })
 
       stacks = _(dimensionCount).sortBy('c').reverse().slice(0, STACK_LIMIT).map('key').value()
-      
+
     }
 
     this.flattenData = []
@@ -802,22 +803,22 @@ export default class TimeGraphContent extends React.Component {
 }
 
 TimeGraphContent.propTypes = {
-  aggregation: React.PropTypes.string,
-  timeDisplay: React.PropTypes.func,
-  timeFormatter: React.PropTypes.func,
-  onClickCompare: React.PropTypes.any,
-  onFilterChange: React.PropTypes.func,
-  timeUnitLengthSec: React.PropTypes.number,
-  tooltipValue: React.PropTypes.number,
-  xScale: React.PropTypes.func,
-  yScale: React.PropTypes.func,
-  margin: React.PropTypes.object,
-  numberFormat: React.PropTypes.func,
-  data: React.PropTypes.array,
-  range: React.PropTypes.array,
-  type: React.PropTypes.string,
-  metadata: React.PropTypes.object,
-  mouseIteractions: React.PropTypes.bool
+  aggregation: PropTypes.string,
+  timeDisplay: PropTypes.func,
+  timeFormatter: PropTypes.func,
+  onClickCompare: PropTypes.any,
+  onFilterChange: PropTypes.func,
+  timeUnitLengthSec: PropTypes.number,
+  tooltipValue: PropTypes.number,
+  xScale: PropTypes.func,
+  yScale: PropTypes.func,
+  margin: PropTypes.object,
+  numberFormat: PropTypes.func,
+  data: PropTypes.array,
+  range: PropTypes.array,
+  type: PropTypes.string,
+  metadata: PropTypes.object,
+  mouseIteractions: PropTypes.bool
 };
 
 

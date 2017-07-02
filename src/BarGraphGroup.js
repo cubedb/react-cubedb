@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import BarGraph from './BarGraph'
 import { FormGroup, FormControl, Button, ButtonGroup, ButtonToolbar, Panel, OverlayTrigger, Popover, Glyphicon, Col } from 'react-bootstrap'
 // import { logAction } from '../../core/analytics'
@@ -63,7 +64,7 @@ class BarGraphColumn extends React.Component {
     return <div className='cube_graph__column'>
           {_.map(this.props.data, (serie, key) => {
             return <div key={key} className={`bar-graph-group__list`}>
-                      <BarGraph 
+                      <BarGraph
                         name={key}
                         data={serie}
                         comparingTo={this.props.comparingTo && this.props.comparingTo[key]}
@@ -83,17 +84,17 @@ class BarGraphColumn extends React.Component {
 export default class BarGraphGroup extends React.Component {
 
   static propTypes = {
-    slice: React.PropTypes.number,
-    width: React.PropTypes.number,
-    columns: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-    data: React.PropTypes.object,
-    fieldOrders: React.PropTypes.array,
-    getColor: React.PropTypes.func,
-    group: React.PropTypes.string,
-    lookup: React.PropTypes.object,
-    selectedItems: React.PropTypes.object,
-    comparingTo: React.PropTypes.object
+    slice: PropTypes.number,
+    width: PropTypes.number,
+    columns: PropTypes.number,
+    onChange: PropTypes.func,
+    data: PropTypes.object,
+    fieldOrders: PropTypes.array,
+    getColor: PropTypes.func,
+    group: PropTypes.string,
+    lookup: PropTypes.object,
+    selectedItems: PropTypes.object,
+    comparingTo: PropTypes.object
   }
 
   static defaultProps = {
@@ -108,7 +109,7 @@ export default class BarGraphGroup extends React.Component {
       comparingTo: null,
       columns: null
   }
-  
+
   getColumns = () => {
     return this.props.columns || Math.floor(this.props.width/420)
   }

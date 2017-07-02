@@ -4,6 +4,7 @@ import * as d3 from 'd3'
 import ReactFauxDOM from 'react-faux-dom'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import TimeGraphContent from './TimeGraphContent'
 import saveData from './utils/saveData'
@@ -30,29 +31,29 @@ const STACK_LIMIT = 10
 export default class TimeGraph extends React.Component {
 
   static propTypes = {
-    height: React.PropTypes.number,
-    width: React.PropTypes.number,
-    data: React.PropTypes.object,
-    hideMetadata: React.PropTypes.bool,
-    metadata: React.PropTypes.object,
-    timeParser: React.PropTypes.func,
-    timeDisplay: React.PropTypes.func,
-    timeFormatter: React.PropTypes.func,
-    countFormatter: React.PropTypes.func,
-    lookup: React.PropTypes.func,
-    filter: React.PropTypes.array,
-    comparing: React.PropTypes.bool,
-    onClickCompare: React.PropTypes.any,
-    onChange: React.PropTypes.func,
-    timeUnitLengthSec: React.PropTypes.number,
-    numUnits: React.PropTypes.number,
-    group: React.PropTypes.string,
-    type: React.PropTypes.string,
-    getColor: React.PropTypes.func,
-    aggregation: React.PropTypes.string,
-    mouseIteractions: React.PropTypes.bool,
-    toDate: React.PropTypes.any,
-    fromDate: React.PropTypes.any,
+    height: PropTypes.number,
+    width: PropTypes.number,
+    data: PropTypes.object,
+    hideMetadata: PropTypes.bool,
+    metadata: PropTypes.object,
+    timeParser: PropTypes.func,
+    timeDisplay: PropTypes.func,
+    timeFormatter: PropTypes.func,
+    countFormatter: PropTypes.func,
+    lookup: PropTypes.func,
+    filter: PropTypes.array,
+    comparing: PropTypes.bool,
+    onClickCompare: PropTypes.any,
+    onChange: PropTypes.func,
+    timeUnitLengthSec: PropTypes.number,
+    numUnits: PropTypes.number,
+    group: PropTypes.string,
+    type: PropTypes.string,
+    getColor: PropTypes.func,
+    aggregation: PropTypes.string,
+    mouseIteractions: PropTypes.bool,
+    toDate: PropTypes.any,
+    fromDate: PropTypes.any,
   }
 
   static defaultProps = {
@@ -83,7 +84,7 @@ export default class TimeGraph extends React.Component {
   componentWillMount() {
     window.addEventListener('resize', this.updateDimensions, false)
   }
-  
+
   componentWillUnmount () {
     window.removeEventListener('resize', this.updateDimensions)
   }
@@ -98,7 +99,7 @@ export default class TimeGraph extends React.Component {
 
 
     if(containerWidth){
-      this.setState({  
+      this.setState({
         width: np.width ? np.width : containerWidth,
         height: np.height ? np.height : Math.max((containerWidth*0.2), 260)
       })
@@ -275,7 +276,7 @@ export default class TimeGraph extends React.Component {
   render() {
     const toDate = this.props.toDate || new Date();
     const fromDate = this.props.fromDate || new Date(toDate.getTime() - NUM_DAYS * this.props.timeUnitLengthSec * 1000);
-    
+
     let numUnit = Math.ceil((toDate-fromDate)/(this.props.timeUnitLengthSec*1000))
 
     const data = this.preProcess(this.props.data, this.props.timeParser, [fromDate, toDate]);
@@ -322,7 +323,7 @@ export default class TimeGraph extends React.Component {
         }
       })
     }
-    
+
     return <svg className="time_graph" width={this.state.width} height={this.state.height}>
       <g className="axis">
         <g>
