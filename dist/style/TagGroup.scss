@@ -1,0 +1,49 @@
+@import 'colors';
+
+
+.graph-tags {
+  margin: 20px;
+
+  &__element {
+    background-color: $background;
+    border-radius: .25em;
+    border: 1px solid $axis;
+    color: $text;
+    display: inline-block;
+    position: relative;
+    font-size: 75%;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0 .5rem .5rem;
+    padding: .2em .6em .3em 2em;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+
+    &--with-action {
+      cursor: pointer;
+    }
+    
+    &__icon,
+    &__color {
+      display: inline-block;
+      position: absolute;
+      height: 1.5em;
+      vertical-align: middle;
+      width: 1.5rem;
+      top: 0;
+      left: 0;
+    }
+
+    &__color {
+      border-bottom-left-radius: .25em;
+      border-top-left-radius: .25em;
+    }
+
+    &__icon {
+      vertical-align: middle;
+      margin-top: .2rem;
+      margin-left: .2rem;
+    }
+  }
+} 
