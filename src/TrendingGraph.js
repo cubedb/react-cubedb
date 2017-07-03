@@ -1,10 +1,12 @@
-import React from 'react'
 import * as d3 from 'd3'
 import { filter, isUndefined, maxBy, sortBy, mapValues, toPairs } from 'lodash'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import SvgLoadingAnimation from './utils/SvgLoadingAnimation'
 
 import './style/TrendingGraph.scss'
+
 
 const hourParseTime = d3.timeParse("%Y-%m-%d %H")
 const dayParseTime = d3.timeParse("%Y-%m-%d")
@@ -17,10 +19,10 @@ export default class TrendingGraph extends React.Component {
     /**
      * Dictionary of dates and values
      */
-    data: React.PropTypes.object,
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    isLoading: React.PropTypes.bool
+    data: PropTypes.object,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    isLoading: PropTypes.bool
   }
 
   static defaultProps = {

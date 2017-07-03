@@ -1,19 +1,20 @@
-import React from 'react'
 import _ from 'lodash'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Glyphicon } from 'react-bootstrap'
 
-
 import './style/TagGroup.scss'
+
 
 export default class TagGroup extends React.Component {
 
   static propTypes = {
-    lookup: React.PropTypes.object,
-    onChange: React.PropTypes.func,
-    getColor: React.PropTypes.func,
-    tags: React.PropTypes.object,
+    lookup: PropTypes.object,
+    onChange: PropTypes.func,
+    getColor: PropTypes.func,
+    tags: PropTypes.object,
   }
-  
+
 
   lookup(k,d) {
     return this.props.lookup && this.props.lookup[k] && this.props.lookup[k][d] || d
@@ -28,7 +29,7 @@ export default class TagGroup extends React.Component {
   render() {
     let filterEl = []
     let {tags, aggregation, group, getColor, onChange} = this.props
-           
+
     _.map(tags, (f, dimension) => {
       _.map(f, (value, i) => {
         let text = null
@@ -41,7 +42,7 @@ export default class TagGroup extends React.Component {
                         <Glyphicon glyph="filter"/>
                       </span>
         }
-            
+
         if(_.isObject(value)){
           if(value.text) text = value.text
           if(value.icon) iconEl = <span className="graph-tags__element__icon">
@@ -51,10 +52,10 @@ export default class TagGroup extends React.Component {
           text = value
         }
 
-        filterEl.push(<span className={`graph-tags__element ${_.isUndefined(onChange) ? "" : "graph-tags__element--with-action"}`} 
+        filterEl.push(<span className={`graph-tags__element ${_.isUndefined(onChange) ? "" : "graph-tags__element--with-action"}`}
                         key={'filter-'+dimension+text+i}
                         onClick={this.onClick(dimension, text)}>
-                        {iconEl} {dimension}: {this.lookup(dimension, text)} 
+                        {iconEl} {dimension}: {this.lookup(dimension, text)}
                       </span>)
       })
     })
