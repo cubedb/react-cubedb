@@ -6,17 +6,17 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 
 ### Trending graphs
 
-![TrendingGraph](screenshot_trendinggraph)
+![TrendingGraph][screenshot_trendinggraph]
 
 ### BarGraph
 
-![BarGraph](screenshot_bargraph)
-![BarGraph with comparison](screenshot_bargraph_comparison)
+![BarGraph][screenshot_bargraph]
+![BarGraph with comparison][screenshot_bargraph_comparison]
 
 ### TimeGraph
 
-![TimeGraph](screenshot_timegraph)
-![TimeGraph with comparison](screenshot_timegraph_comparison)
+![TimeGraph][screenshot_timegraph]
+![TimeGraph with comparison][screenshot_timegraph_comparison]
 
 
 ## Local Setup (using [yarn][yarn])
