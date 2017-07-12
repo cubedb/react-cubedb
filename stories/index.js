@@ -1,24 +1,22 @@
-import React from 'react';  // eslint-disable-line no-unused-vars
+import React from 'react'  // eslint-disable-line no-unused-vars
 
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';  // eslint-disable-line no-unused-vars
-import { linkTo } from '@storybook/addon-links';
+import { storiesOf } from '@storybook/react'
+import { withKnobs } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'  // eslint-disable-line no-unused-vars
 
-import Welcome from './Welcome';
-import TrendingGraph from './TrendingGraph';
-import BarGraph from './BarGraph';
-import BarGraphGroup from './BarGraphGroup';
-import CubeDB from './CubeDB';
+import TrendingGraph from './TrendingGraph'
+import BarGraph from './BarGraph'
+import BarGraphGroup from './BarGraphGroup'
+import CubeDB from './CubeDB'
 
 storiesOf('Cube DB', module)
   .add('overview', () => <CubeDB.Overview/>)
-  .add('client package', () => <Welcome showApp={linkTo('Button')} />);
+  //.add('client package', () => <Welcome showApp={linkTo('Button')} />)
 
 storiesOf('react-cubedb', module)
   .addDecorator(withKnobs)
   .add('BarGraph', () => <BarGraph/>)
   .add('BarGraphGroup', () => <BarGraphGroup/>)
-  .add('TagGroup', () => <Welcome showApp={linkTo('Button')} />)
-  .add('TimeGraph', () => <Welcome showApp={linkTo('Button')} />)
+  //.add('TagGroup', () => <Welcome showApp={linkTo('Button')} />)
+  //.add('TimeGraph', () => <Welcome showApp={linkTo('Button')} />)
   .add('TrendingGraph', () => <TrendingGraph/>)

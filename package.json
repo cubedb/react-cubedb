@@ -26,18 +26,19 @@
     "mocha": "--require scripts/mocha_runner src/**/__tests__/**/*.js"
   },
   "scripts": {
-    "prepare": "npm run dist",
-    "prepublish": "npm run dist",
-    "dist": "npm run dist:clean && npm run dist:js && npm run dist:scss",
-    "dist:js": "babel ./src -d ./dist",
-    "dist:clean": "rimraf ./dist",
-    "dist:scss": "cpy './src/style/*.scss' ./dist/style",
-    "lint": "eslint ./src",
-    "lintfix": "eslint ./src --fix",
+    "prepare": "npm run build",
+    "prepublish": "npm run build",
+    "build": "npm run build:clean && npm run build:js && npm run build:scss && npm run build:scss",
+    "build:js": "babel ./src -d ./dist",
+    "build:clean": "rimraf ./dist",
+    "build:scss": "cpy './src/style/*.scss' ./dist/style",
+    "build:storybook": "build-storybook",
     "test": "jest",
+    "test:updateSnapshot": "jest --updateSnapshot",
+    "test:storybook": "storyshots",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "test-storybook": "storyshots"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.1.6",
@@ -81,7 +82,8 @@
     "d3": "^4.9.1",
     "lodash": "^4.17.4",
     "react-bootstrap": "^0.31.0",
-    "react-faux-dom": "^4.0.3"
+    "react-faux-dom": "^4.0.3",
+    "storyshots": "^3.2.2"
   },
   "jest": {
     "moduleNameMapper": {

@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+# react-cudedb
 
-You can use the [editor on GitHub](https://github.com/jrfferreira/react-cubedb/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This package contain a serie of [React][react] components, using [Reat-Bootstrap][react-bootstrap] and [D3][d3] to generate graphs based on [CubeDB][cubedb]'s data.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Examples
 
-### Markdown
+### Trending graphs
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+![TrendingGraph](screenshot_trendinggraph)
 
-```markdown
-Syntax highlighted code block
+### BarGraph
 
-# Header 1
-## Header 2
-### Header 3
+![BarGraph](screenshot_bargraph)
+![BarGraph with comparison](screenshot_bargraph_comparison)
 
-- Bulleted
-- List
+### TimeGraph
 
-1. Numbered
-2. List
+![TimeGraph](screenshot_timegraph)
+![TimeGraph with comparison](screenshot_timegraph_comparison)
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+## Local Setup (using [yarn][yarn])
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+- Install the dependencies with `yarn install`
+- Run tests with [Jest][jest] `yarn test`
+- Update tests snapshots `yarn test:updateSnapshot`
+- Run [Eslint][eslint] `yarn lint`
+- Fix linter `yarn lint:fix`
+- Run the [storybook][storybook] in development mode with `yarn storybook`
+- Build with `yarn build`
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/jrfferreira/react-cubedb/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+[react]: http://facebook.github.io/react/
+[react-bootstrap]: https://react-bootstrap.github.io/
+[d3]: https://github.com/d3/d3
+[yarn]: https://yarnpkg.com/
+[cubedb]: https://github.com/sztanko/cubedb
+[jest]: https://facebook.github.io/jest/
+[eslint]: http://eslint.org/
+[storybook]: https://github.com/storybooks/storybook
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+[screenshot_trendinggraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TrendingGraph.png
+
+[screenshot_bargraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph.png
+[screenshot_bargraph_comparison]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph_comparison.png
+
+[screenshot_timegraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph.png
+[screenshot_timegraph_comparison]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph_comparison.png

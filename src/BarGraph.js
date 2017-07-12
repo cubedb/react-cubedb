@@ -6,7 +6,9 @@ import * as d3 from 'd3'
 
 import saveData from './utils/saveData'
 import normalizeData from './utils/normalizeData'
+// import './style/bootstrap.scss'
 import './style/BarGraph.scss'
+
 
 const numberFormat = d3.format(',d')
 
