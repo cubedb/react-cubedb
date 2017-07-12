@@ -26,6 +26,7 @@
     "mocha": "--require scripts/mocha_runner src/**/__tests__/**/*.js"
   },
   "scripts": {
+    "prepare": "npm run dist",
     "prepublish": "npm run dist",
     "dist": "npm run dist:clean && npm run dist:js && npm run dist:scss",
     "dist:js": "babel ./src -d ./dist",
@@ -51,10 +52,13 @@
     "cpy-cli": "^1.0.1",
     "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
-    "eslint": "^4.1.1",
-    "eslint-plugin-babel": "^4.1.1",
+    "eslint": "^4.2.0",
+    "eslint-plugin-flowtype": "^2.34.1",
     "eslint-plugin-jasmine": "^2.6.2",
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jsx-control-statements": "^2.2.0",
     "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",

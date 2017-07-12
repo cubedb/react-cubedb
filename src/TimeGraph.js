@@ -19,13 +19,8 @@ const xTickSize = {
   hour: 105
 }
 
-const xTickInterval = {
-  day: 7,
-  hour: 12
-}
-
-const numberFormat = d3.format(",d");
-const margin = { left: 80, right: 30, top: 50, bottom: 25 };
+const numberFormat = d3.format(',d')
+const margin = { left: 80, right: 30, top: 50, bottom: 25 }
 const STACK_LIMIT = 10
 
 export default class TimeGraph extends React.Component {
@@ -63,7 +58,7 @@ export default class TimeGraph extends React.Component {
 
   constructor(props) {
     super(props)
-    this.setP = this.setP.bind(this);
+    this.setP = this.setP.bind(this)
 
     this.state = {
       width: 600,
@@ -113,33 +108,32 @@ export default class TimeGraph extends React.Component {
     const delimiter = ','
     const endLine = '\r\n'
 
-    let keys = {}
+    const keys = {}
 
     _(dataSerie).map(1).map('stack').each((d) => {
-        _.each(d, (n,k) => { keys[k] = n.name})
+      _.each(d, (n,k) => { keys[k] = n.name})
     })
 
     const createLine = (name, count = 0, stack= []) => {
-        const proportion = volume > 0  && count > 0 ? (count||0)/volume : 0
-        let stacks = ''
+      let stacks = ''
 
-        if(this.props.group){
-          _.each(keys, (d, i) => {
+      if(this.props.group){
+        _.each(keys, (d, i) => {
           stacks += `${delimiter}${(stack[i]||defaultDimension).c}`
-          })
-        }
+        })
+      }
 
-        stacks += `${delimiter}${count}`
+      stacks += `${delimiter}${count}`
 
-        return `${name}${stacks}${endLine}`
+      return `${name}${stacks}${endLine}`
     }
 
     const body = _(dataSerie).sortBy(0).map((d)=>{
-                    return createLine(d[0], d[1].c, d[1].stack)
-                }).join("")
+      return createLine(d[0], d[1].c, d[1].stack)
+    }).join('')
 
     if(this.props.group){
-      _.each(keys, (d, i) => {
+      _.each(keys, (d) => {
         stacksLabel += `${delimiter}${d}`
       })
     }
@@ -160,13 +154,13 @@ export default class TimeGraph extends React.Component {
       return (key === 'null' ? '<not defined>' : key)
     }
     if (this.props.lookups && this.props.lookups[p]) {
-      const lookup = this.props.lookups[p];
+      const lookup = this.props.lookups[p]
       return (key) => {
-        return lookup[key] || defaultLookup(key);
+        return lookup[key] || defaultLookup(key)
       }
     }
     else
-      return defaultLookup;
+      return defaultLookup
   }
 
   toggleMetadata = (type) => () => {
@@ -177,7 +171,7 @@ export default class TimeGraph extends React.Component {
     })
   }
 
-  drawAxis(width, height, data, margin, fromDate, toDate, timeUnitLengthSec, xFormatter, yFormatter=numberFormat, numUnits=NUM_DAYS) {
+  drawAxis(width, height, data, margin, fromDate, toDate, timeUnitLengthSec, xFormatter, yFormatter=numberFormat) {
     const dateRange = [
       fromDate,
       toDate
@@ -186,9 +180,9 @@ export default class TimeGraph extends React.Component {
     let maxValue = _(data).map('1').map('c').max()
 
     if(this.props.group) {
-      let dimensionCount = {}
+      const dimensionCount = {}
 
-      _.each((data), (d, i) => {
+      _.each((data), (d) => {
         _.each(d[1].stack, (b, k) => {
           dimensionCount[k] = {
             key: k,
@@ -197,15 +191,15 @@ export default class TimeGraph extends React.Component {
         })
       })
 
-      let stacks = _(dimensionCount).sortBy('c').reverse().slice(0, STACK_LIMIT).map('key').value()
+      const stacks = _(dimensionCount).sortBy('c').reverse().slice(0, STACK_LIMIT).map('key').value()
 
-      if(this.props.type == 'line') {
-        maxValue = _(data).map('1').map((d,k) => {
+      if(this.props.type === 'line') {
+        maxValue = _(data).map('1').map((d) => {
           const stacksC =  _(d.stack).mapValues('c').value()
 
-          let stacksValue = _(stacksC).filter((d,k)=> {return stacks.indexOf(k)>-1}).value()
+          const stacksValue = _(stacksC).filter((d,k)=> {return stacks.indexOf(k)>-1}).value()
 
-          let otherSum =  _(stacksC).filter((d,k)=> {return stacks.indexOf(k)<0}).sum()
+          const otherSum =  _(stacksC).filter((d,k)=> {return stacks.indexOf(k)<0}).sum()
 
           return _(stacksValue).concat(otherSum).max()
         }).max()
@@ -215,35 +209,35 @@ export default class TimeGraph extends React.Component {
     const valueRange = [
       0,
       1.1 * maxValue
-    ];
+    ]
 
     const maxTicks = Math.max(2, Math.floor(((width-margin.left-margin.right)/xTickSize[this.props.aggregation])) - 4)
 
     const x = d3.scaleTime()
       .domain(dateRange)
-      .range([margin.left, width - margin.right]);
+      .range([margin.left, width - margin.right])
 
     const y = d3.scaleLinear()
-                .domain(valueRange)
-                .rangeRound([height - margin.bottom, margin.top]);
+      .domain(valueRange)
+      .rangeRound([height - margin.bottom, margin.top])
 
-    let xAxis = d3.axisBottom(x)
-                  .tickFormat(xFormatter)
-                  .ticks(maxTicks)
+    const xAxis = d3.axisBottom(x)
+      .tickFormat(xFormatter)
+      .ticks(maxTicks)
 
 
     const yAxis = d3.axisLeft(y)
       .tickFormat(yFormatter)
       .ticks(5)
-      .tickSize(-width + margin.right + margin.left);
+      .tickSize(-width + margin.right + margin.left)
 
     const lineFunc = d3.line()
-      .x(function (d) { return x(d[0]); })
-      .y(function (d) { return y(d[1]); })
-      .curve(d3.curveStep);
+      .x(function (d) { return x(d[0]) })
+      .y(function (d) { return y(d[1]) })
+      .curve(d3.curveStep)
 
-    const boxWidth = x(new Date(timeUnitLengthSec * 1000)) - x(new Date(0));
-    return { lineFunc: lineFunc, boxWidth: boxWidth, scale: { x: x, y: y }, axis: { x: xAxis, y: yAxis } };
+    const boxWidth = x(new Date(timeUnitLengthSec * 1000)) - x(new Date(0))
+    return { lineFunc: lineFunc, boxWidth: boxWidth, scale: { x: x, y: y }, axis: { x: xAxis, y: yAxis } }
   }
 
   preProcess(data, timeParser, timeBounds) {
@@ -257,7 +251,7 @@ export default class TimeGraph extends React.Component {
             c+=e.c
             e.name = this.lookup(this.props.group)(k)
           })
-          let dimension = {
+          const dimension = {
             c: c,
             stack: p[1]
           }
@@ -265,50 +259,50 @@ export default class TimeGraph extends React.Component {
         }
       })
       .filter((p) => { return p[0] > timeBounds[0] })
-      .value();
+      .value()
   }
 
   setP(range) {
-    const p = Array.sort(range.map(this.props.timeFormatter));
-    this.props.onChange(p);
+    const p = Array.sort(range.map(this.props.timeFormatter))
+    this.props.onChange(p)
   }
 
   render() {
-    const toDate = this.props.toDate || new Date();
-    const fromDate = this.props.fromDate || new Date(toDate.getTime() - NUM_DAYS * this.props.timeUnitLengthSec * 1000);
+    const toDate = this.props.toDate || new Date()
+    const fromDate = this.props.fromDate || new Date(toDate.getTime() - NUM_DAYS * this.props.timeUnitLengthSec * 1000)
 
-    let numUnit = Math.ceil((toDate-fromDate)/(this.props.timeUnitLengthSec*1000))
+    const numUnit = Math.ceil((toDate-fromDate)/(this.props.timeUnitLengthSec*1000))
 
-    const data = this.preProcess(this.props.data, this.props.timeParser, [fromDate, toDate]);
+    const data = this.preProcess(this.props.data, this.props.timeParser, [fromDate, toDate])
     const graph = this.drawAxis(this.state.width, this.state.height, data, margin, fromDate, toDate, this.props.timeUnitLengthSec, this.props.timeDisplay, this.props.countFormatter, numUnit)
-    const xAxis = new ReactFauxDOM.Element('g');
+    const xAxis = new ReactFauxDOM.Element('g')
 
     d3
       .select(xAxis)
-      .attr("class", "xaxis")
-      .attr("transform", `translate(0, ${this.state.height - margin.bottom})`)
-      .call(graph.axis.x);
+      .attr('class', 'xaxis')
+      .attr('transform', `translate(0, ${this.state.height - margin.bottom})`)
+      .call(graph.axis.x)
 
-    const yAxis = new ReactFauxDOM.Element('g');
+    const yAxis = new ReactFauxDOM.Element('g')
     d3
       .select(yAxis)
-      .attr("class", "yaxis")
-      .attr("transform", `translate(${margin.left},0)`)
-      .call(graph.axis.y);
+      .attr('class', 'yaxis')
+      .attr('transform', `translate(${margin.left},0)`)
+      .call(graph.axis.y)
 
 
     let range
     if(this.props.filter) {
       range = _.chain(this.props.filter)
-               .map(this.props.timeParser)
-               .value()
+        .map(this.props.timeParser)
+        .value()
     }
 
-    let metadata = {}
+    const metadata = {}
     if(this.props.metadata){
       _.each(this.props.metadata, ({date, data}, mk) => {
         let hasData = false
-        let filteredData = {}
+        const filteredData = {}
         _.each(data, (d, k) => {
           if(this.state.metadataFilter[d.type]){
             hasData = true
@@ -342,7 +336,7 @@ export default class TimeGraph extends React.Component {
         :
         <g onClick={this.toggleMetadata('release')}>
           <rect className={'time_graph__metadata-button'} width={70} height={14} transform={`translate(${this.state.width-margin.right-100}, 5)`}/>
-          <text className={'time_graph__metadata-button__text'}style={{textAnchor:"left"}} width={60} height={12} transform={`translate(${this.state.width-margin.right-94}, 15)`}>{this.state.metadataFilter.release ? 'Hide' : 'Show'} Releases</text>
+          <text className={'time_graph__metadata-button__text'}style={{textAnchor:'left'}} width={60} height={12} transform={`translate(${this.state.width-margin.right-94}, 15)`}>{this.state.metadataFilter.release ? 'Hide' : 'Show'} Releases</text>
         </g>
       }
       { this.props.hideMetadata ?
@@ -350,27 +344,27 @@ export default class TimeGraph extends React.Component {
         :
         <g onClick={this.toggleMetadata('experiment')}>
           <rect className={'time_graph__metadata-button'} width={80} height={14} transform={`translate(${this.state.width-margin.right-190}, 5)`}/>
-          <text className={'time_graph__metadata-button__text'}style={{textAnchor:"left"}} width={60} height={12} transform={`translate(${this.state.width-margin.right-184}, 15)`}>{this.state.metadataFilter.experiment ? 'Hide' : 'Show'} Experiments</text>
+          <text className={'time_graph__metadata-button__text'}style={{textAnchor:'left'}} width={60} height={12} transform={`translate(${this.state.width-margin.right-184}, 15)`}>{this.state.metadataFilter.experiment ? 'Hide' : 'Show'} Experiments</text>
         </g>
       }
       <TimeGraphContent xScale={graph.scale.x}
-               yScale={graph.scale.y}
-               range={range}
-               timeDisplay={this.props.timeDisplay}
-               aggregation={this.props.aggregation}
-               timeUnitLengthSec={this.props.timeUnitLengthSec}
-               onChange={this.setP}
-               onClickCompare={this.props.onClickCompare}
-               comparing={this.props.comparing}
-               numberFormat={this.props.countFormatter||numberFormat}
-               margin={margin}
-               boxWidth={graph.boxWidth}
-               data={data}
-               group={this.props.group}
-               getColor={this.props.getColor}
-               type={this.props.type}
-               mouseIteractions={this.props.mouseIteractions}
-               metadata={this.props.hideMetadata ? null : metadata} />
+        yScale={graph.scale.y}
+        range={range}
+        timeDisplay={this.props.timeDisplay}
+        aggregation={this.props.aggregation}
+        timeUnitLengthSec={this.props.timeUnitLengthSec}
+        onChange={this.setP}
+        onClickCompare={this.props.onClickCompare}
+        comparing={this.props.comparing}
+        numberFormat={this.props.countFormatter||numberFormat}
+        margin={margin}
+        boxWidth={graph.boxWidth}
+        data={data}
+        group={this.props.group}
+        getColor={this.props.getColor}
+        type={this.props.type}
+        mouseIteractions={this.props.mouseIteractions}
+        metadata={this.props.hideMetadata ? null : metadata} />
     </svg>
   }
 }

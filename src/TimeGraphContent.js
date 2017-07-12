@@ -4,15 +4,8 @@ import * as d3 from 'd3'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-
-
-const numberFormat = d3.format(",d")
-
 const BAR_MARGIN = 1
 const STACK_LIMIT = 10
-
-const fromPath = "M-0.5,46.666666666666664A6,6 0 0 0 -6.5,52.666666666666664V87.33333333333333A6,6 0 0 0 -0.5,93.33333333333333ZM-2.5,54.666666666666664V85.33333333333333M-4.5,54.666666666666664V85.33333333333333";
-const toPath = "M0.5,46.666666666666664A6,6 0 0 1 6.5,52.666666666666664V87.33333333333333A6,6 0 0 1 0.5,93.33333333333333ZM2.5,54.666666666666664V85.33333333333333M4.5,54.666666666666664V85.33333333333333";
 
 export default class TimeGraphContent extends React.Component {
   constructor(props) {
@@ -21,7 +14,7 @@ export default class TimeGraphContent extends React.Component {
     const defaultMousePos = this.props.range &&
       this.props.xScale(this.props.range[0]) >= this.props.xScale.range()[0] &&
       this.props.xScale(this.props.range[1]) <= this.props.xScale.range()[1] ? this.props.xScale(this.props.range[0])
-      : this.props.xScale.range()[0];
+      : this.props.xScale.range()[0]
 
     this.state = {
       overlayVisible: !!this.props.range,
@@ -37,30 +30,30 @@ export default class TimeGraphContent extends React.Component {
 
     this.flattenData = []
 
-    this.onMouseClick = this.props.mouseIteractions ? this.onMouseClick.bind(this) : () => { };
-    this.onMouseMove = this.props.mouseIteractions ? this.onMouseMove.bind(this) : () => { };
-    this.onMouseLeave = this.props.mouseIteractions ? this.onMouseLeave.bind(this) : () => { };
-    this.onMouseEnter = this.props.mouseIteractions ? this.onMouseEnter.bind(this) : () => { };
-    this.onMouseRelease = this.props.mouseIteractions ? this.onMouseRelease.bind(this) : () => { };
+    this.onMouseClick = this.props.mouseIteractions ? this.onMouseClick.bind(this) : () => { }
+    this.onMouseMove = this.props.mouseIteractions ? this.onMouseMove.bind(this) : () => { }
+    this.onMouseLeave = this.props.mouseIteractions ? this.onMouseLeave.bind(this) : () => { }
+    this.onMouseEnter = this.props.mouseIteractions ? this.onMouseEnter.bind(this) : () => { }
+    this.onMouseRelease = this.props.mouseIteractions ? this.onMouseRelease.bind(this) : () => { }
     if (!this.props.onClickCompare) {
       this.allowComparing = false
     } else {
       this.allowComparing = true
-      this.onClickCompare = this.props.mouseIteractions ? this.onClickCompare.bind(this) : () => { };
+      this.onClickCompare = this.props.mouseIteractions ? this.onClickCompare.bind(this) : () => { }
     }
-    this.onChange = this.props.mouseIteractions ? _.debounce(this.onChange, 100) : () => { };
+    this.onChange = this.props.mouseIteractions ? _.debounce(this.onChange, 100) : () => { }
   }
 
   getTextWidth(text, fontSize = 14, fontFace = 'Arial') {
-    var a = document.createElement('canvas');
-    var b = a.getContext('2d');
-    b.font = fontSize + 'px ' + fontFace;
-    return b.measureText(text).width;
+    var a = document.createElement('canvas')
+    var b = a.getContext('2d')
+    b.font = fontSize + 'px ' + fontFace
+    return b.measureText(text).width
   }
 
   getXY(e) {
-    const rect = e.target.getBoundingClientRect();
-    let xy = {
+    const rect = e.target.getBoundingClientRect()
+    const xy = {
       x: e.clientX - rect.left + this.props.xScale.range()[0],
       y: e.clientY - rect.top + this.props.margin.top
     }
@@ -69,10 +62,10 @@ export default class TimeGraphContent extends React.Component {
 
 
   roundDate(date, timeUnit) {
-    var g = (timeUnit || this.props.timeUnitLengthSec) * 1000;
-    var o = date.getTimezoneOffset() * -6e4;
-    var x = Math.round((+date + o) / g);
-    return new Date(x * g - o);
+    var g = (timeUnit || this.props.timeUnitLengthSec) * 1000
+    var o = date.getTimezoneOffset() * -6e4
+    var x = Math.round((+date + o) / g)
+    return new Date(x * g - o)
   }
 
   onMouseEnter(e) {
@@ -86,7 +79,7 @@ export default class TimeGraphContent extends React.Component {
     if (this.state.mousePressed || this.state.dragging) {
       this.onMouseRelease(e)
     } else {
-      e.preventDefault();
+      e.preventDefault()
     }
     this.setState({
       focused: false
@@ -94,12 +87,12 @@ export default class TimeGraphContent extends React.Component {
   }
 
   onMouseClick(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (this.allowComparing) {
       let dragging = false
       let range = this.state.range
-      const xy = this.getXY(e);
-      const x = this.roundDate(this.props.xScale.invert(xy.x));
+      const xy = this.getXY(e)
+      const x = this.roundDate(this.props.xScale.invert(xy.x))
 
       if (this.state.overlayVisible && this.state.focused && (range.length && x >= Math.min(...range) && x <= Math.max(...range))) {
         dragging = true
@@ -118,7 +111,7 @@ export default class TimeGraphContent extends React.Component {
   }
 
   onMouseMove(e) {
-    e.preventDefault();
+    e.preventDefault()
     const xy = this.getXY(e)
     const mark = xy
     const date = this.roundDate(this.props.xScale.invert(mark.x))
@@ -136,15 +129,15 @@ export default class TimeGraphContent extends React.Component {
   setRange(end, dragging, forcedStart) {
     let newRange = this.state.range
     const firstPos = forcedStart || this.state.clickPos
-    let last = this.state.mark.x
+    const last = this.state.mark.x
 
     if (dragging) {
-      let diff = (this.props.xScale.invert(end).getTime() - this.props.xScale.invert(firstPos).getTime())
-      let rangeInterval = newRange[1].getTime() - newRange[0].getTime()
-      let newStart = newRange[0].getTime() + diff - (this.props.xScale.invert(last).getTime() - this.props.xScale.invert(firstPos).getTime())
-      let newEnd = newStart + rangeInterval
-      let startDate = this.roundDate(new Date(Math.min(newStart, newEnd)))
-      let endDate = this.roundDate(new Date(Math.max(newStart, newEnd)))
+      const diff = (this.props.xScale.invert(end).getTime() - this.props.xScale.invert(firstPos).getTime())
+      const rangeInterval = newRange[1].getTime() - newRange[0].getTime()
+      const newStart = newRange[0].getTime() + diff - (this.props.xScale.invert(last).getTime() - this.props.xScale.invert(firstPos).getTime())
+      const newEnd = newStart + rangeInterval
+      const startDate = this.roundDate(new Date(Math.min(newStart, newEnd)))
+      const endDate = this.roundDate(new Date(Math.max(newStart, newEnd)))
 
       if (this.props.comparing) {
         if (new Date(startDate - rangeInterval) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
@@ -169,27 +162,27 @@ export default class TimeGraphContent extends React.Component {
         range: newRange,
         overlayVisible: true
       })
-      return newRange;
+      return newRange
     }
   }
 
   onMouseRelease(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (this.allowComparing) {
-      const xy = this.getXY(e);
-      const firstPos = this.state.clickPos;
-      let overlayVisible = this.state.overlayVisible;
+      const xy = this.getXY(e)
+      const firstPos = this.state.clickPos
+      let overlayVisible = this.state.overlayVisible
       let range = this.state.range
       let dragging = this.state.dragging
 
-      this.setRange(xy.x, this.state.dragging);
+      this.setRange(xy.x, this.state.dragging)
 
       if (Math.abs(xy.x - firstPos) > 10) {
-        this.onChange(range);
+        this.onChange(range)
         dragging = false
       } else if (!this.state.dragging && this.state.overlayVisible) {
         range = []
-        this.onChange(range);
+        this.onChange(range)
         this.props.onClickCompare(false)
         overlayVisible = false
         dragging = false
@@ -201,22 +194,22 @@ export default class TimeGraphContent extends React.Component {
         clickPos: xy.x,
         overlayVisible,
         range
-      });
+      })
     }
   }
 
   onClickCompare() {
     if (this.allowComparing) {
-      this.props.onClickCompare(!this.props.comparing);
+      this.props.onClickCompare(!this.props.comparing)
     }
   }
 
   onChange(range) {
-    this.props.onChange(range);
+    this.props.onChange(range)
   }
 
   getInterval() {
-    const interval = this.props.aggregation == 'day' ? 7 : 24;
+    const interval = this.props.aggregation === 'day' ? 7 : 24
 
     return this.props.timeUnitLengthSec * interval
   }
@@ -226,24 +219,22 @@ export default class TimeGraphContent extends React.Component {
   }
 
   getYMark() {
-    const x0 = this.props.xScale.range()[0];
-    const x2 = this.props.xScale.range()[1];
-    const y0 = this.props.yScale.range()[0];
-    const y2 = this.props.yScale.range()[1];
+    const x0 = this.props.xScale.range()[0]
+    const x2 = this.props.xScale.range()[1]
 
     if (this.state.mark && this.state.focused && !this.state.mousePressed) {
-      let xPoint = this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x)))
+      const xPoint = this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x)))
       const topDistance = 80
 
       if (this.flattenData[xPoint]) {
         const value = this.flattenData[xPoint].c
         const posY = this.props.yScale(value)
-        const labels = this.props.group ? _(this.flattenData[xPoint].stack).filter('c').map('name').value() : [""]
-        const maxValue = (_(this.flattenData[xPoint].stack).sortBy((d,e) => {
-                              return `${d.c}`.length
-                            }).reverse().head() || this.flattenData[xPoint]).c
+        const labels = this.props.group ? _(this.flattenData[xPoint].stack).filter('c').map('name').value() : ['']
+        const maxValue = (_(this.flattenData[xPoint].stack).sortBy((d) => {
+          return `${d.c}`.length
+        }).reverse().head() || this.flattenData[xPoint]).c
         const rectHeight = this.props.group ? (labels.length * 16) : 16
-        const longestLabel = (_(labels).sortBy('length').value().pop() || "")
+        const longestLabel = (_(labels).sortBy('length').value().pop() || '')
         const rectWidth = this.getTextWidth(`${longestLabel}: ${this.props.numberFormat(maxValue)}`, 11) + 20
         let rectPos = Math.min(Math.max(xPoint, x0), x2)
 
@@ -259,27 +250,27 @@ export default class TimeGraphContent extends React.Component {
           <rect className="tooltip__background" rx="4" ry="4" transform={`translate(${rectPos}, ${topDistance - 22})`} width={rectWidth} height={rectHeight} />
           {this.props.group ?
             _(this.flattenData[xPoint].stack)
-            .sortBy('name')
-            .reverse()
-            .map((e, k) => {
-              if (e.c) {
-                return [<rect key={e.key + 'color'}
-                  fill={this.props.getColor(e.key, this.props.group)}
-                  style={{ textAnchor: "left" }}
-                  width={8}
-                  height={8}
-                  className="tooltip__color"
-                  transform={`translate(${rectPos + 4}, ${topDistance + (16 * stackN) - 18})`} />,
-                <text width={rectWidth + 20} height="15"
-                  key={e.name}
-                  style={{ textAnchor: "left" }}
-                  className="tooltip__label"
-                  transform={`translate(${rectPos + 14}, ${topDistance + (16 * stackN++) - 10})`}>{e.name}: {this.props.numberFormat(e.c)}</text>]
-              }
-            }).value()
+              .sortBy('name')
+              .reverse()
+              .map((e) => {
+                if (e.c) {
+                  return [<rect key={e.key + 'color'}
+                    fill={this.props.getColor(e.key, this.props.group)}
+                    style={{ textAnchor: 'left' }}
+                    width={8}
+                    height={8}
+                    className="tooltip__color"
+                    transform={`translate(${rectPos + 4}, ${topDistance + (16 * stackN) - 18})`} />,
+                  <text width={rectWidth + 20} height="15"
+                    key={e.name}
+                    style={{ textAnchor: 'left' }}
+                    className="tooltip__label"
+                    transform={`translate(${rectPos + 14}, ${topDistance + (16 * stackN++) - 10})`}>{e.name}: {this.props.numberFormat(e.c)}</text>]
+                }
+              }).value()
             :
             <text width={rectWidth} height="15"
-              style={{ textAnchor: "middle" }}
+              style={{ textAnchor: 'middle' }}
               className="tooltip__label"
               transform={`translate(${rectPos + rectWidth / 2}, ${topDistance - 10})`}>{this.props.numberFormat(value)}</text>}
 
@@ -288,44 +279,44 @@ export default class TimeGraphContent extends React.Component {
     }
   }
 
-  onMouseEnterMetadata = (k) => (e) => {
+  onMouseEnterMetadata = (k) => ( ) => {
     this.setState({
       visibleMetadata: k,
     })
   }
 
-  onMouseLeaveMetadata = (e) => {
+  onMouseLeaveMetadata = ( ) => {
     this.setState({
       visibleMetadata: null,
     })
   }
 
   getMetadatas() {
-    const yPos = this.props.yScale.range()[0];
+    const yPos = this.props.yScale.range()[0]
     return _(this.props.metadata).sortBy('date').map((metadatas, k) => {
-      let composeDescription = (e) => { return ` ${_.startCase(e.sub_type)} ${e.type} (${e.id}): ${e.name}` }
-      let xPos = this.props.xScale(metadatas.date)
+      const composeDescription = (e) => { return ` ${_.startCase(e.sub_type)} ${e.type} (${e.id}): ${e.name}` }
+      const xPos = this.props.xScale(metadatas.date)
       if (xPos >= this.props.xScale.range()[0]) {
-        let metadatasKeys = _.keys(metadatas.data)
-        let biggerDescriptionLength = (_(metadatas.data).map(composeDescription).sortBy('length').value().pop() || "")
-        let rectWidth = this.getTextWidth(biggerDescriptionLength, 12)
-        let types = metadatasKeys.length ? _(metadatas.data).map('type').uniq().value() : []
-        let specificType = types.length === 1 ? types.pop() : 'multiple'
-        let rectHeight = ((metadatasKeys.length + 1) * 15) + 4
+        const metadatasKeys = _.keys(metadatas.data)
+        const biggerDescriptionLength = (_(metadatas.data).map(composeDescription).sortBy('length').value().pop() || '')
+        const rectWidth = this.getTextWidth(biggerDescriptionLength, 12)
+        const types = metadatasKeys.length ? _(metadatas.data).map('type').uniq().value() : []
+        const specificType = types.length === 1 ? types.pop() : 'multiple'
+        const rectHeight = ((metadatasKeys.length + 1) * 15) + 4
         let textPos = rectHeight - 20
         return <g key={k}>
-          {this.state.visibleMetadata == k ?
+          {this.state.visibleMetadata === k ?
             <g key={`metadata-${k}`}>
               <rect className="tooltip__background" rx="4" ry="4" transform={`translate(${xPos - rectWidth / 2}, ${yPos - rectHeight - 14})`} width={rectWidth} height={rectHeight} />
               <text key={k + '-date'}
                 width={rectWidth} height={14}
-                style={{ textAnchor: "left" }}
+                style={{ textAnchor: 'left' }}
                 className="tooltip__label--title"
                 transform={`translate(${xPos + 5 - rectWidth / 2}, ${yPos - textPos - 21})`}>{this.props.timeDisplay(metadatas.date)}:</text>
               {_.map(metadatas.data, (ml, id) => {
-                let text = <text key={k + '-' + id}
+                const text = <text key={k + '-' + id}
                   width={rectWidth} height={14}
-                  style={{ textAnchor: "left" }}
+                  style={{ textAnchor: 'left' }}
                   className="tooltip__label"
                   transform={`translate(${xPos + 5 - rectWidth / 2}, ${yPos - textPos - 6})`}>{composeDescription(ml)}</text>
                 textPos = textPos - 15
@@ -348,10 +339,10 @@ export default class TimeGraphContent extends React.Component {
 
   getXMark(date, interval, collateral = false) {
     const x = this.props.xScale
-    const y1 = this.props.yScale.range()[0];
-    const y2 = this.props.yScale.range()[1];
-    let intervalSize = interval || x(new Date(this.getInterval() * 1000)) - x(new Date(0))
-    let pickStart = this.props.margin.left + (x(date) - x.range()[0]) % intervalSize
+    const y1 = this.props.yScale.range()[0]
+    const y2 = this.props.yScale.range()[1]
+    const intervalSize = interval || x(new Date(this.getInterval() * 1000)) - x(new Date(0))
+    const pickStart = this.props.margin.left + (x(date) - x.range()[0]) % intervalSize
 
     return d3.range(pickStart, x.range()[1], intervalSize).map((pos) => {
       if (pos > x.range()[0]) {
@@ -375,9 +366,9 @@ export default class TimeGraphContent extends React.Component {
     const textAnchor = 'middle'
     const pos = start
 
-    let marks = []
-    let interval = (end - start)
-    let intervalSize = date1 ? Math.abs(interval) : x(new Date(this.getInterval() * 1000)) - x(new Date(0))
+    const marks = []
+    const interval = (end - start)
+    const intervalSize = date1 ? Math.abs(interval) : x(new Date(this.getInterval() * 1000)) - x(new Date(0))
 
     if (this.state.focused || this.state.overlayVisible) {
       marks.push(<g key="ruler">
@@ -392,11 +383,11 @@ export default class TimeGraphContent extends React.Component {
     }
 
     if (this.allowComparing && date1) {
-      let rulerMarkCompare = pos - interval
-      let rulerMarkRangeEnd = end
+      const rulerMarkCompare = pos - interval
+      const rulerMarkRangeEnd = end
 
       if (intervalSize > 60) {
-        let x = this.countRange(this.state.range)
+        const x = this.countRange(this.state.range)
         marks.push(<g key="interval-label">
           <text key="label-ruler" style={{ textAnchor }}
             className="ruler__label"
@@ -405,8 +396,8 @@ export default class TimeGraphContent extends React.Component {
         </g>)
       }
 
-      let markYPos = this.props.margin.top - (intervalSize > 120 ? 22 : 40)
-      let markXPos = Math.min(Math.max(intervalSize / 2, 8), 60)
+      const markYPos = this.props.margin.top - (intervalSize > 120 ? 22 : 40)
+      const markXPos = Math.min(Math.max(intervalSize / 2, 8), 60)
 
       if (rulerMarkCompare < x.range()[1] && rulerMarkCompare > x.range()[0]) {
         marks.push(<g key="ruler-end" className="ruler--compare" onClick={this.onClickCompare}>
@@ -441,7 +432,7 @@ export default class TimeGraphContent extends React.Component {
   getArea = () => {
     const baseY = this.props.yScale.range()[0]
     let stacks = []
-    let series = {}
+    const series = {}
 
     const addSerie = (serie, val) => {
       if(!series[serie]) {
@@ -451,13 +442,13 @@ export default class TimeGraphContent extends React.Component {
     }
 
     const valueArea = d3.area()
-                        .x(d => d.x)
-                        .y0(d => d.y0)
-                        .y1(d => d.y1)
+      .x(d => d.x)
+      .y0(d => d.y0)
+      .y1(d => d.y1)
 
 
-    let defaultSerie = _.transform(this.props.xScale.ticks((this.props.aggregation == 'day' ? d3.timeDay : d3.timeHour).every(1)), (obj, dt, i) => {
-      let x = this.props.xScale(dt)
+    const defaultSerie = _.transform(this.props.xScale.ticks((this.props.aggregation === 'day' ? d3.timeDay : d3.timeHour).every(1)), (obj, dt) => {
+      const x = this.props.xScale(dt)
       obj[x] = {
         x,
         y0: baseY,
@@ -467,8 +458,8 @@ export default class TimeGraphContent extends React.Component {
     }, {})
 
     if (this.props.group) {
-      let dimensionCount = {}
-      _.each((this.props.data), (d, i) => {
+      const dimensionCount = {}
+      _.each((this.props.data), (d) => {
         const x = this.props.xScale(d[0])
         const maxY = this.props.yScale(d[1].c)
         defaultSerie[x] = {
@@ -490,10 +481,9 @@ export default class TimeGraphContent extends React.Component {
 
     this.flattenData = []
     _(this.props.data)
-      .each((d, i) => {
+      .each((d) => {
         const xPos = this.props.xScale(d[0])
-        const x = xPos;
-        let bars = []
+        const x = xPos
 
         this.flattenData[xPos] = {
           c: d[1].c,
@@ -505,7 +495,7 @@ export default class TimeGraphContent extends React.Component {
           let currentY = this.props.yScale(amount)
 
           _(stacks).each((k) => {
-            let e = d[1].stack[k]
+            const e = d[1].stack[k]
             if (e) {
               this.flattenData[xPos].stack.push({
                 c: e.c,
@@ -514,14 +504,14 @@ export default class TimeGraphContent extends React.Component {
               })
               amount -= e.c
             }
-            let y1 = currentY
+            const y1 = currentY
             currentY = this.props.yScale(amount)
-            let y0 = currentY
+            const y0 = currentY
             addSerie(k, {x, y0, y1})
           })
 
-          let y1 = this.props.yScale(amount)
-          let y0 = baseY
+          const y1 = this.props.yScale(amount)
+          const y0 = baseY
           addSerie('other', {x,y0, y1})
           if(amount > 0) {
             this.flattenData[xPos].stack.push({
@@ -531,28 +521,28 @@ export default class TimeGraphContent extends React.Component {
             })
           }
         } else {
-          let y = this.props.yScale(d[1].c);
+          const y = this.props.yScale(d[1].c)
           addSerie(0, {x, y1: y, y0: baseY })
         }
       })
 
 
-      let paths = _.map(series, (serie, k) => {
-        let sortedSerie = _.sortBy(serie, 'x')
-        const color = this.props.getColor(k, this.props.group)
-        return  <path key={k} d={valueArea(sortedSerie)} fill={color} stroke={color} className="area" title={k}/>
-      })
-      return paths
+    const paths = _.map(series, (serie, k) => {
+      const sortedSerie = _.sortBy(serie, 'x')
+      const color = this.props.getColor(k, this.props.group)
+      return  <path key={k} d={valueArea(sortedSerie)} fill={color} stroke={color} className="area" title={k}/>
+    })
+    return paths
 
   }
 
   getLines = () => {
     const baseY = this.props.yScale.range()[0]
     let stacks = []
-    let series = {}
+    const series = {}
 
-    let defaultSerie = _.transform(this.props.xScale.ticks((this.props.aggregation == 'day' ? d3.timeDay : d3.timeHour).every(1)), (obj, dt, i) => {
-      let x = this.props.xScale(dt)
+    const defaultSerie = _.transform(this.props.xScale.ticks((this.props.aggregation === 'day' ? d3.timeDay : d3.timeHour).every(1)), (obj, dt) => {
+      const x = this.props.xScale(dt)
       obj[x] = {
         x,
         y: baseY
@@ -568,8 +558,8 @@ export default class TimeGraphContent extends React.Component {
     }
 
     if (this.props.group) {
-      let dimensionCount = {}
-      _.each((this.props.data), (d, i) => {
+      const dimensionCount = {}
+      _.each((this.props.data), (d) => {
         _.each(d[1].stack, (b, k) => {
           dimensionCount[k] = {
             key: k,
@@ -583,10 +573,9 @@ export default class TimeGraphContent extends React.Component {
 
     this.flattenData = []
     _(this.props.data)
-      .each((d, i) => {
+      .each((d) => {
         const xPos = this.props.xScale(d[0])
-        const x = xPos;
-        let bars = []
+        const x = xPos
 
         this.flattenData[xPos] = {
           c: d[1].stack ? _(d[1].stack).map('c').max() : d[1].c,
@@ -594,24 +583,23 @@ export default class TimeGraphContent extends React.Component {
         }
 
         if (d[1].stack) {
-          let usedHeight = 0
           let amount = d[1].c
           _(stacks).each((k) => {
-            let e = d[1].stack[k]
+            const e = d[1].stack[k]
             if (e) {
               this.flattenData[xPos].stack.push({
                 name: e.name,
                 c: e.c,
                 key: k
               })
-              let y = this.props.yScale(e.c)
+              const y = this.props.yScale(e.c)
               amount -= e.c
 
               addSerie(k, {x,y})
             }
           })
           if(amount > 0) {
-            let y = this.props.yScale(amount)
+            const y = this.props.yScale(amount)
             addSerie('other', {x,y})
             this.flattenData[xPos].stack.push({
               name: 'other',
@@ -620,36 +608,36 @@ export default class TimeGraphContent extends React.Component {
             })
           }
         } else {
-          let y = this.props.yScale(d[1].c);
+          const y = this.props.yScale(d[1].c)
           addSerie(0, {x,y})
         }
       })
 
-      const valueLine = d3.line()
-                          .x(d => d.x)
-                          .y(d => d.y)
+    const valueLine = d3.line()
+      .x(d => d.x)
+      .y(d => d.y)
 
 
-      let paths = _.map(series, (serie, k) => {
-        let sortedSerie = _.sortBy(serie, 'x')
-        if(this.props.group) {
-          let maxValue = _(sortedSerie).sortBy('y').map('y').head()
-          if(maxValue < baseY) {
-            return  <path key={k} d={valueLine(sortedSerie)} stroke={this.props.getColor(k, this.props.group)} fill="none" className="line"/>
-          }
-        } else {
-          return  <path key={k} d={valueLine(sortedSerie)} stroke={this.props.getColor(k)} fill="none" className="line"/>
+    const paths = _.map(series, (serie, k) => {
+      const sortedSerie = _.sortBy(serie, 'x')
+      if(this.props.group) {
+        const maxValue = _(sortedSerie).sortBy('y').map('y').head()
+        if(maxValue < baseY) {
+          return  <path key={k} d={valueLine(sortedSerie)} stroke={this.props.getColor(k, this.props.group)} fill="none" className="line"/>
         }
-      })
-      return paths
+      } else {
+        return  <path key={k} d={valueLine(sortedSerie)} stroke={this.props.getColor(k)} fill="none" className="line"/>
+      }
+    })
+    return paths
 
   }
 
   getBars = () => {
     let stacks = []
     if (this.props.group) {
-      let dimensionCount = {}
-      _.each((this.props.data), (d, i) => {
+      const dimensionCount = {}
+      _.each((this.props.data), (d) => {
         _.each(d[1].stack, (b, k) => {
           dimensionCount[k] = {
             key: k,
@@ -664,15 +652,15 @@ export default class TimeGraphContent extends React.Component {
     this.flattenData = []
     return _(this.props.data)
       .map((d, i) => {
-        const hovered = this.props.mouseIteractions && this.state.focused && !this.state.mousePressed && this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x))) == this.props.xScale(this.roundDate(d[0]))
-        const x = this.props.xScale(d[0]) + BAR_MARGIN;
-        const range0 = this.props.xScale(Math.min(...this.state.range));
-        const range1 = this.props.xScale(Math.max(...this.state.range));
+        const hovered = this.props.mouseIteractions && this.state.focused && !this.state.mousePressed && this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x))) === this.props.xScale(this.roundDate(d[0]))
+        const x = this.props.xScale(d[0]) + BAR_MARGIN
+        const range0 = this.props.xScale(Math.min(...this.state.range))
+        const range1 = this.props.xScale(Math.max(...this.state.range))
         const totalHeight = this.props.yScale.range()[0]
         const rangeDiff = Math.abs(range1 - range0)
         const width  =this.props.boxWidth > 2 * BAR_MARGIN ? this.props.boxWidth - 2 * BAR_MARGIN : this.props.boxWidth
-        const noActive = this.state.overlayVisible && (this.props.comparing ? (x < range0 - rangeDiff || x >= range1) : (x < range0 || x >= range1));
-        let bars = []
+        const noActive = this.state.overlayVisible && (this.props.comparing ? (x < range0 - rangeDiff || x >= range1) : (x < range0 || x >= range1))
+        const bars = []
 
         this.flattenData[this.props.xScale(d[0])] = {
           c: d[1].c,
@@ -680,7 +668,7 @@ export default class TimeGraphContent extends React.Component {
         }
 
         if (hovered) {
-          bars.push(<rect fill="url(#diagonalHatch)" key={i + "hover"} x={x} y={this.props.margin.top} width={width} height={totalHeight - this.props.yScale(0)} className={`bar shadow`} />)
+          bars.push(<rect fill="url(#diagonalHatch)" key={i + 'hover'} x={x} y={this.props.margin.top} width={width} height={totalHeight - this.props.yScale(0)} className={'bar shadow'} />)
         }
 
         if (d[1].stack) {
@@ -688,26 +676,26 @@ export default class TimeGraphContent extends React.Component {
           let currentY = this.props.yScale(amount)
 
           _(stacks).each((k) => {
-            let e = d[1].stack[k]
+            const e = d[1].stack[k]
             if (e) {
               this.flattenData[this.props.xScale(d[0])].stack.push({
                 name: e.name,
                 c: e.c,
                 key: k
               })
-              let startY = this.props.yScale(amount)
+              const startY = this.props.yScale(amount)
               amount -= e.c
               currentY = this.props.yScale(amount)
-              let height = currentY - startY
+              const height = currentY - startY
 
-              bars.push(<rect fill={this.props.getColor(k, this.props.group)} key={i + k} x={x} title={e.name} y={startY} width={width} height={height} className={`bar ${hovered ? "hovered" : noActive ? "no-active" : ""}`} />)
+              bars.push(<rect fill={this.props.getColor(k, this.props.group)} key={i + k} x={x} title={e.name} y={startY} width={width} height={height} className={`bar ${hovered ? 'hovered' : noActive ? 'no-active' : ''}`} />)
 
             }
           })
 
           if (amount > 0) {
-            let startY = this.props.yScale(amount)
-            let height = totalHeight - startY
+            const startY = this.props.yScale(amount)
+            const height = totalHeight - startY
 
             this.flattenData[this.props.xScale(d[0])].stack.push({
               name: 'other',
@@ -715,39 +703,39 @@ export default class TimeGraphContent extends React.Component {
               c: amount
             })
 
-            bars.push(<rect fill={this.props.getColor('other')} key={i + 'other'} x={x} y={startY} width={width} height={height} className={`bar ${hovered ? "hovered" : noActive ? "no-active" : ""}`} />)
+            bars.push(<rect fill={this.props.getColor('other')} key={i + 'other'} x={x} y={startY} width={width} height={height} className={`bar ${hovered ? 'hovered' : noActive ? 'no-active' : ''}`} />)
           }
         } else {
-          let startY = this.props.yScale(d[1].c);
-          let height = totalHeight - startY;
-          bars.push(<rect key={i} fill={this.props.getColor(i)} x={x} y={startY} width={width} height={height} className={`bar ${hovered ? "hovered" : noActive ? "no-active" : ""} ${this.props.group ? "group" : "no-group"}`} />)
+          const startY = this.props.yScale(d[1].c)
+          const height = totalHeight - startY
+          bars.push(<rect key={i} fill={this.props.getColor(i)} x={x} y={startY} width={width} height={height} className={`bar ${hovered ? 'hovered' : noActive ? 'no-active' : ''} ${this.props.group ? 'group' : 'no-group'}`} />)
         }
 
         return bars
-      }).value();
+      }).value()
   }
 
   types = {
-    "bar": this.getBars,
-    "line": this.getLines,
-    "area": this.getArea,
+    'bar': this.getBars,
+    'line': this.getLines,
+    'area': this.getArea,
   }
 
   render() {
-    const x = this.props.xScale.range()[0];
-    const y = this.props.yScale.range()[1];
-    const width = this.props.xScale.range()[1] - x;
-    const height = this.props.yScale.range()[0] - y;
+    const x = this.props.xScale.range()[0]
+    const y = this.props.yScale.range()[1]
+    const width = this.props.xScale.range()[1] - x
+    const height = this.props.yScale.range()[0] - y
 
     let extentFocused = false
-    let extent = []
+    const extent = []
 
     if (this.state.overlayVisible && this.state.range[0] && this.state.range[1]) {
       const fromX = this.props.xScale(this.state.range[0])
       const toX = this.props.xScale(this.state.range[1])
       const distance = Math.abs(toX - fromX)
-      let marksDefault = this.getXMark(this.state.range[0], null, true)
-      let ruler = this.getRuler(this.state.range[0], this.state.range[1])
+      const marksDefault = this.getXMark(this.state.range[0], null, true)
+      const ruler = this.getRuler(this.state.range[0], this.state.range[1])
 
       extentFocused = this.state.focused && this.state.mark.x >= Math.min(fromX, toX) && this.state.mark.x <= Math.max(fromX, toX)
 
@@ -758,10 +746,10 @@ export default class TimeGraphContent extends React.Component {
         <rect className="extent__reflect" x={Math.max(Math.min(fromX, toX) - Math.abs(toX - fromX), x)} width={Math.min(distance, Math.min(fromX, toX) - x)} y={y} height={height} fill="url(#diagonalHatch)" />
         {this.props.comparing ?
           <g>
-            <text key="extent-label-a" style={{ textAnchor: "middle" }} className="ruler__label" width={60}
+            <text key="extent-label-a" style={{ textAnchor: 'middle' }} className="ruler__label" width={60}
               x={Math.max(Math.min(fromX, toX) - Math.abs(toX - fromX), x)}
               transform={`translate(${(Math.min(distance, Math.min(fromX, toX) - x) / 2)}, ${this.props.margin.top + 35})`}>A</text>
-            <text key="extent-label-b" style={{ textAnchor: "middle" }} className="ruler__label" width={60}
+            <text key="extent-label-b" style={{ textAnchor: 'middle' }} className="ruler__label" width={60}
               x={Math.min(fromX, toX)}
               transform={`translate(${(distance / 2)}, ${this.props.margin.top + 35})`}>B</text>
           </g>
@@ -772,7 +760,7 @@ export default class TimeGraphContent extends React.Component {
         <g key="focus" className="focus">
           {this.getXMark(this.state.date, null, true)}
           {this.props.mouseIteractions ? this.getRuler(this.state.date) : null}
-        </g>]);
+        </g>])
     }
 
     return (<g className="overlay">
@@ -781,7 +769,7 @@ export default class TimeGraphContent extends React.Component {
       </pattern>
       <rect
         key="background"
-        className={`background ${this.state.overlayVisible ? "filtered" : "no-filtered"} ${this.state.dragging ? "dragging" : this.state.mousePressed ? "resizing" : extentFocused ? "focused" : ""}`}
+        className={`background ${this.state.overlayVisible ? 'filtered' : 'no-filtered'} ${this.state.dragging ? 'dragging' : this.state.mousePressed ? 'resizing' : extentFocused ? 'focused' : ''}`}
         x={x}
         y={y}
         width={width}
@@ -794,11 +782,11 @@ export default class TimeGraphContent extends React.Component {
       >
       </rect>
       {extent}
-      {this.types[this.props.type||"bar"]()}
+      {this.types[this.props.type||'bar']()}
       {this.props.metadata ? this.getMetadatas() : null}
       {this.props.mouseIteractions ? this.getYMark() : null}
 
-    </g>);
+    </g>)
   }
 }
 
@@ -819,9 +807,9 @@ TimeGraphContent.propTypes = {
   type: PropTypes.string,
   metadata: PropTypes.object,
   mouseIteractions: PropTypes.bool
-};
+}
 
 
 TimeGraphContent.defaultProps = {
   mouseIteractions: true
-};
+}
