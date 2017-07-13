@@ -2,35 +2,6 @@
 
 This package contain a serie of [React][react] components, using [Reat-Bootstrap][react-bootstrap] and [D3][d3] to generate graphs based on [CubeDB][cubedb]'s data.
 
-## Examples
-
-### Trending graphs
-
-![TrendingGraph][screenshot_trendinggraph]
-
-### BarGraph
-
-#### BarGraph
-![BarGraph][screenshot_bargraph]
-#### BarGraph filters
-![BarGraph filters][screenshot_bargraph_filter]
-#### BarGraph with comparison
-![BarGraph with comparison][screenshot_bargraph_comparison]
-
-### TimeGraph
-
-#### Simple TimeGraph
-![Simple TimeGraph][screenshot_timegraph]
-#### TimeGraph stacked
-![TimeGraph stacked][screenshot_timegraph_stacks]
-
-### BarGraph and TimeGraph comparing data
-
-#### BarGraph with comparison
-![BarGraph with comparison][screenshot_bargraph_comparison]
-#### TimeGraph with comparison
-![TimeGraph with comparison][screenshot_timegraph_comparison]
-
 
 ## Local Setup (using [yarn][yarn])
 
@@ -41,6 +12,39 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 - Fix linter `yarn lint:fix`
 - Run the [storybook][storybook] in development mode with `yarn storybook`
 - Build with `yarn build`
+
+----
+
+## Examples
+
+### TimeGraph
+
+#### Simple TimeGraph
+![Simple TimeGraph][screenshot_timegraph]
+#### TimeGraph stacked
+![TimeGraph stacked][screenshot_timegraph_stacks]
+
+### BarGraph
+
+#### BarGraph
+![BarGraph][screenshot_bargraph]
+#### BarGraph filters
+![BarGraph filters][screenshot_bargraph_filter]
+#### BarGraph with comparison
+![BarGraph with comparison][screenshot_bargraph_comparison]
+
+
+### BarGraph and TimeGraph comparing data
+
+#### BarGraph with comparison
+![BarGraph with comparison][screenshot_bargraph_comparison]
+#### TimeGraph with comparison
+![TimeGraph with comparison][screenshot_timegraph_comparison]
+
+### Trending graphs
+
+![TrendingGraph][screenshot_trendinggraph]
+
 
 
 
