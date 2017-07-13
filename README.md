@@ -10,12 +10,25 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 
 ### BarGraph
 
+#### BarGraph
 ![BarGraph][screenshot_bargraph]
+#### BarGraph
+![BarGraph][screenshot_bargraph_filter]
+#### BarGraph with comparison
 ![BarGraph with comparison][screenshot_bargraph_comparison]
 
 ### TimeGraph
 
+#### TimeGraph
 ![TimeGraph][screenshot_timegraph]
+#### TimeGraph stacked
+![TimeGraph stacked][screenshot_timegraph_stacks]
+
+### BarGraph and TimeGraph comparing data
+
+#### BarGraph with comparison
+![BarGraph with comparison][screenshot_bargraph_comparison]
+#### TimeGraph with comparison
 ![TimeGraph with comparison][screenshot_timegraph_comparison]
 
 
@@ -44,7 +57,9 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 [screenshot_trendinggraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TrendingGraph.png
 
 [screenshot_bargraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph.png
+[screenshot_bargraph_filter]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph_filter.png
 [screenshot_bargraph_comparison]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph_comparison.png
 
 [screenshot_timegraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph.png
+[screenshot_timegraph_stacks]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph_stacks.png
 [screenshot_timegraph_comparison]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph_comparison.png
