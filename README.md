@@ -12,15 +12,15 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 
 #### BarGraph
 ![BarGraph][screenshot_bargraph]
-#### BarGraph
-![BarGraph][screenshot_bargraph_filter]
+#### BarGraph filters
+![BarGraph filters][screenshot_bargraph_filter]
 #### BarGraph with comparison
 ![BarGraph with comparison][screenshot_bargraph_comparison]
 
 ### TimeGraph
 
-#### TimeGraph
-![TimeGraph][screenshot_timegraph]
+#### Simple TimeGraph
+![Simple TimeGraph][screenshot_timegraph]
 #### TimeGraph stacked
 ![TimeGraph stacked][screenshot_timegraph_stacks]
 
