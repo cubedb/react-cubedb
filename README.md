@@ -48,7 +48,7 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 
 
 
-[demo]: https://jrfferreira.github.io/react-cubedb/docs
+[demo]: https://jrfferreira.github.io/react-cubedb/demo
 
 [react]: http://facebook.github.io/react/
 [react-bootstrap]: https://react-bootstrap.github.io/
