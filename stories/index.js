@@ -11,7 +11,7 @@ import BarGraphGroup from './BarGraphGroup'
 import CubeDB from './CubeDB'
 
 storiesOf('react-cubedb', module)
-  .add('overview', () => <CubeDB.Overview/>)
+  .add('Overview', () => <CubeDB.Overview/>)
   .addDecorator(withKnobs)
   .add('BarGraph', () => <BarGraph/>)
   .add('BarGraphGroup', () => <BarGraphGroup/>)

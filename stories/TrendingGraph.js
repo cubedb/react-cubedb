@@ -9,15 +9,15 @@ export default () =>
   <div>
     <h2>Trending Graph</h2>
     <section>
-      <p>Default:</p>
+      <h3>Default:</h3>
       <TrendingGraph data={mock.response.p}/>
     </section>
     <section>
-      <p>Without data:</p>
+      <h3>Without data:</h3>
       <TrendingGraph/>
     </section>
     <section>
-      <p>With custom dimension:</p>
+      <h3>With custom dimension:</h3>
       <TrendingGraph
         data={mock.response.p}
         width={number('width', 200)}

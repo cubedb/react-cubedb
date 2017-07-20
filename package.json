@@ -32,7 +32,7 @@
     "build:clean": "rimraf ./dist",
     "build:js": "babel ./src -d ./dist",
     "build:scss": "cpy './src/style/*.scss' ./dist/style",
-    "build:storybook": "build-storybook",
+    "build:storybook": "build-storybook -o demo",
     "test": "jest",
     "test:updateSnapshot": "jest --updateSnapshot",
     "test:storybook": "storyshots",

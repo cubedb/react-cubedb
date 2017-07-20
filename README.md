@@ -2,6 +2,7 @@
 
 This package contain a serie of [React][react] components, using [Reat-Bootstrap][react-bootstrap] and [D3][d3] to generate graphs based on [CubeDB][cubedb]'s data.
 
+[Check the demo][demo]
 
 ## Local Setup (using [yarn][yarn])
 
@@ -47,6 +48,7 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 
 
 
+[demo]: https://jrfferreira.github.io/react-cubedb/docs
 
 [react]: http://facebook.github.io/react/
 [react-bootstrap]: https://react-bootstrap.github.io/

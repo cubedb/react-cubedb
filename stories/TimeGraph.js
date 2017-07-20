@@ -1,7 +1,6 @@
 import React from 'react'  // eslint-disable-line no-unused-vars
 import * as d3 from 'd3'
 import { TimeGraph } from '../src'
-import { number } from '@storybook/addon-knobs'
 
 const mock = require('./_mock.json')
 const display = d3.timeFormat('%a %Y-%m-%d %H:00')
@@ -13,7 +12,7 @@ export default () =>
   <div>
     <h2>Trending Graph</h2>
     <section>
-      <p>Bar Graph:</p>
+      <h3>Bar Graph:</h3>
       <TimeGraph
         type="bar"
         aggregation='hour'
@@ -26,7 +25,7 @@ export default () =>
       />
     </section>
     <section>
-      <p>Line Graph:</p>
+      <h3>Line Graph:</h3>
       <TimeGraph
         type="line"
         aggregation='hour'
@@ -39,7 +38,7 @@ export default () =>
       />
     </section>
     <section>
-      <p>Area Graph:</p>
+      <h3>Area Graph:</h3>
       <TimeGraph
         type="area"
         aggregation='hour'
