@@ -11,8 +11,6 @@ import saveData from './utils/saveData'
 
 import './style/TimeGraph.scss'
 
-const NUM_DAYS = 100
-
 
 const xTickSize = {
   day: 85,
@@ -31,28 +29,28 @@ export default class TimeGraph extends React.Component {
     data: PropTypes.object,
     hideMetadata: PropTypes.bool,
     metadata: PropTypes.object,
-    timeParser: PropTypes.func,
-    timeDisplay: PropTypes.func,
-    timeFormatter: PropTypes.func,
+    timeParser: PropTypes.func.isRequired,
+    timeDisplay: PropTypes.func.isRequired,
+    timeFormatter: PropTypes.func.isRequired,
     countFormatter: PropTypes.func,
     lookup: PropTypes.func,
     filter: PropTypes.array,
     comparing: PropTypes.bool,
     onClickCompare: PropTypes.any,
     onChange: PropTypes.func,
-    timeUnitLengthSec: PropTypes.number,
-    numUnits: PropTypes.number,
+    timeUnitLengthSec: PropTypes.number.isRequired,
     group: PropTypes.string,
     type: PropTypes.string,
-    getColor: PropTypes.func,
-    aggregation: PropTypes.string,
+    getColor: PropTypes.func.isRequired,
+    aggregation: PropTypes.string.isRequired,
     mouseIteractions: PropTypes.bool,
     toDate: PropTypes.any,
     fromDate: PropTypes.any,
   }
 
   static defaultProps = {
-    mouseIteractions: true
+    mouseIteractions: true,
+    type: 'bar'
   }
 
 
@@ -267,11 +265,25 @@ export default class TimeGraph extends React.Component {
     this.props.onChange(p)
   }
 
+  getDateDomain() {
+    const dates = _(this.props.data)
+      .map((p, k) => this.props.timeParser(k))
+      .sortBy( dt => dt.getTime())
+      .value()
+    return [dates[0], dates[dates.length-1]]
+  }
+
   render() {
-    const toDate = this.props.toDate || new Date()
-    const fromDate = this.props.fromDate || new Date(toDate.getTime() - NUM_DAYS * this.props.timeUnitLengthSec * 1000)
+    let [fromDate, toDate] = this.getDateDomain()
+    if(this.props.toDate) {
+      toDate = this.props.toDate
+    }
+    if(this.props.fromDate) {
+      fromDate = this.props.fromDate
+    }
 
     const numUnit = Math.ceil((toDate-fromDate)/(this.props.timeUnitLengthSec*1000))
+
 
     const data = this.preProcess(this.props.data, this.props.timeParser, [fromDate, toDate])
     const graph = this.drawAxis(this.state.width, this.state.height, data, margin, fromDate, toDate, this.props.timeUnitLengthSec, this.props.timeDisplay, this.props.countFormatter, numUnit)
@@ -331,17 +343,13 @@ export default class TimeGraph extends React.Component {
         <rect className={'time_graph__download-button'} width={20} height={20} transform={`translate(${this.state.width-margin.right-20}, 3)`}/>
         <path className={'time_graph__download-button__icon'} transform={`matrix(.5 0 0 .5 ${this.state.width-margin.right-17} 5)`} d="M22.857 24q0-0.464-0.339-0.804t-0.804-0.339-0.804 0.339-0.339 0.804 0.339 0.804 0.804 0.339 0.804-0.339 0.339-0.804zM27.429 24q0-0.464-0.339-0.804t-0.804-0.339-0.804 0.339-0.339 0.804 0.339 0.804 0.804 0.339 0.804-0.339 0.339-0.804zM29.714 20v5.714q0 0.714-0.5 1.214t-1.214 0.5h-26.286q-0.714 0-1.214-0.5t-0.5-1.214v-5.714q0-0.714 0.5-1.214t1.214-0.5h8.304l2.411 2.429q1.036 1 2.429 1t2.429-1l2.429-2.429h8.286q0.714 0 1.214 0.5t0.5 1.214zM23.911 9.839q0.304 0.732-0.25 1.25l-8 8q-0.321 0.339-0.804 0.339t-0.804-0.339l-8-8q-0.554-0.518-0.25-1.25 0.304-0.696 1.054-0.696h4.571v-8q0-0.464 0.339-0.804t0.804-0.339h4.571q0.464 0 0.804 0.339t0.339 0.804v8h4.571q0.75 0 1.054 0.696z" fill="#000000"></path>
       </g>
-      { this.props.hideMetadata ?
-        null
-        :
+      { this.props.metadata &&
         <g onClick={this.toggleMetadata('release')}>
           <rect className={'time_graph__metadata-button'} width={70} height={14} transform={`translate(${this.state.width-margin.right-100}, 5)`}/>
           <text className={'time_graph__metadata-button__text'}style={{textAnchor:'left'}} width={60} height={12} transform={`translate(${this.state.width-margin.right-94}, 15)`}>{this.state.metadataFilter.release ? 'Hide' : 'Show'} Releases</text>
         </g>
-      }
-      { this.props.hideMetadata ?
-        null
-        :
+      }``
+      { this.props.metadata &&
         <g onClick={this.toggleMetadata('experiment')}>
           <rect className={'time_graph__metadata-button'} width={80} height={14} transform={`translate(${this.state.width-margin.right-190}, 5)`}/>
           <text className={'time_graph__metadata-button__text'}style={{textAnchor:'left'}} width={60} height={12} transform={`translate(${this.state.width-margin.right-184}, 15)`}>{this.state.metadataFilter.experiment ? 'Hide' : 'Show'} Experiments</text>
@@ -364,7 +372,7 @@ export default class TimeGraph extends React.Component {
         getColor={this.props.getColor}
         type={this.props.type}
         mouseIteractions={this.props.mouseIteractions}
-        metadata={this.props.hideMetadata ? null : metadata} />
+        metadata={this.props.metadata ? metadata : null } />
     </svg>
   }
 }

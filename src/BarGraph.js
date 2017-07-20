@@ -288,10 +288,10 @@ class BarGraphHeader extends React.Component {
       <h4>
         {this.props.name} <small>({(this.props.slice && this.props.slice < this.props.size ? `${this.props.slice} of ` : '')+ this.props.size})</small>
       </h4>
-      <ButtonGroup className="bar-graph-group__actions">
+      <ButtonGroup className="bar-graph__actions">
         <Button title="Click to save as csv" onClick={this.onDownload(this.props.name, this.props.total, this.props.dimension, this.props.comparingTo)}><Glyphicon glyph="save"/></Button>
         <OverlayTrigger container={this} trigger="click" rootClose placement="bottom" overlay={
-          <Popover className="bar-graph-group__filter__dimension" id={`popover-${this.props.name}`} title="">
+          <Popover className="bar-graph__filter__dimension" id={`popover-${this.props.name}`} title="">
             <div>
               <ButtonGroup>
                 <Button bsSize="small" bsStyle="primary" onClick={this.onClickAddAll}>Add all</Button>
@@ -301,7 +301,7 @@ class BarGraphHeader extends React.Component {
             </div>
             <br/>
             <div>
-              <FormGroup className="bar-graph-group__list__search"
+              <FormGroup className="bar-graph__list__search"
                 bsSize="small"
                 validationState={this.props.filter===false ? 'error' : this.props.filter ? 'success' : null}>
                 <FormControl defaultValue={this.props.filter ? this.props.filter : undefined} onChange={this.props.onSearch} placeholder="Looking for..." type="text" />
@@ -314,7 +314,7 @@ class BarGraphHeader extends React.Component {
             <div>
               <ButtonToolbar>
                 {_.map(this.props.selectedItems, (f)=>{
-                  return <Button className="bar-graph-group__filter__dimension__button"
+                  return <Button className="bar-graph__filter__dimension__button"
                     key={`filter-${f}`}
                     onClick={ () => {this.props.onChange([this.props.name])(f)} }
                     bsSize="xsmall">
@@ -403,6 +403,7 @@ export default class BarGraph extends React.Component {
 
 
     return <Panel bsStyle={isGroupSource ? 'info' : 'default'}
+      className={'bar-graph__container'}
       header={
         <BarGraphHeader
           name={this.props.name}
@@ -421,7 +422,7 @@ export default class BarGraph extends React.Component {
           group={this.props.group}/>}
     >
       {filter ?
-        <div className="bar-graph-group__search-help">Search result for "{filter}"</div>
+        <div className="bar-graph__search-help">Search result for "{filter}"</div>
         :
         null
       }

@@ -5,18 +5,16 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'  // eslint-disable-line no-unused-vars
 
 import TrendingGraph from './TrendingGraph'
+import TimeGraph from './TimeGraph'
 import BarGraph from './BarGraph'
 import BarGraphGroup from './BarGraphGroup'
 import CubeDB from './CubeDB'
 
-storiesOf('Cube DB', module)
-  .add('overview', () => <CubeDB.Overview/>)
-  //.add('client package', () => <Welcome showApp={linkTo('Button')} />)
-
 storiesOf('react-cubedb', module)
+  .add('overview', () => <CubeDB.Overview/>)
   .addDecorator(withKnobs)
   .add('BarGraph', () => <BarGraph/>)
   .add('BarGraphGroup', () => <BarGraphGroup/>)
   //.add('TagGroup', () => <Welcome showApp={linkTo('Button')} />)
-  //.add('TimeGraph', () => <Welcome showApp={linkTo('Button')} />)
+  .add('TimeGraph', () => <TimeGraph/>)
   .add('TrendingGraph', () => <TrendingGraph/>)

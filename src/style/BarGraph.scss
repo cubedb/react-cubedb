@@ -2,6 +2,104 @@
 
 
 .bar-graph {
+
+  &__container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0;
+    // background-image: linear-gradient(to bottom, $background, $white);
+    .panel-heading {
+        h4 {
+            max-width: 68%;
+            overflow: hidden;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            text-overflow: ellipsis;
+        }
+    }
+    .bar-graph__actions {
+        float: right;
+        margin: -.2rem -.6em 0 0;
+        position: relative;
+        .btn {
+            padding: .2rem .2rem .6rem;
+        }
+        .glyphicon {
+            float: right;
+            font-size: 1.2rem;
+            margin: .2rem .6rem 0;
+        }
+    }
+    .panel-body {
+        font-size: .9rem;
+        max-height: 20rem;
+        overflow-y: scroll;
+        padding: 0;
+    }
+    &__copy {
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        padding: 5px auto;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        &-wrapper {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            z-index: +1;
+        }
+    }
+
+    .bar-graph__filter__dimension {
+        margin-top: 3rem;
+        margin-left: 1.5rem;
+
+        &__button {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            position: relative;
+            word-break: normal;
+            max-width: 250px;
+            white-space: nowrap;
+            padding: 0 2rem 0 .5rem;
+            margin: .5rem;
+
+            .glyphicon {
+                position: absolute;
+                right: .4rem;
+                line-height: 1.6rem;
+                margin-left: .4rem;
+            }
+        }
+    }
+
+
+    &__search {
+        margin-bottom: 0;
+        &-help {
+            font-size: 0.8rem;
+            text-align: center;
+            padding: .2rem 0;
+            background-color: $axis;
+        }
+    }
+
+    &__content--empty {
+        text-align: center;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    & .dimension-graph__label:hover {
+        max-width: inherit;
+        overflow: visible;
+    }
+  }
+
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-stretch: normal;
   font-style: normal;
@@ -86,7 +184,7 @@
 
       &__wrapper:hover {
           * {
-            max-width: 100%;    
+            max-width: 100%;
           }
       }
   }
@@ -100,7 +198,7 @@
   &__variation {
       &__wrapper {
           min-width: 4rem;
-          padding:  0 .6rem;    
+          padding:  0 .6rem;
           text-align: center;
           border-right: 1px solid $border-bold;
       }
@@ -118,7 +216,7 @@
 
               &,
               &--infinity {
-                  display: block;    
+                  display: block;
                   line-height: .5rem;
               }
           }
@@ -131,6 +229,6 @@
       &--down {
           color: red;
       }
-      
+
   }
 }

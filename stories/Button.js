@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React from 'react'  // eslint-disable-line no-unused-vars
 
 const buttonStyles = {
   border: '1px solid #eee',

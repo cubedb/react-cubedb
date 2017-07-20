@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React from 'react'  // eslint-disable-line no-unused-vars
 import * as d3 from 'd3';
 
 import { BarGraph } from '../src';

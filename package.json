@@ -26,11 +26,11 @@
     "mocha": "--require scripts/mocha_runner src/**/__tests__/**/*.js"
   },
   "scripts": {
-    "prepare": "npm run build",
-    "prepublish": "npm run build",
-    "build": "npm run build:clean && npm run build:js && npm run build:scss && npm run build:scss",
-    "build:js": "babel ./src -d ./dist",
+    "prepare": "npm run build:clean && npm run build",
+    "prepublish": "npm run build:clean && npm run build",
+    "build": "npm run build:js && npm run build:scss && npm run build:scss",
     "build:clean": "rimraf ./dist",
+    "build:js": "babel ./src -d ./dist",
     "build:scss": "cpy './src/style/*.scss' ./dist/style",
     "build:storybook": "build-storybook",
     "test": "jest",
