@@ -41,9 +41,6 @@ class Bar extends React.Component {
     proportion: PropTypes.number,
   }
 
-  // shouldComponentUpdate(){
-  //   return true;
-  // }
 
   render() {
     const bars = []
@@ -316,7 +313,7 @@ class BarGraphHeader extends React.Component {
                 {_.map(this.props.selectedItems, (f)=>{
                   return <Button className="bar-graph__filter__dimension__button"
                     key={`filter-${f}`}
-                    onClick={ () => {this.props.onChange([this.props.name])(f)} }
+                    onClick={ () => {this.props.onChange(this.props.name, f)} }
                     bsSize="xsmall">
                     {f} <Glyphicon glyph='remove-sign'/>
                   </Button>

@@ -1,0 +1,12 @@
+{
+  "libs": [
+    "d3",
+    "react",
+    "lodash",
+    "flow"
+  ],
+  "plugins": {
+    "node": {},
+    "es_modules": {}
+  }
+}
