@@ -18,7 +18,7 @@ const xTickSize = {
 }
 
 const numberFormat = d3.format(',d')
-const margin = { left: 80, right: 30, top: 50, bottom: 25 }
+const DEFAULT_MARGIN = { left: 80, right: 30, top: 50, bottom: 25 }
 const STACK_LIMIT = 10
 
 export default class TimeGraph extends React.Component {
@@ -281,6 +281,8 @@ export default class TimeGraph extends React.Component {
     if(this.props.fromDate) {
       fromDate = this.props.fromDate
     }
+
+    const margin = Object.assign({}, DEFAULT_MARGIN, this.props.margin)
 
     const numUnit = Math.ceil((toDate-fromDate)/(this.props.timeUnitLengthSec*1000))
 

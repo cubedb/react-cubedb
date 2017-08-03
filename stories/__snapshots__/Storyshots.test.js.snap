@@ -1,216 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Cube DB client package 1`] = `
-<div
-  style={
-    Object {
-      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
-      "lineHeight": 1.4,
-      "margin": 15,
-      "maxWidth": 600,
-    }
-  }
->
-  <h1>
-    Welcome to STORYBOOK
-  </h1>
-  <p>
-    This is a UI component dev environment for your app.
-  </p>
-  <p>
-    We've added some basic stories inside the
-     
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      src/stories
-    </code>
-     
-    directory.
-    <br />
-    A story is a single state of one or more UI components. You can have as many stories as you want.
-    <br />
-    (Basically a story is like a visual test case.)
-  </p>
-  <p>
-    See these sample
-     
-    <a
-      onClick={[Function]}
-      role="button"
-      style={
-        Object {
-          "borderBottom": "1px solid #1474f3",
-          "color": "#1474f3",
-          "paddingBottom": 2,
-          "textDecoration": "none",
-        }
-      }
-      tabIndex="0"
-    >
-      stories
-    </a>
-     
-    for a component called
-     
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      Button
-    </code>
-    .
-  </p>
-  <p>
-    Just like that, you can add your own components as stories.
-    <br />
-    You can also edit those components and see changes right away.
-    <br />
-    (Try editing the 
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      Button
-    </code>
-     component located at 
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      src/stories/Button.js
-    </code>
-    .)
-  </p>
-  <p>
-    This is just one thing you can do with Storybook.
-    <br />
-    Have a look at the
-     
-    <a
-      href="https://github.com/storybooks/storybook"
-      rel="noopener noreferrer"
-      style={
-        Object {
-          "borderBottom": "1px solid #1474f3",
-          "color": "#1474f3",
-          "paddingBottom": 2,
-          "textDecoration": "none",
-        }
-      }
-      target="_blank"
-    >
-      Storybook
-    </a>
-     
-    repo for more information.
-  </p>
-  <p
-    style={
-      Object {
-        "opacity": 0.5,
-      }
-    }
-  >
-    <b>
-      NOTE:
-    </b>
-    <br />
-    Have a look at the
-     
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      .storybook/webpack.config.js
-    </code>
-     
-    to add webpack loaders and plugins you are using in this project.
-  </p>
-</div>
-`;
-
-exports[`Storyshots Cube DB overview 1`] = `
-<div>
-  <h2>
-    Cube DB data structure
-  </h2>
-  <p>
-    Single dimension
-  </p>
-  <pre>
-    <code>
-      [{
-        [name|date]: {
-          c: &lt;number&gt;
-        }
-      }, ...]
-    </code>
-  </pre>
-  <p>
-    Grouped dimension
-  </p>
-  <pre>
-    <code>
-      [{
-        [name|date]: {
-          [name]: {
-            c: &lt;number&gt;
-          },
-          ...
-        }
-      }, ...]
-    </code>
-  </pre>
-</div>
-`;
-
 exports[`Storyshots react-cubedb BarGraph 1`] = `
 <div>
   <h2>
@@ -221,7 +10,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       Without data:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -238,7 +27,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -303,7 +92,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       Default:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -320,7 +109,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -534,7 +323,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       With lookup:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -551,7 +340,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -765,7 +554,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       With custom colors:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -782,7 +571,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -872,7 +661,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
                     className="bar-graph__bar"
                     style={
                       Object {
-                        "backgroundColor": undefined,
+                        "backgroundColor": "blue",
                         "width": "100%",
                       }
                     }
@@ -922,7 +711,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
                     className="bar-graph__bar"
                     style={
                       Object {
-                        "backgroundColor": undefined,
+                        "backgroundColor": "red",
                         "width": "43.88465899886603%",
                       }
                     }
@@ -972,7 +761,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
                     className="bar-graph__bar"
                     style={
                       Object {
-                        "backgroundColor": undefined,
+                        "backgroundColor": "blue",
                         "width": "12.084885792969382%",
                       }
                     }
@@ -996,7 +785,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       With slice definition:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -1013,7 +802,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -1177,7 +966,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       With change event:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -1194,7 +983,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -1408,7 +1197,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
       Comparing data:
     </h3>
     <div
-      className="panel panel-default"
+      className="bar-graph__container panel panel-default"
       id={undefined}
     >
       <div
@@ -1425,7 +1214,7 @@ exports[`Storyshots react-cubedb BarGraph 1`] = `
             </small>
           </h4>
           <div
-            className="bar-graph-group__actions btn-group"
+            className="bar-graph__actions btn-group"
           >
             <button
               className="btn btn-default"
@@ -1770,7 +1559,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
           className="bar-graph-group__list"
         >
           <div
-            className="panel panel-default"
+            className="bar-graph__container panel panel-default"
             id={undefined}
           >
             <div
@@ -1787,7 +1576,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                   </small>
                 </h4>
                 <div
-                  className="bar-graph-group__actions btn-group"
+                  className="bar-graph__actions btn-group"
                 >
                   <button
                     className="btn btn-default"
@@ -1900,187 +1689,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
           className="bar-graph-group__list"
         >
           <div
-            className="panel panel-default"
-            id={undefined}
-          >
-            <div
-              className="panel-heading"
-            >
-              <div>
-                <h4>
-                  dimension_b
-                   
-                  <small>
-                    (
-                    2
-                    )
-                  </small>
-                </h4>
-                <div
-                  className="bar-graph-group__actions btn-group"
-                >
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to save as csv"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-save"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the applied filters"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-filter"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the view mode"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-tasks"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the stacking based in this group"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-indent-left"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="panel-body"
-            >
-              <div
-                className="cube_bars__list__content"
-              >
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      false
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      39,034
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#c6dbef",
-                              "width": "100%",
-                            }
-                          }
-                          title="false: 39,034"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          73.246%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      true
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      14,258
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#e6550d",
-                              "width": "36.52713019418968%",
-                            }
-                          }
-                          title="true: 14,258"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          26.754%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="bar-graph-group__list"
-        >
-          <div
-            className="panel panel-default"
+            className="bar-graph__container panel panel-default"
             id={undefined}
           >
             <div
@@ -2097,7 +1706,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                   </small>
                 </h4>
                 <div
-                  className="bar-graph-group__actions btn-group"
+                  className="bar-graph__actions btn-group"
                 >
                   <button
                     className="btn btn-default"
@@ -2187,7 +1796,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                           className="bar-graph__bar"
                           style={
                             Object {
-                              "backgroundColor": "#fd8d3c",
+                              "backgroundColor": "#c6dbef",
                               "width": "100%",
                             }
                           }
@@ -2210,187 +1819,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
           className="bar-graph-group__list"
         >
           <div
-            className="panel panel-default"
-            id={undefined}
-          >
-            <div
-              className="panel-heading"
-            >
-              <div>
-                <h4>
-                  dimension_d
-                   
-                  <small>
-                    (
-                    2
-                    )
-                  </small>
-                </h4>
-                <div
-                  className="bar-graph-group__actions btn-group"
-                >
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to save as csv"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-save"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the applied filters"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-filter"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the view mode"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-tasks"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the stacking based in this group"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-indent-left"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="panel-body"
-            >
-              <div
-                className="cube_bars__list__content"
-              >
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      false
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      29,588
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#c6dbef",
-                              "width": "100%",
-                            }
-                          }
-                          title="false: 29,588"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          55.521%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      true
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      23,704
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#e6550d",
-                              "width": "80.11355955116939%",
-                            }
-                          }
-                          title="true: 23,704"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          44.479%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="bar-graph-group__list"
-        >
-          <div
-            className="panel panel-default"
+            className="bar-graph__container panel panel-default"
             id={undefined}
           >
             <div
@@ -2407,7 +1836,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                   </small>
                 </h4>
                 <div
-                  className="bar-graph-group__actions btn-group"
+                  className="bar-graph__actions btn-group"
                 >
                   <button
                     className="btn btn-default"
@@ -2520,7 +1949,601 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
           className="bar-graph-group__list"
         >
           <div
-            className="panel panel-default"
+            className="bar-graph__container panel panel-default"
+            id={undefined}
+          >
+            <div
+              className="panel-heading"
+            >
+              <div>
+                <h4>
+                  dimension_g
+                   
+                  <small>
+                    (
+                    3
+                    )
+                  </small>
+                </h4>
+                <div
+                  className="bar-graph__actions btn-group"
+                >
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to save as csv"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-save"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the applied filters"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-filter"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the view mode"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-tasks"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the stacking based in this group"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-indent-left"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="panel-body"
+            >
+              <div
+                className="cube_bars__list__content"
+              >
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      2
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      37,038
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#3182bd",
+                              "width": "100%",
+                            }
+                          }
+                          title="2: 37,038"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          64.115%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      1
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      16,254
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#6baed6",
+                              "width": "43.88465899886603%",
+                            }
+                          }
+                          title="1: 16,254"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          28.137%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      3
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      4,476
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#9ecae1",
+                              "width": "12.084885792969382%",
+                            }
+                          }
+                          title="3: 4,476"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          7.748%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="cube_graph__column"
+      >
+        <div
+          className="bar-graph-group__list"
+        >
+          <div
+            className="bar-graph__container panel panel-default"
+            id={undefined}
+          >
+            <div
+              className="panel-heading"
+            >
+              <div>
+                <h4>
+                  dimension_b
+                   
+                  <small>
+                    (
+                    2
+                    )
+                  </small>
+                </h4>
+                <div
+                  className="bar-graph__actions btn-group"
+                >
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to save as csv"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-save"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the applied filters"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-filter"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the view mode"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-tasks"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the stacking based in this group"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-indent-left"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="panel-body"
+            >
+              <div
+                className="cube_bars__list__content"
+              >
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      false
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      39,034
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#e6550d",
+                              "width": "100%",
+                            }
+                          }
+                          title="false: 39,034"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          73.246%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      true
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      14,258
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#fd8d3c",
+                              "width": "36.52713019418968%",
+                            }
+                          }
+                          title="true: 14,258"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          26.754%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="bar-graph-group__list"
+        >
+          <div
+            className="bar-graph__container panel panel-default"
+            id={undefined}
+          >
+            <div
+              className="panel-heading"
+            >
+              <div>
+                <h4>
+                  dimension_d
+                   
+                  <small>
+                    (
+                    2
+                    )
+                  </small>
+                </h4>
+                <div
+                  className="bar-graph__actions btn-group"
+                >
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to save as csv"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-save"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the applied filters"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-filter"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the view mode"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-tasks"
+                    />
+                  </button>
+                  <button
+                    className="btn btn-default"
+                    disabled={false}
+                    onClick={[Function]}
+                    title="Click to change the stacking based in this group"
+                    type="button"
+                  >
+                    <span
+                      className="glyphicon glyphicon-indent-left"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="panel-body"
+            >
+              <div
+                className="cube_bars__list__content"
+              >
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      false
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      29,588
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#e6550d",
+                              "width": "100%",
+                            }
+                          }
+                          title="false: 29,588"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          55.521%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="bar-graph"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="bar-graph__label__wrapper"
+                  >
+                    <div
+                      className="bar-graph__label"
+                    >
+                      true
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__value__wrapper"
+                  >
+                    <div
+                      className="bar-graph__value"
+                    >
+                      23,704
+                    </div>
+                  </div>
+                  <div
+                    className="bar-graph__bar-container__wrapper"
+                  >
+                    <div
+                      className="bar-graph__bar-container"
+                    >
+                      <div
+                        className="bar-graph__bar-wrap"
+                      >
+                        <div
+                          className="bar-graph__bar"
+                          style={
+                            Object {
+                              "backgroundColor": "#fd8d3c",
+                              "width": "80.11355955116939%",
+                            }
+                          }
+                          title="true: 23,704"
+                        />
+                        <span
+                          className="bar-graph__bar__percentage"
+                        >
+                          44.479%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="bar-graph-group__list"
+        >
+          <div
+            className="bar-graph__container panel panel-default"
             id={undefined}
           >
             <div
@@ -2537,7 +2560,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                   </small>
                 </h4>
                 <div
-                  className="bar-graph-group__actions btn-group"
+                  className="bar-graph__actions btn-group"
                 >
                   <button
                     className="btn btn-default"
@@ -2927,7 +2950,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                           className="bar-graph__bar"
                           style={
                             Object {
-                              "backgroundColor": "#fd8d3c",
+                              "backgroundColor": "#c6dbef",
                               "width": "1.7375966373939802%",
                             }
                           }
@@ -3550,237 +3573,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
           className="bar-graph-group__list"
         >
           <div
-            className="panel panel-default"
-            id={undefined}
-          >
-            <div
-              className="panel-heading"
-            >
-              <div>
-                <h4>
-                  dimension_g
-                   
-                  <small>
-                    (
-                    3
-                    )
-                  </small>
-                </h4>
-                <div
-                  className="bar-graph-group__actions btn-group"
-                >
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to save as csv"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-save"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the applied filters"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-filter"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the view mode"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-tasks"
-                    />
-                  </button>
-                  <button
-                    className="btn btn-default"
-                    disabled={false}
-                    onClick={[Function]}
-                    title="Click to change the stacking based in this group"
-                    type="button"
-                  >
-                    <span
-                      className="glyphicon glyphicon-indent-left"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="panel-body"
-            >
-              <div
-                className="cube_bars__list__content"
-              >
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      2
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      37,038
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#3182bd",
-                              "width": "100%",
-                            }
-                          }
-                          title="2: 37,038"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          64.115%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      1
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      16,254
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#6baed6",
-                              "width": "43.88465899886603%",
-                            }
-                          }
-                          title="1: 16,254"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          28.137%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="bar-graph"
-                  onClick={[Function]}
-                >
-                  <div
-                    className="bar-graph__label__wrapper"
-                  >
-                    <div
-                      className="bar-graph__label"
-                    >
-                      3
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__value__wrapper"
-                  >
-                    <div
-                      className="bar-graph__value"
-                    >
-                      4,476
-                    </div>
-                  </div>
-                  <div
-                    className="bar-graph__bar-container__wrapper"
-                  >
-                    <div
-                      className="bar-graph__bar-container"
-                    >
-                      <div
-                        className="bar-graph__bar-wrap"
-                      >
-                        <div
-                          className="bar-graph__bar"
-                          style={
-                            Object {
-                              "backgroundColor": "#9ecae1",
-                              "width": "12.084885792969382%",
-                            }
-                          }
-                          title="3: 4,476"
-                        />
-                        <span
-                          className="bar-graph__bar__percentage"
-                        >
-                          7.748%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="bar-graph-group__list"
-        >
-          <div
-            className="panel panel-default"
+            className="bar-graph__container panel panel-default"
             id={undefined}
           >
             <div
@@ -3797,7 +3590,7 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
                   </small>
                 </h4>
                 <div
-                  className="bar-graph-group__actions btn-group"
+                  className="bar-graph__actions btn-group"
                 >
                   <button
                     className="btn btn-default"
@@ -4012,179 +3805,88 @@ exports[`Storyshots react-cubedb BarGraphGroup 1`] = `
 </div>
 `;
 
-exports[`Storyshots react-cubedb TagGroup 1`] = `
-<div
-  style={
-    Object {
-      "fontFamily": "\\"Helvetica Neue\\", Helvetica, \\"Segoe UI\\", Arial, freesans, sans-serif",
-      "lineHeight": 1.4,
-      "margin": 15,
-      "maxWidth": 600,
-    }
-  }
->
-  <h1>
-    Welcome to STORYBOOK
-  </h1>
-  <p>
-    This is a UI component dev environment for your app.
-  </p>
-  <p>
-    We've added some basic stories inside the
-     
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
+exports[`Storyshots react-cubedb Overview 1`] = `
+<div>
+  <h2>
+    Cube DB data structure
+  </h2>
+  <h3>
+    Setup
+  </h3>
+  <ul>
+    <li>
+      Install the dependencies with 
+      <code>
+        yarn install
+      </code>
+    </li>
+    <li>
+      Run tests with Jest 
+      <code>
+        yarn test
+      </code>
+    </li>
+    <li>
+      Update tests snapshots 
+      <code>
+        yarn test:updateSnapshot
+      </code>
+    </li>
+    <li>
+      Run Eslint 
+      <code>
+        yarn lint
+      </code>
+    </li>
+    <li>
+      Fix linter 
+      <code>
+        yarn lint:fix
+      </code>
+    </li>
+    <li>
+      Run the storybook in development mode with 
+      <code>
+        yarn storybook
+      </code>
+    </li>
+    <li>
+      Build with 
+      <code>
+        yarn build
+      </code>
+    </li>
+  </ul>
+  <h3>
+    Data Structure
+  </h3>
+  <h4>
+    Single dimension
+  </h4>
+  <pre>
+    <code>
+      [{
+        [name|date]: {
+          c: &lt;number&gt;
         }
-      }
-    >
-      src/stories
+      }, ...]
     </code>
-     
-    directory.
-    <br />
-    A story is a single state of one or more UI components. You can have as many stories as you want.
-    <br />
-    (Basically a story is like a visual test case.)
-  </p>
-  <p>
-    See these sample
-     
-    <a
-      onClick={[Function]}
-      role="button"
-      style={
-        Object {
-          "borderBottom": "1px solid #1474f3",
-          "color": "#1474f3",
-          "paddingBottom": 2,
-          "textDecoration": "none",
+  </pre>
+  <h4>
+    Grouped dimension
+  </h4>
+  <pre>
+    <code>
+      [{
+        [name|date]: {
+          [name]: {
+            c: &lt;number&gt;
+          },
+          ...
         }
-      }
-      tabIndex="0"
-    >
-      stories
-    </a>
-     
-    for a component called
-     
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      Button
+      }, ...]
     </code>
-    .
-  </p>
-  <p>
-    Just like that, you can add your own components as stories.
-    <br />
-    You can also edit those components and see changes right away.
-    <br />
-    (Try editing the 
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      Button
-    </code>
-     component located at 
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      src/stories/Button.js
-    </code>
-    .)
-  </p>
-  <p>
-    This is just one thing you can do with Storybook.
-    <br />
-    Have a look at the
-     
-    <a
-      href="https://github.com/storybooks/storybook"
-      rel="noopener noreferrer"
-      style={
-        Object {
-          "borderBottom": "1px solid #1474f3",
-          "color": "#1474f3",
-          "paddingBottom": 2,
-          "textDecoration": "none",
-        }
-      }
-      target="_blank"
-    >
-      Storybook
-    </a>
-     
-    repo for more information.
-  </p>
-  <p
-    style={
-      Object {
-        "opacity": 0.5,
-      }
-    }
-  >
-    <b>
-      NOTE:
-    </b>
-    <br />
-    Have a look at the
-     
-    <code
-      style={
-        Object {
-          "backgroundColor": "#f3f2f2",
-          "border": "1px solid #eae9e9",
-          "borderRadius": 4,
-          "color": "#3a3a3a",
-          "fontSize": 15,
-          "fontWeight": 600,
-          "padding": "2px 5px",
-        }
-      }
-    >
-      .storybook/webpack.config.js
-    </code>
-     
-    to add webpack loaders and plugins you are using in this project.
-  </p>
+  </pre>
 </div>
 `;
 
@@ -4370,9 +4072,9 @@ exports[`Storyshots react-cubedb TrendingGraph 1`] = `
     Trending Graph
   </h2>
   <section>
-    <p>
+    <h3>
       Default:
-    </p>
+    </h3>
     <svg
       className="trending_graph"
       height={50}
@@ -4389,9 +4091,9 @@ exports[`Storyshots react-cubedb TrendingGraph 1`] = `
     </svg>
   </section>
   <section>
-    <p>
+    <h3>
       Without data:
-    </p>
+    </h3>
     <svg
       className="trending_graph"
       height={50}
@@ -4400,9 +4102,9 @@ exports[`Storyshots react-cubedb TrendingGraph 1`] = `
     />
   </section>
   <section>
-    <p>
+    <h3>
       With custom dimension:
-    </p>
+    </h3>
     <svg
       className="trending_graph"
       height={80}
