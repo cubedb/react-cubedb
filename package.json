@@ -90,6 +90,7 @@
     "moduleNameMapper": {
       "\\.scss$": "identity-obj-proxy"
     },
-    "setupFiles": ["<rootDir>/src/testSetup.js"]
+    "setupFiles": ["<rootDir>/src/testSetup.js"],
+    "roots": ["<rootDir>/src"]
   }
 }
