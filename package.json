@@ -52,7 +52,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "cpy-cli": "^1.0.1",
     "css-loader": "^0.28.4",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
     "eslint": "^4.2.0",
     "eslint-plugin-flowtype": "^2.34.1",
     "eslint-plugin-jasmine": "^2.6.2",
@@ -65,11 +66,11 @@
     "jest": "^20.0.4",
     "jsdom": "^11.0.0",
     "node-sass": "^4.5.3",
-    "react": "^15.5.4",
-    "react-addons-test-utils": "^15.0.0",
+    "react": "^16.0.0",
+    "react-addons-test-utils": "^15.6.2",
     "react-doc-generator": "^1.2.5",
-    "react-dom": "^15.5.4",
-    "react-test-renderer": "^15.5.4",
+    "react-dom": "^16.0.0",
+    "react-test-renderer": "^16.0.0",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2"
@@ -81,13 +82,19 @@
   "dependencies": {
     "d3": "^4.9.1",
     "lodash": "^4.17.4",
-    "react-bootstrap": "^0.31.0",
+    "react-bootstrap": "^0.31.3",
     "react-faux-dom": "^4.0.3",
     "storyshots": "^3.2.2"
   },
   "jest": {
     "moduleNameMapper": {
       "\\.scss$": "identity-obj-proxy"
-    }
+    },
+    "setupFiles": [
+      "<rootDir>/src/testSetup.js"
+    ],
+    "roots": [
+      "<rootDir>/src"
+    ]
   }
 }
