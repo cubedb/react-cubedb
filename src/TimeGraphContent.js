@@ -4,6 +4,9 @@ import * as d3 from 'd3'
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import roundDate from './utils/roundDate'
+import dateParser from './utils/dateParser'
+
 const BAR_MARGIN = 1
 const STACK_LIMIT = 10
 
@@ -16,9 +19,15 @@ export default class TimeGraphContent extends React.Component {
       this.props.xScale(this.props.range[1]) <= this.props.xScale.range()[1] ? this.props.xScale(this.props.range[0])
       : this.props.xScale.range()[0]
 
+    let range = []
+
+    if(this.props.range && this.props.range[1]) {
+      range = [this.roundDate(this.props.range[0]), this.roundDate(this.props.range[1])] 
+    }
+
     this.state = {
       overlayVisible: !!this.props.range,
-      range: this.props.range && this.props.range[1] ? [this.props.range[0], new Date(this.props.range[1].getTime() + this.props.timeUnitLengthSec * 999)] : [],
+      range,
       mousePressed: false,
       focused: false,
       dragging: false,
@@ -27,6 +36,7 @@ export default class TimeGraphContent extends React.Component {
       visibleMetadata: null,
       clickPos: 0
     }
+
 
     this.flattenData = []
 
@@ -62,10 +72,8 @@ export default class TimeGraphContent extends React.Component {
 
 
   roundDate(date, timeUnit) {
-    var g = (timeUnit || this.props.timeUnitLengthSec) * 1000
-    var o = date.getTimezoneOffset() * -6e4
-    var x = Math.round((+date + o) / g)
-    return new Date(x * g - o)
+    const g = (timeUnit || this.props.timeUnitLengthSec)
+    return roundDate(date, g)
   }
 
   onMouseEnter(e) {
@@ -136,11 +144,11 @@ export default class TimeGraphContent extends React.Component {
       const rangeInterval = newRange[1].getTime() - newRange[0].getTime()
       const newStart = newRange[0].getTime() + diff - (this.props.xScale.invert(last).getTime() - this.props.xScale.invert(firstPos).getTime())
       const newEnd = newStart + rangeInterval
-      const startDate = this.roundDate(new Date(Math.min(newStart, newEnd)))
-      const endDate = this.roundDate(new Date(Math.max(newStart, newEnd)))
+      const startDate = this.roundDate(Math.min(newStart, newEnd))
+      const endDate = this.roundDate(Math.max(newStart, newEnd))
 
       if (this.props.comparing) {
-        if (new Date(startDate - rangeInterval) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
+        if (dateParser((startDate - rangeInterval)/1000) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
           endDate <= this.props.xScale.invert(this.props.xScale.range()[1])) {
           newRange = [startDate, endDate]
         }
@@ -244,7 +252,6 @@ export default class TimeGraphContent extends React.Component {
           rectPos = rectPos + this.props.margin.right
         }
         let stackN = 0
-
         return (<g key="y-ruler">
           <line className="ruler__mark" strokeDasharray="6, 2" y1={posY || 0} y2={posY || 0} x2={x2} x1={x0} />
           <rect className="tooltip__background" rx="4" ry="4" transform={`translate(${rectPos}, ${topDistance - 22})`} width={rectWidth} height={rectHeight} />
@@ -341,10 +348,10 @@ export default class TimeGraphContent extends React.Component {
     const x = this.props.xScale
     const y1 = this.props.yScale.range()[0]
     const y2 = this.props.yScale.range()[1]
-    const intervalSize = interval || x(new Date(this.getInterval() * 1000)) - x(new Date(0))
+    const intervalSize = interval || x(dateParser(this.getInterval())) - x(dateParser(0))
     const pickStart = this.props.margin.left + (x(date) - x.range()[0]) % intervalSize
 
-    return d3.range(pickStart, x.range()[1], intervalSize).map((pos) => {
+    return d3.range(pickStart, x.range()[1], intervalSize).map((pos) => {date
       if (pos > x.range()[0]) {
         if (collateral) {
           return <line className="ruler__mark" strokeDasharray="2, 2" key={'mark-colateral' + pos} x1={pos} x2={pos} y2={y2} y1={y1} />
@@ -357,10 +364,13 @@ export default class TimeGraphContent extends React.Component {
 
   getRuler(date0, date1) {
     const x = this.props.xScale
-    const dt = date1 ? Math.min(date0, date1) : date0
+    let dt = date1 ? Math.min(date0, date1) : date0
+    if (typeof dt === 'number') {
+      dt = dateParser(dt/1000)
+    }
     const start = x(dt)
     const end = date1 ? Math.max(x(date0), x(date1)) : null
-    const label = this.props.timeDisplay(typeof dt === 'number' ? new Date(dt) : dt)
+    const label = this.props.timeDisplay(dt)
     const y1 = this.props.yScale.range()[0]
     const y2 = this.props.yScale.range()[1]
     const textAnchor = 'middle'
@@ -368,7 +378,7 @@ export default class TimeGraphContent extends React.Component {
 
     const marks = []
     const interval = (end - start)
-    const intervalSize = date1 ? Math.abs(interval) : x(new Date(this.getInterval() * 1000)) - x(new Date(0))
+    const intervalSize = date1 ? Math.abs(interval) : x(dateParser(this.getInterval())) - x(dateParser(0))
 
     if (this.state.focused || this.state.overlayVisible) {
       marks.push(<g key="ruler">
@@ -667,10 +677,6 @@ export default class TimeGraphContent extends React.Component {
           stack: []
         }
 
-        if (hovered) {
-          bars.push(<rect fill="url(#diagonalHatch)" key={i + 'hover'} x={x} y={this.props.margin.top} width={width} height={totalHeight - this.props.yScale(0)} className={'bar shadow'} />)
-        }
-
         if (d[1].stack) {
           let amount = d[1].c
           let currentY = this.props.yScale(amount)
@@ -687,7 +693,6 @@ export default class TimeGraphContent extends React.Component {
               amount -= e.c
               currentY = this.props.yScale(amount)
               const height = currentY - startY
-
               bars.push(<rect fill={this.props.getColor(k, this.props.group)} key={i + k} x={x} title={e.name} y={startY} width={width} height={height} className={`bar ${hovered ? 'hovered' : noActive ? 'no-active' : ''}`} />)
 
             }
@@ -702,7 +707,6 @@ export default class TimeGraphContent extends React.Component {
               key: 'other',
               c: amount
             })
-
             bars.push(<rect fill={this.props.getColor('other')} key={i + 'other'} x={x} y={startY} width={width} height={height} className={`bar ${hovered ? 'hovered' : noActive ? 'no-active' : ''}`} />)
           }
         } else {
@@ -736,8 +740,8 @@ export default class TimeGraphContent extends React.Component {
       const distance = Math.abs(toX - fromX)
       const marksDefault = this.getXMark(this.state.range[0], null, true)
       const ruler = this.getRuler(this.state.range[0], this.state.range[1])
-
       extentFocused = this.state.focused && this.state.mark.x >= Math.min(fromX, toX) && this.state.mark.x <= Math.max(fromX, toX)
+
 
       extent.push(<g key="extent">
         {marksDefault}

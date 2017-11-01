@@ -47,13 +47,13 @@ ShallowWrapper {
       "_currentElement": <TrendingGraph
         data={
                 Object {
-                        "2017-01-01 01": Object {
+                        "1483232400": Object {
                           "c": 1,
                         },
-                        "2017-01-01 02": Object {
+                        "1483236000": Object {
                           "c": 2,
                         },
-                        "2017-01-01 03": Object {
+                        "1483239600": Object {
                           "c": 3,
                         },
                       }
@@ -69,13 +69,13 @@ ShallowWrapper {
         "context": Object {},
         "props": Object {
           "data": Object {
-            "2017-01-01 01": Object {
+            "1483232400": Object {
               "c": 1,
             },
-            "2017-01-01 02": Object {
+            "1483236000": Object {
               "c": 2,
             },
-            "2017-01-01 03": Object {
+            "1483239600": Object {
               "c": 3,
             },
           },
@@ -145,13 +145,13 @@ ShallowWrapper {
   "unrendered": <TrendingGraph
     data={
         Object {
-            "2017-01-01 01": Object {
+            "1483232400": Object {
               "c": 1,
             },
-            "2017-01-01 02": Object {
+            "1483236000": Object {
               "c": 2,
             },
-            "2017-01-01 03": Object {
+            "1483239600": Object {
               "c": 3,
             },
           }
@@ -203,13 +203,13 @@ ShallowWrapper {
       "_currentElement": <TrendingGraph
         data={
                 Object {
-                        "2017-01-01 01": Object {
+                        "1483232400": Object {
                           "c": 1,
                         },
-                        "2017-01-01 02": Object {
+                        "1483236000": Object {
                           "c": 2,
                         },
-                        "2017-01-01 03": Object {
+                        "1483239600": Object {
                           "c": 3,
                         },
                       }
@@ -226,13 +226,13 @@ ShallowWrapper {
         "context": Object {},
         "props": Object {
           "data": Object {
-            "2017-01-01 01": Object {
+            "1483232400": Object {
               "c": 1,
             },
-            "2017-01-01 02": Object {
+            "1483236000": Object {
               "c": 2,
             },
-            "2017-01-01 03": Object {
+            "1483239600": Object {
               "c": 3,
             },
           },
@@ -297,13 +297,13 @@ ShallowWrapper {
   "unrendered": <TrendingGraph
     data={
         Object {
-            "2017-01-01 01": Object {
+            "1483232400": Object {
               "c": 1,
             },
-            "2017-01-01 02": Object {
+            "1483236000": Object {
               "c": 2,
             },
-            "2017-01-01 03": Object {
+            "1483239600": Object {
               "c": 3,
             },
           }

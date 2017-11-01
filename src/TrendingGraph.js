@@ -5,11 +5,9 @@ import PropTypes from 'prop-types'
 
 import SvgLoadingAnimation from './utils/SvgLoadingAnimation'
 
+import dateParser from './utils/dateParser'
 import './style/TrendingGraph.scss'
 
-
-const hourParseTime = d3.timeParse('%Y-%m-%d %H')
-const dayParseTime = d3.timeParse('%Y-%m-%d')
 
 const TRIM_LENGTH = 2
 
@@ -45,17 +43,15 @@ export default class TrendingGraph extends React.Component {
 
       const maxValue = (maxBy(data, (e) => e[1])||[])[1]
 
-      const parseTime = (dt) => (hourParseTime(dt)||dayParseTime(dt))
-
       const xAxis = d3.scaleTime()
         .rangeRound([0, width])
-        .domain(d3.extent(data, (d) => parseTime(d[0])))
+        .domain(d3.extent(data, (d) => dateParser(d[0])))
 
       const yAxis = d3.scaleLinear()
         .rangeRound([height*0.95, height*0.05])
         .domain([0, maxValue])
 
-      const getLine = d3.line().x(d => xAxis(parseTime(d[0])))
+      const getLine = d3.line().x(d => xAxis(dateParser(d[0])))
         .y(d => yAxis(d[1]))
 
       const d = getLine(data)

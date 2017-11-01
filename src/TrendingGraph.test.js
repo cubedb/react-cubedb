@@ -6,9 +6,9 @@ import TrendingGraph from './TrendingGraph'
 
 const defaultProps = {
   data: {
-    '2017-01-01 01': { c: 1 },
-    '2017-01-01 02': { c: 2 },
-    '2017-01-01 03': { c: 3 }
+    1483232400: { c: 1 },
+    1483236000: { c: 2 },
+    1483239600: { c: 3 }
   }
 }
 
