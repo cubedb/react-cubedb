@@ -1,5 +1,5 @@
 import _ from 'lodash'
-
+import { scaleOrdinal, schemeCategory20c } from 'd3'
 import React from 'react'
 import PropTypes from 'prop-types'
 import BarGraph from './BarGraph'
@@ -96,7 +96,7 @@ export default class BarGraphGroup extends React.Component {
     onChange: undefined,
     data: {},
     fieldOrders: [],
-    getColor: undefined,
+    getColor: scaleOrdinal(schemeCategory20c),
     group: null,
     lookup: {},
     selectedItems: {},

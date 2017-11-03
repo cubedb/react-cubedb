@@ -5,7 +5,6 @@ import { TimeGraph } from '../src'
 const mock = require('./_mock.json')
 const display = d3.timeFormat('%a %Y-%m-%d %H:00')
 const formatter = d3.timeFormat('%Y-%m-%d %H')
-const timeUnitLengthSec = 3600
 
 export default () =>
   <div>
@@ -18,7 +17,6 @@ export default () =>
         data={mock.response.p}
         timeFormatter={formatter}
         timeDisplay={display}
-        timeUnitLengthSec={timeUnitLengthSec}
         getColor={() => 'blue'}
       />
     </section>
@@ -26,11 +24,10 @@ export default () =>
       <h3>Line Graph:</h3>
       <TimeGraph
         type="line"
-        aggregation='hour'
+        aggregation='day'
         data={mock.response.p}
         timeFormatter={formatter}
         timeDisplay={display}
-        timeUnitLengthSec={timeUnitLengthSec}
         getColor={() => 'blue'}
       />
     </section>
@@ -42,7 +39,6 @@ export default () =>
         data={mock.response.p}
         timeFormatter={formatter}
         timeDisplay={display}
-        timeUnitLengthSec={timeUnitLengthSec}
         getColor={() => 'blue'}
       />
     </section>
