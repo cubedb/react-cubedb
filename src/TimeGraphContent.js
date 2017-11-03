@@ -190,7 +190,7 @@ export default class TimeGraphContent extends React.Component {
       } else if (!this.state.dragging && this.state.overlayVisible) {
         range = []
         this.onChange(range)
-        this.props.onClickCompare(false)
+        this.onClickCompare()(false)
         overlayVisible = false
         dragging = false
       }
@@ -205,14 +205,25 @@ export default class TimeGraphContent extends React.Component {
     }
   }
 
-  onClickCompare() {
+  formatPeriod = (dt) => {
+    if(Array.isArray(dt) && dt.length) {
+      const aggregationTime = aggregation[this.props.aggregation]
+      const d0 = aggregationTime.floor(Math.min(...dt))
+      const d1 = aggregationTime.offset(Math.max(...dt), -1)
+      return [d0, d1]
+    }
+    return dt
+  }
+
+  onClickCompare = (range) => () => {
     if (this.allowComparing) {
-      this.props.onClickCompare(!this.props.comparing)
+      const nextState = !this.props.comparing
+      this.props.onClickCompare(nextState, nextState ? this.formatPeriod(range) : null)
     }
   }
 
   onChange(range) {
-    this.props.onChange(range)
+    this.props.onChange(this.formatPeriod(range))
   }
 
   getInterval() {
@@ -376,6 +387,7 @@ export default class TimeGraphContent extends React.Component {
   }
 
   getRuler(date0, date1) {
+    const aggregationTime = aggregation[this.props.aggregation]
     const x = this.props.xScale
     let dt = date1 ? Math.min(date0, date1) : date0
     if (typeof dt === 'number') {
@@ -391,7 +403,7 @@ export default class TimeGraphContent extends React.Component {
 
     const marks = []
     const interval = (end - start)
-    const intervalSize = date1 ? Math.abs(interval) : x(aggregation[this.props.aggregation].offset(dt, this.getInterval())) - x(dt)
+    const intervalSize = date1 ? Math.abs(interval) : x(aggregationTime.offset(dt, this.getInterval())) - x(dt)
 
     if (this.state.focused || this.state.overlayVisible) {
       marks.push(<g key="ruler">
@@ -407,6 +419,7 @@ export default class TimeGraphContent extends React.Component {
 
     if (this.allowComparing && date1) {
       const rulerMarkCompare = pos - interval
+      const dateToCompare = [x.invert(rulerMarkCompare), dt]
       const rulerMarkRangeEnd = end
 
       if (intervalSize > 60) {
@@ -423,7 +436,7 @@ export default class TimeGraphContent extends React.Component {
       const markXPos = Math.min(Math.max(intervalSize / 2, 8), 60)
 
       if (rulerMarkCompare < x.range()[1] && rulerMarkCompare > x.range()[0]) {
-        marks.push(<g key="ruler-end" className="ruler--compare" onClick={this.onClickCompare}>
+        marks.push(<g key="ruler-end" className="ruler--compare" onClick={this.onClickCompare(dateToCompare)}>
           <rect className="ruler__mark__background" rx="4" ry="4" transform={`translate(${rulerMarkCompare - 120 + markXPos}, ${markYPos})`} width="120" height="15" />
           <polygon key="mark-ruler-end" points="0,0 12, 0 6, 8" className="ruler__helper" transform={`translate(${rulerMarkCompare - 6}, ${markYPos + 14})`} />
           {this.props.comparing ?

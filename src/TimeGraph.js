@@ -269,10 +269,8 @@ export default class TimeGraph extends React.Component {
   }
 
   setP = (range) => {
-    // convert to unix value
-    const p = range.map((v) => v/1000)
-    p.sort()
-    this.props.onChange(p)
+    range.sort()
+    this.props.onChange(range)
   }
 
   getDateDomain() {
