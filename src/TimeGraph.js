@@ -9,13 +9,13 @@ import ReactDOM from 'react-dom'
 import TimeGraphContent from './TimeGraphContent'
 import saveData from './utils/saveData'
 
-import roundDate from './utils/roundDate'
 import dateParser from './utils/dateParser'
 
 import './style/TimeGraph.scss'
 
 
 const xTickSize = {
+  month: 105,
   day: 85,
   hour: 105
 }
@@ -23,6 +23,13 @@ const xTickSize = {
 const numberFormat = d3.format(',d')
 const DEFAULT_MARGIN = { left: 80, right: 30, top: 50, bottom: 25 }
 const STACK_LIMIT = 10
+
+
+export const aggregation = {
+  hour: d3.utcHour,
+  day: d3.utcDay,
+  month: d3.utcMonth
+}
 
 export default class TimeGraph extends React.Component {
 
@@ -39,10 +46,9 @@ export default class TimeGraph extends React.Component {
     comparing: PropTypes.bool,
     onClickCompare: PropTypes.any,
     onChange: PropTypes.func,
-    timeUnitLengthSec: PropTypes.number.isRequired,
     group: PropTypes.string,
     type: PropTypes.string,
-    getColor: PropTypes.func.isRequired,
+    getColor: PropTypes.func,
     aggregation: PropTypes.string.isRequired,
     mouseIteractions: PropTypes.bool,
     toDate: PropTypes.any,
@@ -51,7 +57,8 @@ export default class TimeGraph extends React.Component {
 
   static defaultProps = {
     mouseIteractions: true,
-    type: 'bar'
+    type: 'bar',
+    getColor: d3.scaleOrdinal(d3.schemeCategory20c)
   }
 
 
@@ -170,10 +177,10 @@ export default class TimeGraph extends React.Component {
     })
   }
 
-  drawAxis(width, height, data, margin, fromDate, toDate, timeUnitLengthSec, xFormatter, yFormatter=numberFormat) {
+  drawAxis(width, height, data, margin, fromDate, toDate, xFormatter, yFormatter=numberFormat) {
     const dateRange = [
-      roundDate(fromDate, this.props.timeUnitLengthSec),
-      roundDate(dateParser((toDate.getTime()/1000) + this.props.timeUnitLengthSec), this.props.timeUnitLengthSec)
+      aggregation[this.props.aggregation].floor(fromDate),
+      aggregation[this.props.aggregation].ceil(toDate)
     ]
 
     let maxValue = _(data).map('1').map('c').max()
@@ -235,16 +242,15 @@ export default class TimeGraph extends React.Component {
       .y(function (d) { return y(d[1]) })
       .curve(d3.curveStep)
 
-    const boxWidth = Math.max(1, x(dateParser(timeUnitLengthSec)) - x(dateParser(0)))
-
-    return { lineFunc: lineFunc, boxWidth: boxWidth, scale: { x: x, y: y }, axis: { x: xAxis, y: yAxis } }
+    return { lineFunc: lineFunc, scale: { x: x, y: y }, axis: { x: xAxis, y: yAxis } }
   }
 
   preProcess(data, timeBounds) {
     return _(this.props.data).toPairs()
       .map((p) => {
+        const dt = aggregation[this.props.aggregation](dateParser(p[0]))
         if(p[1].hasOwnProperty('c')) {
-          return [dateParser(p[0]), p[1]]
+          return [dt, p[1]]
         } else {
           let c = 0
           _.each(p[1], (e, k) => {
@@ -255,23 +261,22 @@ export default class TimeGraph extends React.Component {
             c: c,
             stack: p[1]
           }
-          return [dateParser(p[0]), dimension]
+          return [dt, dimension]
         }
       })
       .filter((p) => { return p[0] > timeBounds[0] })
       .value()
   }
 
-  setP(range) {
-    // convert to unix value
-    const p = Array.sort(range.map((v) => v/1000))
-    this.props.onChange(p)
+  setP = (range) => {
+    range.sort()
+    this.props.onChange(range)
   }
 
   getDateDomain() {
     const dates = _(this.props.data)
       .map((p, k) => {
-        return dateParser(k)
+        return aggregation[this.props.aggregation](dateParser(k))
       })
       .sortBy(dt => dt.getTime())
       .value()
@@ -302,10 +307,9 @@ export default class TimeGraph extends React.Component {
 
     const margin = Object.assign({}, DEFAULT_MARGIN, this.props.margin)
 
-    const numUnit = Math.ceil((toDate-fromDate)/(this.props.timeUnitLengthSec*1000))
-
+    
     const data = this.preProcess(this.props.data, [fromDate, toDate])
-    const graph = this.drawAxis(this.state.width, this.state.height, data, margin, fromDate, toDate, this.props.timeUnitLengthSec, this.props.timeDisplay, this.props.countFormatter, numUnit)
+    const graph = this.drawAxis(this.state.width, this.state.height, data, margin, fromDate, toDate, this.props.timeDisplay, this.props.countFormatter)
     const xAxis = new ReactFauxDOM.Element('g')
 
     d3
@@ -381,13 +385,11 @@ export default class TimeGraph extends React.Component {
         range={range}
         timeDisplay={this.props.timeDisplay}
         aggregation={this.props.aggregation}
-        timeUnitLengthSec={this.props.timeUnitLengthSec}
         onChange={this.setP}
         onClickCompare={this.props.onClickCompare}
         comparing={this.props.comparing}
         numberFormat={this.props.countFormatter||numberFormat}
         margin={margin}
-        boxWidth={graph.boxWidth}
         data={data}
         group={this.props.group}
         getColor={this.props.getColor}

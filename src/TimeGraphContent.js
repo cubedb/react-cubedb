@@ -4,8 +4,8 @@ import * as d3 from 'd3'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import roundDate from './utils/roundDate'
 import dateParser from './utils/dateParser'
+import {aggregation} from './TimeGraph'
 
 const BAR_MARGIN = 1
 const STACK_LIMIT = 10
@@ -71,9 +71,8 @@ export default class TimeGraphContent extends React.Component {
   }
 
 
-  roundDate(date, timeUnit) {
-    const g = (timeUnit || this.props.timeUnitLengthSec)
-    return roundDate(date, g)
+  roundDate(date) {
+    return aggregation[this.props.aggregation](date)
   }
 
   onMouseEnter(e) {
@@ -148,7 +147,7 @@ export default class TimeGraphContent extends React.Component {
       const endDate = this.roundDate(Math.max(newStart, newEnd))
 
       if (this.props.comparing) {
-        if (dateParser((startDate - rangeInterval)/1000) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
+        if (dateParser((startDate - rangeInterval)) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
           endDate <= this.props.xScale.invert(this.props.xScale.range()[1])) {
           newRange = [startDate, endDate]
         }
@@ -191,7 +190,7 @@ export default class TimeGraphContent extends React.Component {
       } else if (!this.state.dragging && this.state.overlayVisible) {
         range = []
         this.onChange(range)
-        this.props.onClickCompare(false)
+        this.onClickCompare()(false)
         overlayVisible = false
         dragging = false
       }
@@ -206,24 +205,49 @@ export default class TimeGraphContent extends React.Component {
     }
   }
 
-  onClickCompare() {
+  formatPeriod = (dt) => {
+    if(Array.isArray(dt) && dt.length) {
+      const aggregationTime = aggregation[this.props.aggregation]
+      const d0 = aggregationTime.floor(Math.min(...dt))
+      const d1 = aggregationTime.offset(Math.max(...dt), -1)
+      return [d0, d1]
+    }
+    return dt
+  }
+
+  onClickCompare = (range) => () => {
     if (this.allowComparing) {
-      this.props.onClickCompare(!this.props.comparing)
+      const nextState = !this.props.comparing
+      this.props.onClickCompare(nextState, nextState ? this.formatPeriod(range) : null)
     }
   }
 
   onChange(range) {
-    this.props.onChange(range)
+    this.props.onChange(this.formatPeriod(range))
   }
 
   getInterval() {
-    const interval = this.props.aggregation === 'day' ? 7 : 24
-
-    return this.props.timeUnitLengthSec * interval
+    switch (this.props.aggregation) {
+      case 'day':
+        return 7
+      case 'hour':
+        return 24
+      case 'month':
+        return 12
+      default:
+        return 1
+    }
   }
 
   countRange(range) {
-    return parseInt(Math.abs(range[1] - range[0]) / this.props.timeUnitLengthSec / 1000)
+    switch(this.props.aggregation) {
+      case 'month':
+        return d3.utcMonth.count(range[1], range[0])
+      case 'day':
+        return d3.utcDay.count(range[1], range[0])
+      default:
+        return d3.utcHour.count(range[1], range[0])
+    }
   }
 
   getYMark() {
@@ -231,16 +255,17 @@ export default class TimeGraphContent extends React.Component {
     const x2 = this.props.xScale.range()[1]
 
     if (this.state.mark && this.state.focused && !this.state.mousePressed) {
-      const xPoint = this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x)))
+      const date = this.roundDate(this.props.xScale.invert(this.state.mark.x))
+      const xPoint = this.props.xScale(date)
       const topDistance = 80
 
-      if (this.flattenData[xPoint]) {
-        const value = this.flattenData[xPoint].c
+      if (this.flattenData[date]) {
+        const value = this.flattenData[date].c
         const posY = this.props.yScale(value)
-        const labels = this.props.group ? _(this.flattenData[xPoint].stack).filter('c').map('name').value() : ['']
-        const maxValue = (_(this.flattenData[xPoint].stack).sortBy((d) => {
+        const labels = this.props.group ? _(this.flattenData[date].stack).filter('c').map('name').value() : ['']
+        const maxValue = (_(this.flattenData[date].stack).sortBy((d) => {
           return `${d.c}`.length
-        }).reverse().head() || this.flattenData[xPoint]).c
+        }).reverse().head() || this.flattenData[date]).c
         const rectHeight = this.props.group ? (labels.length * 16) : 16
         const longestLabel = (_(labels).sortBy('length').value().pop() || '')
         const rectWidth = this.getTextWidth(`${longestLabel}: ${this.props.numberFormat(maxValue)}`, 11) + 20
@@ -256,7 +281,7 @@ export default class TimeGraphContent extends React.Component {
           <line className="ruler__mark" strokeDasharray="6, 2" y1={posY || 0} y2={posY || 0} x2={x2} x1={x0} />
           <rect className="tooltip__background" rx="4" ry="4" transform={`translate(${rectPos}, ${topDistance - 22})`} width={rectWidth} height={rectHeight} />
           {this.props.group ?
-            _(this.flattenData[xPoint].stack)
+            _(this.flattenData[date].stack)
               .sortBy('name')
               .reverse()
               .map((e) => {
@@ -348,10 +373,9 @@ export default class TimeGraphContent extends React.Component {
     const x = this.props.xScale
     const y1 = this.props.yScale.range()[0]
     const y2 = this.props.yScale.range()[1]
-    const intervalSize = interval || x(dateParser(this.getInterval())) - x(dateParser(0))
-    const pickStart = this.props.margin.left + (x(date) - x.range()[0]) % intervalSize
 
-    return d3.range(pickStart, x.range()[1], intervalSize).map((pos) => {date
+    return this.props.xScale.ticks(aggregation[this.props.aggregation].every(this.getInterval())).map((dt) => {
+      const pos = this.props.xScale(dt)
       if (pos > x.range()[0]) {
         if (collateral) {
           return <line className="ruler__mark" strokeDasharray="2, 2" key={'mark-colateral' + pos} x1={pos} x2={pos} y2={y2} y1={y1} />
@@ -363,10 +387,11 @@ export default class TimeGraphContent extends React.Component {
   }
 
   getRuler(date0, date1) {
+    const aggregationTime = aggregation[this.props.aggregation]
     const x = this.props.xScale
     let dt = date1 ? Math.min(date0, date1) : date0
     if (typeof dt === 'number') {
-      dt = dateParser(dt/1000)
+      dt = dateParser(dt)
     }
     const start = x(dt)
     const end = date1 ? Math.max(x(date0), x(date1)) : null
@@ -378,7 +403,7 @@ export default class TimeGraphContent extends React.Component {
 
     const marks = []
     const interval = (end - start)
-    const intervalSize = date1 ? Math.abs(interval) : x(dateParser(this.getInterval())) - x(dateParser(0))
+    const intervalSize = date1 ? Math.abs(interval) : x(aggregationTime.offset(dt, this.getInterval())) - x(dt)
 
     if (this.state.focused || this.state.overlayVisible) {
       marks.push(<g key="ruler">
@@ -394,6 +419,7 @@ export default class TimeGraphContent extends React.Component {
 
     if (this.allowComparing && date1) {
       const rulerMarkCompare = pos - interval
+      const dateToCompare = [x.invert(rulerMarkCompare), dt]
       const rulerMarkRangeEnd = end
 
       if (intervalSize > 60) {
@@ -410,7 +436,7 @@ export default class TimeGraphContent extends React.Component {
       const markXPos = Math.min(Math.max(intervalSize / 2, 8), 60)
 
       if (rulerMarkCompare < x.range()[1] && rulerMarkCompare > x.range()[0]) {
-        marks.push(<g key="ruler-end" className="ruler--compare" onClick={this.onClickCompare}>
+        marks.push(<g key="ruler-end" className="ruler--compare" onClick={this.onClickCompare(dateToCompare)}>
           <rect className="ruler__mark__background" rx="4" ry="4" transform={`translate(${rulerMarkCompare - 120 + markXPos}, ${markYPos})`} width="120" height="15" />
           <polygon key="mark-ruler-end" points="0,0 12, 0 6, 8" className="ruler__helper" transform={`translate(${rulerMarkCompare - 6}, ${markYPos + 14})`} />
           {this.props.comparing ?
@@ -457,7 +483,7 @@ export default class TimeGraphContent extends React.Component {
       .y1(d => d.y1)
 
 
-    const defaultSerie = _.transform(this.props.xScale.ticks((this.props.aggregation === 'day' ? d3.timeDay : d3.timeHour).every(1)), (obj, dt) => {
+    const defaultSerie = _.transform(this.props.xScale.ticks(aggregation[this.props.aggregation].every(1)), (obj, dt) => {
       const x = this.props.xScale(dt)
       obj[x] = {
         x,
@@ -492,10 +518,11 @@ export default class TimeGraphContent extends React.Component {
     this.flattenData = []
     _(this.props.data)
       .each((d) => {
-        const xPos = this.props.xScale(d[0])
+        const dt = aggregation[this.props.aggregation](d[0])
+        const xPos = this.props.xScale(dt)
         const x = xPos
 
-        this.flattenData[xPos] = {
+        this.flattenData[dt] = {
           c: d[1].c,
           stack: []
         }
@@ -507,7 +534,7 @@ export default class TimeGraphContent extends React.Component {
           _(stacks).each((k) => {
             const e = d[1].stack[k]
             if (e) {
-              this.flattenData[xPos].stack.push({
+              this.flattenData[dt].stack.push({
                 c: e.c,
                 name: e.name,
                 key: k
@@ -524,7 +551,7 @@ export default class TimeGraphContent extends React.Component {
           const y0 = baseY
           addSerie('other', {x,y0, y1})
           if(amount > 0) {
-            this.flattenData[xPos].stack.push({
+            this.flattenData[dt].stack.push({
               name: 'other',
               key: 'other',
               c: amount
@@ -535,7 +562,6 @@ export default class TimeGraphContent extends React.Component {
           addSerie(0, {x, y1: y, y0: baseY })
         }
       })
-
 
     const paths = _.map(series, (serie, k) => {
       const sortedSerie = _.sortBy(serie, 'x')
@@ -551,7 +577,7 @@ export default class TimeGraphContent extends React.Component {
     let stacks = []
     const series = {}
 
-    const defaultSerie = _.transform(this.props.xScale.ticks((this.props.aggregation === 'day' ? d3.timeDay : d3.timeHour).every(1)), (obj, dt) => {
+    const defaultSerie = _.transform(this.props.xScale.ticks(aggregation[this.props.aggregation].every(1)), (obj, dt) => {
       const x = this.props.xScale(dt)
       obj[x] = {
         x,
@@ -564,6 +590,7 @@ export default class TimeGraphContent extends React.Component {
       if(!series[serie]) {
         series[serie] = Object.assign({}, defaultSerie)
       }
+      
       series[serie][val.x] = val
     }
 
@@ -584,10 +611,11 @@ export default class TimeGraphContent extends React.Component {
     this.flattenData = []
     _(this.props.data)
       .each((d) => {
-        const xPos = this.props.xScale(d[0])
+        const dt = aggregation[this.props.aggregation](d[0])
+        const xPos = this.props.xScale(dt)
         const x = xPos
 
-        this.flattenData[xPos] = {
+        this.flattenData[dt] = {
           c: d[1].stack ? _(d[1].stack).map('c').max() : d[1].c,
           stack: []
         }
@@ -597,7 +625,7 @@ export default class TimeGraphContent extends React.Component {
           _(stacks).each((k) => {
             const e = d[1].stack[k]
             if (e) {
-              this.flattenData[xPos].stack.push({
+              this.flattenData[dt].stack.push({
                 name: e.name,
                 c: e.c,
                 key: k
@@ -611,7 +639,7 @@ export default class TimeGraphContent extends React.Component {
           if(amount > 0) {
             const y = this.props.yScale(amount)
             addSerie('other', {x,y})
-            this.flattenData[xPos].stack.push({
+            this.flattenData[dt].stack.push({
               name: 'other',
               key: 'other',
               c: amount
@@ -662,17 +690,30 @@ export default class TimeGraphContent extends React.Component {
     this.flattenData = []
     return _(this.props.data)
       .map((d, i) => {
-        const hovered = this.props.mouseIteractions && this.state.focused && !this.state.mousePressed && this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x))) === this.props.xScale(this.roundDate(d[0]))
-        const x = this.props.xScale(d[0]) + BAR_MARGIN
+        const dt = aggregation[this.props.aggregation](d[0])
+        const [x0, x1] = this.props.xScale.domain()
+        const timeAggregation = aggregation[this.props.aggregation]
+        const hovered = this.props.mouseIteractions &&
+              this.state.focused && !this.state.mousePressed &&
+              this.props.xScale(this.roundDate(this.props.xScale.invert(this.state.mark.x))) === this.props.xScale(this.roundDate(dt))
         const range0 = this.props.xScale(Math.min(...this.state.range))
         const range1 = this.props.xScale(Math.max(...this.state.range))
         const totalHeight = this.props.yScale.range()[0]
         const rangeDiff = Math.abs(range1 - range0)
-        const width  =this.props.boxWidth > 2 * BAR_MARGIN ? this.props.boxWidth - 2 * BAR_MARGIN : this.props.boxWidth
+
+        const totalColumns = timeAggregation.count(timeAggregation.floor(x0), timeAggregation.ceil(x1))
+
+        const totalWidth = Math.abs(this.props.xScale(x1) - this.props.xScale(x0))
+
+        const width = ((totalWidth - (BAR_MARGIN * (totalColumns + 2))) / totalColumns)
+
         const noActive = this.state.overlayVisible && (this.props.comparing ? (x < range0 - rangeDiff || x >= range1) : (x < range0 || x >= range1))
         const bars = []
 
-        this.flattenData[this.props.xScale(d[0])] = {
+        const fixer = (BAR_MARGIN - (width))
+        const x = this.props.xScale(d[0]) + fixer
+
+        this.flattenData[dt] = {
           c: d[1].c,
           stack: []
         }
@@ -684,7 +725,7 @@ export default class TimeGraphContent extends React.Component {
           _(stacks).each((k) => {
             const e = d[1].stack[k]
             if (e) {
-              this.flattenData[this.props.xScale(d[0])].stack.push({
+              this.flattenData[dt].stack.push({
                 name: e.name,
                 c: e.c,
                 key: k
@@ -702,7 +743,7 @@ export default class TimeGraphContent extends React.Component {
             const startY = this.props.yScale(amount)
             const height = totalHeight - startY
 
-            this.flattenData[this.props.xScale(d[0])].stack.push({
+            this.flattenData[dt].stack.push({
               name: 'other',
               key: 'other',
               c: amount
@@ -800,7 +841,6 @@ TimeGraphContent.propTypes = {
   timeFormatter: PropTypes.func,
   onClickCompare: PropTypes.any,
   onFilterChange: PropTypes.func,
-  timeUnitLengthSec: PropTypes.number,
   tooltipValue: PropTypes.number,
   xScale: PropTypes.func,
   yScale: PropTypes.func,
