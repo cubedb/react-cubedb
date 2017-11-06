@@ -190,7 +190,9 @@ export default class TimeGraphContent extends React.Component {
       } else if (!this.state.dragging && this.state.overlayVisible) {
         range = []
         this.onChange(range)
-        this.onClickCompare()(false)
+        if(this.props.comparing) {
+          this.onClickCompare(null)(e)
+        }
         overlayVisible = false
         dragging = false
       }
@@ -217,7 +219,7 @@ export default class TimeGraphContent extends React.Component {
 
   onClickCompare = (range) => () => {
     if (this.allowComparing) {
-      const nextState = !this.props.comparing
+      const nextState = range && range.length ? !this.props.comparing : false
       this.props.onClickCompare(nextState, nextState ? this.formatPeriod(range) : null)
     }
   }
@@ -840,6 +842,7 @@ export default class TimeGraphContent extends React.Component {
 }
 
 TimeGraphContent.propTypes = {
+  comparing: PropTypes.bool,
   aggregation: PropTypes.string,
   timeDisplay: PropTypes.func,
   timeFormatter: PropTypes.func,
