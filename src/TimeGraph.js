@@ -180,7 +180,7 @@ export default class TimeGraph extends React.Component {
   drawAxis(width, height, data, margin, fromDate, toDate, xFormatter, yFormatter=numberFormat) {
     const dateRange = [
       aggregation[this.props.aggregation].floor(fromDate),
-      aggregation[this.props.aggregation].ceil(toDate)
+      aggregation[this.props.aggregation].offset(toDate, this.props.type === 'bar' ? +1 : 0)
     ]
 
     let maxValue = _(data).map('1').map('c').max()
@@ -264,7 +264,7 @@ export default class TimeGraph extends React.Component {
           return [dt, dimension]
         }
       })
-      .filter((p) => { return p[0] > timeBounds[0] })
+      .filter((p) => { return p[0] >= timeBounds[0] })
       .value()
   }
 
@@ -295,19 +295,18 @@ export default class TimeGraph extends React.Component {
     if(this.props.toDate) {
       toDate = this.props.toDate
       if(typeof toDate === 'number') {
-        toDate = dateParser(toDate)
+        toDate = aggregation[this.props.aggregation](dateParser(toDate))
       }
     }
     if(this.props.fromDate) {
       fromDate = this.props.fromDate
       if(typeof fromDate === 'number') {
-        fromDate = dateParser(fromDate)
+        fromDate = aggregation[this.props.aggregation](dateParser(fromDate))
       }
     }
 
     const margin = Object.assign({}, DEFAULT_MARGIN, this.props.margin)
 
-    
     const data = this.preProcess(this.props.data, [fromDate, toDate])
     const graph = this.drawAxis(this.state.width, this.state.height, data, margin, fromDate, toDate, this.props.timeDisplay, this.props.countFormatter)
     const xAxis = new ReactFauxDOM.Element('g')
@@ -330,7 +329,7 @@ export default class TimeGraph extends React.Component {
     if(this.props.filter) {
       range = _.chain(this.props.filter)
         .map((v) =>{
-          return dateParser(v)
+          return aggregation[this.props.aggregation](dateParser(v))
         })
         .value()
     }
@@ -354,6 +353,7 @@ export default class TimeGraph extends React.Component {
         }
       })
     }
+
 
     return <svg className="time_graph" width={this.state.width} height={this.state.height}>
       <g className="axis">

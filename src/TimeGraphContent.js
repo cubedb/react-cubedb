@@ -389,6 +389,7 @@ export default class TimeGraphContent extends React.Component {
   getRuler(date0, date1) {
     const aggregationTime = aggregation[this.props.aggregation]
     const x = this.props.xScale
+    const [x0, x1] = x.range()
     let dt = date1 ? Math.min(date0, date1) : date0
     if (typeof dt === 'number') {
       dt = dateParser(dt)
@@ -401,6 +402,8 @@ export default class TimeGraphContent extends React.Component {
     const textAnchor = 'middle'
     const pos = start
 
+    const betterPos = Math.max(Math.min((pos - 60), (x1 - 112)), x0 - 8)
+
     const marks = []
     const interval = (end - start)
     const intervalSize = date1 ? Math.abs(interval) : x(aggregationTime.offset(dt, this.getInterval())) - x(dt)
@@ -409,10 +412,10 @@ export default class TimeGraphContent extends React.Component {
       marks.push(<g key="ruler">
         <polygon key="mark-ruler" points="0,0 12, 0 6, 8"
           className="ruler" transform={`translate(${pos - 6}, ${this.props.margin.top - 8})`} />
-        <rect className="ruler__background" rx="4" ry="4" transform={`translate(${pos - 60}, ${this.props.margin.top - 22})`} width="120" height="15" />
+        <rect className="ruler__background" rx="4" ry="4" transform={`translate(${betterPos}, ${this.props.margin.top - 22})`} width="120" height="15" />
         <text key="label-ruler" style={{ textAnchor }}
           className="ruler__label"
-          transform={`translate(${pos}, ${this.props.margin.top - 11})`}>{label}</text>
+          transform={`translate(${betterPos + 60}, ${this.props.margin.top - 11})`}>{label}</text>
         <line className="ruler__mark" key={'mark' + pos} x1={pos} x2={pos} y2={y2} y1={y1} />
       </g>)
     }
@@ -435,7 +438,7 @@ export default class TimeGraphContent extends React.Component {
       const markYPos = this.props.margin.top - (intervalSize > 120 ? 22 : 40)
       const markXPos = Math.min(Math.max(intervalSize / 2, 8), 60)
 
-      if (rulerMarkCompare < x.range()[1] && rulerMarkCompare > x.range()[0]) {
+      if (rulerMarkCompare < x.range()[1] && rulerMarkCompare >= x.range()[0]) {
         marks.push(<g key="ruler-end" className="ruler--compare" onClick={this.onClickCompare(dateToCompare)}>
           <rect className="ruler__mark__background" rx="4" ry="4" transform={`translate(${rulerMarkCompare - 120 + markXPos}, ${markYPos})`} width="120" height="15" />
           <polygon key="mark-ruler-end" points="0,0 12, 0 6, 8" className="ruler__helper" transform={`translate(${rulerMarkCompare - 6}, ${markYPos + 14})`} />
@@ -590,7 +593,7 @@ export default class TimeGraphContent extends React.Component {
       if(!series[serie]) {
         series[serie] = Object.assign({}, defaultSerie)
       }
-      
+
       series[serie][val.x] = val
     }
 
@@ -705,12 +708,13 @@ export default class TimeGraphContent extends React.Component {
 
         const totalWidth = Math.abs(this.props.xScale(x1) - this.props.xScale(x0))
 
-        const width = ((totalWidth - (BAR_MARGIN * (totalColumns + 2))) / totalColumns)
+        const width = ((totalWidth - (BAR_MARGIN * (totalColumns + 2))) / (totalColumns))
 
         const noActive = this.state.overlayVisible && (this.props.comparing ? (x < range0 - rangeDiff || x >= range1) : (x < range0 || x >= range1))
         const bars = []
 
-        const fixer = (BAR_MARGIN - (width))
+        const fixer = (BAR_MARGIN)
+
         const x = this.props.xScale(d[0]) + fixer
 
         this.flattenData[dt] = {

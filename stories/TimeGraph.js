@@ -2,6 +2,8 @@ import React from 'react'  // eslint-disable-line no-unused-vars
 import * as d3 from 'd3'
 import { TimeGraph } from '../src'
 
+import { action } from '@storybook/addon-actions'
+
 const mock = require('./_mock.json')
 const display = d3.timeFormat('%a %Y-%m-%d %H:00')
 const formatter = d3.timeFormat('%Y-%m-%d %H')
@@ -18,6 +20,9 @@ export default () =>
         timeFormatter={formatter}
         timeDisplay={display}
         getColor={() => 'blue'}
+        allowComparing={true}
+        onChange={action('change')}
+        onClickCompare={action('click-to-compare')}
       />
     </section>
     <section>
