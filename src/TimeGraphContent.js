@@ -209,7 +209,7 @@ export default class TimeGraphContent extends React.Component {
     if(Array.isArray(dt) && dt.length) {
       const aggregationTime = aggregation[this.props.aggregation]
       const d0 = aggregationTime.floor(Math.min(...dt))
-      const d1 = aggregationTime.offset(Math.max(...dt), -1)
+      const d1 = aggregationTime.ceil(Math.max(...dt))
       return [d0, d1]
     }
     return dt
