@@ -1,8 +1,8 @@
-import { utcParse } from 'd3'
-
-const toUtcDate = utcParse('%s')
-
-export default function dateParser(unix) {
-  //return toUtcDate(Number(unix))
-  return new Date(Number(unix)*1000)
+export default function dateParser(dt) {
+  if(typeof dt === 'number'
+    || typeof dt === 'string') {
+    return new Date(Number(dt))
+  } else {
+    return dt
+  }
 }

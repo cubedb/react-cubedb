@@ -147,7 +147,7 @@ export default class TimeGraphContent extends React.Component {
       const endDate = this.roundDate(Math.max(newStart, newEnd))
 
       if (this.props.comparing) {
-        if (dateParser((startDate - rangeInterval)/1000) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
+        if (dateParser((startDate - rangeInterval)) >= this.props.xScale.invert(this.props.xScale.range()[0]) &&
           endDate <= this.props.xScale.invert(this.props.xScale.range()[1])) {
           newRange = [startDate, endDate]
         }
@@ -391,7 +391,7 @@ export default class TimeGraphContent extends React.Component {
     const x = this.props.xScale
     let dt = date1 ? Math.min(date0, date1) : date0
     if (typeof dt === 'number') {
-      dt = dateParser(dt/1000)
+      dt = dateParser(dt)
     }
     const start = x(dt)
     const end = date1 ? Math.max(x(date0), x(date1)) : null
