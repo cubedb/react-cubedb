@@ -61,7 +61,7 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 [storybook]: https://github.com/storybooks/storybook
 
 
-[image_logo]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/static/logo.png
+[image_logo]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/static/banner_horizontal.png
 
 [screenshot_trendinggraph]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/TrendingGraph.png
 
