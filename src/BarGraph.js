@@ -416,7 +416,8 @@ export default class BarGraph extends React.Component {
           stretched={!isGroupSource && this.state.stretched}
           onChange={this.onChange}
           slice={this.props.slice}
-          group={this.props.group}/>}
+          group={this.props.group}
+          allData={this.props.allData}/>}
     >
       {filter ?
         <div className="bar-graph__search-help">Search result for "{filter}"</div>
