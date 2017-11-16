@@ -1,3 +1,4 @@
+![CubeDb][image_logo]
 # react-cudedb
 
 This package contain a serie of [React][react] components, using [Reat-Bootstrap][react-bootstrap] and [D3][d3] to generate graphs based on [CubeDB][cubedb]'s data.
@@ -48,7 +49,7 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 
 
 
-[demo]: https://jrfferreira.github.io/react-cubedb/demo
+[demo]: https://cubedb.github.io/react-cubedb/demo
 
 [react]: http://facebook.github.io/react/
 [react-bootstrap]: https://react-bootstrap.github.io/
@@ -60,12 +61,14 @@ This package contain a serie of [React][react] components, using [Reat-Bootstrap
 [storybook]: https://github.com/storybooks/storybook
 
 
-[screenshot_trendinggraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TrendingGraph.png
+[image_logo]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/static/logo.png
 
-[screenshot_bargraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph.png
-[screenshot_bargraph_filter]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph_filter.png
-[screenshot_bargraph_comparison]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/BarGraph_comparison.png
+[screenshot_trendinggraph]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/TrendingGraph.png
 
-[screenshot_timegraph]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph.png
-[screenshot_timegraph_stacks]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph_stacks.png
-[screenshot_timegraph_comparison]: https://raw.githubusercontent.com/jrfferreira/react-cubedb/master/screenshots/TimeGraph_comparison.png
+[screenshot_bargraph]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/BarGraph.png
+[screenshot_bargraph_filter]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/BarGraph_filter.png
+[screenshot_bargraph_comparison]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/BarGraph_comparison.png
+
+[screenshot_timegraph]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/TimeGraph.png
+[screenshot_timegraph_stacks]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/TimeGraph_stacks.png
+[screenshot_timegraph_comparison]: https://raw.githubusercontent.com/cubedb/react-cubedb/master/screenshots/TimeGraph_comparison.png
