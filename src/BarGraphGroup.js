@@ -69,6 +69,7 @@ class BarGraphColumn extends React.Component {
             group={this.props.group}
             lookup={this.props.lookup}
             getColor={this.props.getColor}
+            allData={this.props.allData}
           />
         </div>
       })}
