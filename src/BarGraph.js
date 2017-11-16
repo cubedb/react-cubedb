@@ -253,7 +253,7 @@ class BarGraphHeader extends React.Component {
 
     if(this.props.group){
       _.each(this.props.allData[this.props.group], (d, i) => {
-        stacksLabel += `${delimiter}${d[i].name}`
+        stacksLabel += `${delimiter}${d[i].name||i}`
       })
     }
 
