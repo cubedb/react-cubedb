@@ -428,12 +428,12 @@ export default class TimeGraphContent extends React.Component {
       const rulerMarkRangeEnd = end
 
       if (intervalSize > 60) {
-        const x = this.countRange(this.state.range)
+        const intervalLength = Math.abs(this.countRange(this.state.range))
         marks.push(<g key="interval-label">
           <text key="label-ruler" style={{ textAnchor }}
             className="ruler__label"
             width={60}
-            transform={`translate(${pos + (interval / 2)}, ${this.props.margin.top + 15})`}>{`${x} ${this.props.aggregation + (x > 1 ? 's' : '')}`}</text>
+            transform={`translate(${pos + (interval / 2)}, ${this.props.margin.top + 15})`}>{`${intervalLength} ${this.props.aggregation + (intervalLength > 1 ? 's' : '')}`}</text>
         </g>)
       }
 
