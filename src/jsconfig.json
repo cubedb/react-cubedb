@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "noEmit": true,
+    "checkJs": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "lib": [ "dom", "flow", "es2017" ],
+    "noEmitHelpers": true
+  }
+}

@@ -1,3 +1,4 @@
+// @flow
 import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -232,7 +233,7 @@ class BarGraphHeader extends React.Component {
       let stacks = ''
 
       if(this.props.group){
-        _.each(this.props.allData[this.props.group], (d, i) => {
+        _.each(this.props.allData[this.props.group].serie, (d, i) => {
           stacks += `${delimiter}${(stack[i]||defaultDimension).c}`
         })
       }
@@ -252,8 +253,8 @@ class BarGraphHeader extends React.Component {
     }).join('')
 
     if(this.props.group){
-      _.each(this.props.allData[this.props.group], (d, i) => {
-        stacksLabel += `${delimiter}${d[i].name||i}`
+      _.each(this.props.allData[this.props.group].serie, (d, i) => {
+        stacksLabel += `${delimiter}${(d.name)||i}`
       })
     }
 
@@ -394,6 +395,9 @@ export default class BarGraph extends React.Component {
 
   render() {
     const dimension = normalizeData(this.props.data, this.props.lookup[this.props.name], this.props.lookup[this.props.group])
+    const allData = _.mapValues(this.props.allData, (data, name) => {
+      return normalizeData(data, this.props.lookup[name], this.props.lookup[this.props.group]);
+    })
     const comparing = this.props.comparingTo ? normalizeData(this.props.comparingTo, this.props.lookup[this.props.name], this.props.lookup[this.props.group]) : null
     const filter = this.state.search
     const isGroupSource = (this.props.group && this.props.group === this.props.name)
@@ -417,7 +421,7 @@ export default class BarGraph extends React.Component {
           onChange={this.onChange}
           slice={this.props.slice}
           group={this.props.group}
-          allData={this.props.allData}/>}
+          allData={allData}/>}
     >
       {filter ?
         <div className="bar-graph__search-help">Search result for "{filter}"</div>
