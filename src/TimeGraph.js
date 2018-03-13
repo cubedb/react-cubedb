@@ -23,6 +23,7 @@ const xTickSize = {
 const numberFormat = d3.format(',d')
 const DEFAULT_MARGIN = { left: 80, right: 30, top: 50, bottom: 25 }
 const STACK_LIMIT = 10
+const DEFAULT_Y_AXIS_TICKS = 5
 
 
 export const aggregation = {
@@ -231,10 +232,9 @@ export default class TimeGraph extends React.Component {
       .tickFormat(xFormatter)
       .ticks(maxTicks)
 
-
     const yAxis = d3.axisLeft(y)
       .tickFormat(yFormatter)
-      .ticks(5)
+      .ticks(this.maxYTicks())
       .tickSize(-width + margin.right + margin.left)
 
     const lineFunc = d3.line()
@@ -243,6 +243,16 @@ export default class TimeGraph extends React.Component {
       .curve(d3.curveStep)
 
     return { lineFunc: lineFunc, scale: { x: x, y: y }, axis: { x: xAxis, y: yAxis } }
+  }
+
+  maxYTicks() {
+    const maxValue = Math.max.apply(Math, Object.values(this.props.data).map(obj => obj.c))
+
+    if (maxValue < DEFAULT_Y_AXIS_TICKS) {
+      return maxValue
+    }
+
+    return DEFAULT_Y_AXIS_TICKS
   }
 
   preProcess(data, timeBounds) {
