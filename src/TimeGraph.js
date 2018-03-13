@@ -231,10 +231,9 @@ export default class TimeGraph extends React.Component {
       .tickFormat(xFormatter)
       .ticks(maxTicks)
 
-
     const yAxis = d3.axisLeft(y)
       .tickFormat(yFormatter)
-      .ticks(5)
+      .ticks(this.maxYTicks())
       .tickSize(-width + margin.right + margin.left)
 
     const lineFunc = d3.line()
@@ -243,6 +242,16 @@ export default class TimeGraph extends React.Component {
       .curve(d3.curveStep)
 
     return { lineFunc: lineFunc, scale: { x: x, y: y }, axis: { x: xAxis, y: yAxis } }
+  }
+
+  maxYTicks() {
+    const maxValue = Math.max.apply(Math, Object.values(this.props.data).map(obj => obj.c))
+
+    if (maxValue < 5) {
+      return maxValue
+    }
+
+    return 5
   }
 
   preProcess(data, timeBounds) {
