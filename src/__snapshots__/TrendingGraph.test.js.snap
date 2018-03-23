@@ -30,7 +30,7 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": null,
+    "key": undefined,
     "nodeType": "host",
     "props": Object {
       "children": <path
@@ -48,7 +48,7 @@ ShallowWrapper {
     "ref": null,
     "rendered": Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "host",
       "props": Object {
         "className": "trending_graph__line",
@@ -66,7 +66,7 @@ ShallowWrapper {
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "host",
       "props": Object {
         "children": <path
@@ -84,7 +84,7 @@ ShallowWrapper {
       "ref": null,
       "rendered": Object {
         "instance": null,
-        "key": null,
+        "key": undefined,
         "nodeType": "host",
         "props": Object {
           "className": "trending_graph__line",
@@ -141,7 +141,7 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": null,
+    "key": undefined,
     "nodeType": "host",
     "props": Object {
       "children": <SvgLoadingAnimation
@@ -156,7 +156,7 @@ ShallowWrapper {
     "ref": null,
     "rendered": Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "class",
       "props": Object {
         "height": 50,
@@ -171,7 +171,7 @@ ShallowWrapper {
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "host",
       "props": Object {
         "children": <SvgLoadingAnimation
@@ -186,7 +186,7 @@ ShallowWrapper {
       "ref": null,
       "rendered": Object {
         "instance": null,
-        "key": null,
+        "key": undefined,
         "nodeType": "class",
         "props": Object {
           "height": 50,
@@ -227,7 +227,7 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": null,
+    "key": undefined,
     "nodeType": "host",
     "props": Object {
       "children": undefined,
@@ -243,7 +243,7 @@ ShallowWrapper {
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "host",
       "props": Object {
         "children": undefined,
