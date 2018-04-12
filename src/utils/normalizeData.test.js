@@ -110,12 +110,12 @@ const datedData = {
 const datedDataReturn = {
   'max': 37038,
   'serie': {
-    'Tue Jun 13 2017 01:00:00 GMT+0100 (BST)': {
+    [new Date('2017-06-13T00:00:00.000Z').toString()]: {
       'c': 16254,
       'key': '2017-06-13',
       'name': new Date('2017-06-13T00:00:00.000Z')
     },
-    'Tue Jun 13 2017 15:00:00 GMT+0100 (BST)': {
+    [new Date('2017-06-13T14:00:00.000Z').toString()]: {
       'c': 37038,
       'key': '2017-06-13 14',
       'name': new Date('2017-06-13T14:00:00.000Z')
