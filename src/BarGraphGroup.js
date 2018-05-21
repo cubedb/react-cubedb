@@ -8,7 +8,6 @@ import './style/BarGraphGroup.scss'
 
 
 class BarGraphColumn extends React.Component {
-
   constructor(props){
     super(props)
 
@@ -26,7 +25,6 @@ class BarGraphColumn extends React.Component {
       })
     })
   }
-
 
   onSearch = (serie) => (e) => {
     const search = e.target.value
@@ -58,9 +56,12 @@ class BarGraphColumn extends React.Component {
   render() {
     return <div className='cube_graph__column'>
       {_.map(this.props.data, (serie, key) => {
+        const description = this.props.dataDescription ? this.props.dataDescription[key] : undefined
+
         return <div key={key} className={'bar-graph-group__list'}>
           <BarGraph
             name={key}
+            description={description}
             data={serie}
             comparingTo={this.props.comparingTo && this.props.comparingTo[key]}
             selected={this.props.selectedItems && this.props.selectedItems[key]}
@@ -78,13 +79,13 @@ class BarGraphColumn extends React.Component {
 }
 
 export default class BarGraphGroup extends React.Component {
-
   static propTypes = {
     slice: PropTypes.number,
     width: PropTypes.number,
     columns: PropTypes.number,
     onChange: PropTypes.func,
-    data: PropTypes.object,
+    data: PropTypes.object.isRequired,
+    dataDescription: PropTypes.object,
     fieldOrders: PropTypes.array,
     getColor: PropTypes.func,
     group: PropTypes.string,
@@ -130,6 +131,7 @@ export default class BarGraphGroup extends React.Component {
         })
         return <BarGraphColumn key={key}
           data={_.fromPairs(g)}
+          dataDescription={this.props.dataDescription}
           allData={this.props.data}
           comparingTo={this.props.comparingTo}
           lookup={this.props.lookup}

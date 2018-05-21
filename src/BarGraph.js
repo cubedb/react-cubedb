@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FormGroup, FormControl, Button, ButtonGroup, ButtonToolbar, Panel, OverlayTrigger, Popover, Glyphicon } from 'react-bootstrap'
+import { FormGroup, FormControl, Button, ButtonGroup, ButtonToolbar, Panel, OverlayTrigger, Popover, Glyphicon, Tooltip } from 'react-bootstrap'
 import * as d3 from 'd3'
 
 import saveData from './utils/saveData'
@@ -227,7 +227,8 @@ class BarGraphHeader extends React.Component {
     selectedItems: PropTypes.array,
     filter: PropTypes.string,
     group: PropTypes.string,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
     size: PropTypes.number,
     slice: PropTypes.number,
     total: PropTypes.number,
@@ -297,9 +298,11 @@ class BarGraphHeader extends React.Component {
   }
 
   render(){
+    const name = this.props.description ? <OverlayTrigger placement="top" overlay={<Tooltip>{this.props.description}</Tooltip>}><span>{this.props.name}</span></OverlayTrigger> : this.props.name
+
     return <div>
       <h4>
-        {this.props.name} <small>({(this.props.slice && this.props.slice < this.props.size ? `${this.props.slice} of ` : '')+ this.props.size})</small>
+        {name} <small>({(this.props.slice && this.props.slice < this.props.size ? `${this.props.slice} of ` : '')+ this.props.size})</small>
       </h4>
       <ButtonGroup className="bar-graph__actions">
         <Button title="Click to save as csv" onClick={this.onDownload(this.props.name, this.props.total, this.props.dimension, this.props.comparingTo)}><Glyphicon glyph="save"/></Button>
@@ -360,6 +363,7 @@ export default class BarGraph extends React.Component {
     group: PropTypes.string,
     lookup: PropTypes.object,
     name: PropTypes.string.isRequired,
+    description: PropTypes.string,
     onChange: PropTypes.func,
     selected: PropTypes.array
   }
@@ -423,6 +427,7 @@ export default class BarGraph extends React.Component {
       header={
         <BarGraphHeader
           name={this.props.name}
+          description={this.props.description}
           dimensions={_.map(dimension.serie, 'key')}
           total={dimension.total}
           comparingTo={comparing && comparing.serie}
