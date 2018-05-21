@@ -423,7 +423,7 @@ export default class BarGraph extends React.Component {
       header={
         <BarGraphHeader
           name={this.props.name}
-          dimensionKeys={_.map(dimension.serie, 'key')}
+          dimensions={_.map(dimension.serie, 'key')}
           total={dimension.total}
           comparingTo={comparing && comparing.serie}
           dimension={dimension.serie}
