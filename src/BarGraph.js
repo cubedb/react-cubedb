@@ -32,7 +32,6 @@ const getCommonPrefix = (array) => {
 }
 
 class Bar extends React.Component {
-
   static propTypes = {
     data: PropTypes.object,
     max: PropTypes.number,
@@ -220,9 +219,25 @@ class BarList extends React.Component {
 }
 
 class BarGraphHeader extends React.Component {
+  static propTypes = {
+    allData: PropTypes.object,
+    comparingTo: PropTypes.object,
+    dimension: PropTypes.object,
+    dimensions: PropTypes.array,
+    selectedItems: PropTypes.array,
+    filter: PropTypes.string,
+    group: PropTypes.string,
+    name: PropTypes.string,
+    size: PropTypes.number,
+    slice: PropTypes.number,
+    total: PropTypes.number,
+    stretched: PropTypes.bool,
+    onChange: PropTypes.func,
+    onSearch: PropTypes.func,
+    onStretch: PropTypes.func
+  };
 
   onDownload = (dataLabel, volume, dataSerie, comparingTo) => () => {
-    // logAction("graphs", "bar", "download")
     const defaultDimension = {c: 0}
     let stacksLabel = ''
     const delimiter = ','
