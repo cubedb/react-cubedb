@@ -423,8 +423,8 @@ export default class BarGraph extends React.Component {
 
 
     return <Panel bsStyle={isGroupSource ? 'info' : 'default'}
-      className={'bar-graph__container'}
-      header={
+      className="bar-graph__container">
+      <Panel.Heading>
         <BarGraphHeader
           name={this.props.name}
           description={this.props.description}
@@ -441,25 +441,27 @@ export default class BarGraph extends React.Component {
           onChange={this.onChange}
           slice={this.props.slice}
           group={this.props.group}
-          allData={allData}/>}
-    >
-      {filter ?
-        <div className="bar-graph__search-help">Search result for "{filter}"</div>
-        :
-        null
-      }
-      <BarList
-        name={this.props.name}
-        dimension={dimension}
-        filter={filter}
-        comparingTo={comparing}
-        group={this.props.group}
-        stretched={this.state.stretched}
-        lookup={this.props.lookup}
-        selected={this.props.selected}
-        onChange={this.onChange}
-        slice={this.props.slice}
-        getColor={this.props.getColor}  />
+          allData={allData} />
+      </Panel.Heading>
+      <Panel.Body>
+        {filter ?
+          <div className="bar-graph__search-help">Search result for "{filter}"</div>
+          :
+          null
+        }
+        <BarList
+          name={this.props.name}
+          dimension={dimension}
+          filter={filter}
+          comparingTo={comparing}
+          group={this.props.group}
+          stretched={this.state.stretched}
+          lookup={this.props.lookup}
+          selected={this.props.selected}
+          onChange={this.onChange}
+          slice={this.props.slice}
+          getColor={this.props.getColor} />
+      </Panel.Body>
     </Panel>
   }
 }

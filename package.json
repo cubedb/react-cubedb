@@ -77,12 +77,12 @@
   },
   "peerDependencies": {
     "react": "^15.5.0 || ^16.0.0",
-    "react-dom": "^15.5.0 || ^16.0.0"
+    "react-dom": "^15.5.0 || ^16.0.0",
+    "react-bootstrap": "^0.32.1"
   },
   "dependencies": {
     "d3": "^4.9.1",
     "lodash": "^4.17.4",
-    "react-bootstrap": "^0.31.3",
     "react-faux-dom": "^4.0.3",
     "storyshots": "^3.2.2"
   },
