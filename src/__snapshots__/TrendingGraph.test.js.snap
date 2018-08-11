@@ -6,21 +6,21 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TrendingGraph
     data={
-        Object {
-            "1483232400": Object {
-              "c": 1,
-            },
-            "1483236000": Object {
-              "c": 2,
-            },
-            "1483239600": Object {
-              "c": 3,
-            },
-          }
+      Object {
+        "1483232400": Object {
+          "c": 1,
+        },
+        "1483236000": Object {
+          "c": 2,
+        },
+        "1483239600": Object {
+          "c": 3,
+        },
+      }
     }
     height={50}
     width={200}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -39,7 +39,7 @@ ShallowWrapper {
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-/>,
+      />,
       "className": "trending_graph",
       "height": 50,
       "viewBox": "0 0 200 50",
@@ -75,7 +75,7 @@ ShallowWrapper {
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
-/>,
+        />,
         "className": "trending_graph",
         "height": 50,
         "viewBox": "0 0 200 50",
@@ -116,22 +116,22 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TrendingGraph
     data={
-        Object {
-            "1483232400": Object {
-              "c": 1,
-            },
-            "1483236000": Object {
-              "c": 2,
-            },
-            "1483239600": Object {
-              "c": 3,
-            },
-          }
+      Object {
+        "1483232400": Object {
+          "c": 1,
+        },
+        "1483236000": Object {
+          "c": 2,
+        },
+        "1483239600": Object {
+          "c": 3,
+        },
+      }
     }
     height={50}
     isLoading={true}
     width={200}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -147,7 +147,7 @@ ShallowWrapper {
       "children": <SvgLoadingAnimation
         height={50}
         width={200}
-/>,
+      />,
       "className": "trending_graph",
       "height": 50,
       "viewBox": "0 0 200 50",
@@ -177,7 +177,7 @@ ShallowWrapper {
         "children": <SvgLoadingAnimation
           height={50}
           width={200}
-/>,
+        />,
         "className": "trending_graph",
         "height": 50,
         "viewBox": "0 0 200 50",
@@ -214,10 +214,9 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TrendingGraph
-    data={undefined}
     height={50}
     width={200}
-/>,
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
