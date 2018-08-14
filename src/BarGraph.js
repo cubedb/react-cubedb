@@ -298,7 +298,7 @@ class BarGraphHeader extends React.Component {
   }
 
   render(){
-    const name = this.props.description ? <OverlayTrigger placement="top" overlay={<Tooltip>{this.props.description}</Tooltip>}><span>{this.props.name}</span></OverlayTrigger> : this.props.name
+    const name = this.props.description ? <OverlayTrigger placement="top" overlay={<Tooltip id={this.props.name}>{this.props.description}</Tooltip>}><span>{this.props.name}</span></OverlayTrigger> : this.props.name
 
     return <div>
       <h4>
