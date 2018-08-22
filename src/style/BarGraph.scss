@@ -1,8 +1,6 @@
-@import 'colors';
-
+@import "colors";
 
 .bar-graph {
-
   &__container {
     position: relative;
     height: 100%;
@@ -11,92 +9,91 @@
     margin-bottom: 0;
     // background-image: linear-gradient(to bottom, $background, $white);
     .panel-heading {
-        h4 {
-            max-width: 68%;
-            overflow: hidden;
-            display: inline-block;
-            padding: 0;
-            margin: 0;
-            text-overflow: ellipsis;
-        }
+      h4 {
+        max-width: 68%;
+        overflow: hidden;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        text-overflow: ellipsis;
+      }
     }
     .bar-graph__actions {
+      float: right;
+      margin: -0.2rem -0.6em 0 0;
+      position: relative;
+      .btn {
+        padding: 0.2rem 0.2rem 0.6rem;
+      }
+      .glyphicon {
         float: right;
-        margin: -.2rem -.6em 0 0;
-        position: relative;
-        .btn {
-            padding: .2rem .2rem .6rem;
-        }
-        .glyphicon {
-            float: right;
-            font-size: 1.2rem;
-            margin: .2rem .6rem 0;
-        }
+        font-size: 1.2rem;
+        margin: 0.2rem 0.6rem 0;
+      }
     }
     .panel-body {
-        font-size: .9rem;
-        max-height: 20rem;
-        overflow-y: scroll;
-        padding: 0;
+      font-size: 0.9rem;
+      max-height: 20rem;
+      overflow-y: scroll;
+      padding: 0;
     }
     &__copy {
-        margin: 0 auto;
-        position: relative;
-        display: block;
-        padding: 5px auto;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        &-wrapper {
-            position: absolute;
-            width: 100%;
-            bottom: 0;
-            z-index: +1;
-        }
+      margin: 0 auto;
+      position: relative;
+      display: block;
+      padding: 5px auto;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      &-wrapper {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        z-index: +1;
+      }
     }
 
     .bar-graph__filter__dimension {
-        margin-top: 3rem;
-        margin-left: 1.5rem;
+      margin-top: 3rem;
+      margin-left: 1.5rem;
 
-        &__button {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            position: relative;
-            word-break: normal;
-            max-width: 250px;
-            white-space: nowrap;
-            padding: 0 2rem 0 .5rem;
-            margin: .5rem;
+      &__button {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        position: relative;
+        word-break: normal;
+        max-width: 250px;
+        white-space: nowrap;
+        padding: 0 2rem 0 0.5rem;
+        margin: 0.5rem;
 
-            .glyphicon {
-                position: absolute;
-                right: .4rem;
-                line-height: 1.6rem;
-                margin-left: .4rem;
-            }
+        .glyphicon {
+          position: absolute;
+          right: 0.4rem;
+          line-height: 1.6rem;
+          margin-left: 0.4rem;
         }
+      }
     }
 
-
     &__search {
-        margin-bottom: 0;
-        &-help {
-            font-size: 0.8rem;
-            text-align: center;
-            padding: .2rem 0;
-            background-color: $axis;
-        }
+      margin-bottom: 0;
+      &-help {
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0.2rem 0;
+        background-color: $axis;
+      }
     }
 
     &__content--empty {
-        text-align: center;
-        padding: 1rem;
-        font-size: 1rem;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
     }
 
     & .dimension-graph__label:hover {
-        max-width: inherit;
-        overflow: visible;
+      max-width: inherit;
+      overflow: visible;
     }
   }
 
@@ -113,122 +110,121 @@
   &__label,
   &__value,
   &__variation {
-      padding: 0 1rem;
-      white-space: nowrap;
-      &__wrapper {
-          display: table-cell;
-          table-layout: fixed;
-          vertical-align: middle;
-      }
+    padding: 0 1rem;
+    white-space: nowrap;
+    &__wrapper {
+      display: table-cell;
+      table-layout: fixed;
+      vertical-align: middle;
+    }
   }
   &__bar-container,
   &__value {
-      &__wrapper {
-          border-left: 1px solid $border-bold;
-      }
+    &__wrapper {
+      border-left: 1px solid $border-bold;
+    }
   }
   &:hover,
   &.selected {
-      background-color: $highlight;
+    background-color: $highlight;
   }
   &__bar-container {
-      padding: .2rem 1.2rem;
-      position: relative;
-      &__wrapper {
-          width: 100%;
-      }
+    padding: 0.2rem 1.2rem;
+    position: relative;
+    &__wrapper {
+      width: 100%;
+    }
   }
   &__bar {
-      background-color: $primary;
-      //box-shadow: inset 0 -4px 6px rgba(0,0,0,0.2);
-      display: inline-block;
-      height: 1.4rem;
-      line-height: 1.4rem;
-      text-align: right;
+    background-color: $primary;
+    //box-shadow: inset 0 -4px 6px rgba(0,0,0,0.2);
+    display: inline-block;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    text-align: right;
+    vertical-align: top;
+
+    &__tooltip {
+      margin-top: 40px;
+    }
+
+    &__percentage {
+      font-size: 1.1rem;
+      padding-right: 0.2rem;
+      overflow: hidden;
+      line-height: 1.2rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      pointer-events: none;
+    }
+    &-wrap {
+      position: relative;
+      display: block;
       vertical-align: top;
-
-      &__tooltip {
-          margin-top: 40px;
-      }
-
-      &__percentage {
-          font-size: 1.1rem;
-          padding-right: .2rem;
-          overflow: hidden;
-          line-height: 1.2rem;
-          position: absolute;
-          top: 0;
-          right: 0;
-          pointer-events : none;
-      }
-      &-wrap {
-          position: relative;
-          display: block;
-          vertical-align: top;
-          background: $white;
-          border: 1px solid $border-soft;
-          //box-shadow: 0px 1px 1px $border-soft;
-          border-radius: 10px;
-          overflow: hidden;
-          width: 100%;
-          height: 1.4rem;
-      }
+      background: $white;
+      border: 1px solid $border-soft;
+      //box-shadow: 0px 1px 1px $border-soft;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%;
+      height: 1.4rem;
+    }
   }
   &__label {
-      font-size: 1.2rem;
-      position: relative;
-      max-width: 20rem;
-      /* letter-spacing: -.1rem; */
-      text-overflow: ellipsis;
-      overflow: hidden;
+    font-size: 1.2rem;
+    position: relative;
+    max-width: 20rem;
+    /* letter-spacing: -.1rem; */
+    text-overflow: ellipsis;
+    overflow: hidden;
 
-      &__wrapper:hover {
-          * {
-            max-width: 100%;
-          }
+    &__wrapper:hover {
+      * {
+        max-width: 100%;
       }
+    }
   }
   &__percentage {
-      font-size: 1.1rem;
-      text-align: right;
+    font-size: 1.1rem;
+    text-align: right;
   }
   &__value {
-      font-size: 1.1rem;
+    font-size: 1.1rem;
   }
   &__variation {
-      &__wrapper {
-          min-width: 4rem;
-          padding:  0 .6rem;
-          text-align: center;
-          border-right: 1px solid $border-bold;
+    &__wrapper {
+      min-width: 4rem;
+      padding: 0 0.6rem;
+      text-align: center;
+      border-right: 1px solid $border-bold;
+    }
+
+    &--down,
+    &--up,
+    & {
+      font-size: 0.8rem;
+
+      & .variation__icon {
+        &--infinity {
+          font-size: 1.2rem;
+          font-weight: 100;
+        }
+
+        &,
+        &--infinity {
+          display: block;
+          line-height: 0.5rem;
+        }
       }
+    }
 
-      &--down,
-      &--up,
-      & {
-          font-size: .8rem;
+    &--up {
+      color: green;
+    }
 
-          & .variation__icon {
-              &--infinity {
-                  font-size: 1.2rem;
-                  font-weight: 100;
-              }
-
-              &,
-              &--infinity {
-                  display: block;
-                  line-height: .5rem;
-              }
-          }
-      }
-
-      &--up {
-          color: green;
-      }
-
-      &--down {
-          color: red;
-      }
-
+    &--down {
+      color: red;
+    }
   }
 }

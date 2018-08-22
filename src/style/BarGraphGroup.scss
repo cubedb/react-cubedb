@@ -1,27 +1,26 @@
-@import 'colors';
+@import "colors";
 
 .bar-graph-group {
+  display: flex;
+  max-width: 1800px;
+  padding-bottom: 4rem;
 
-    display: flex;
-    max-width: 1800px;
-    padding-bottom: 4rem;
+  &__column {
+    flex: 1 1;
+  }
+  .fullscreen & {
+    margin: 0 auto;
+  }
 
-    &__column {
-        flex: 1 1;
+  &__list {
+    text-align: left;
+    position: relative;
+    display: block;
+
+    & + .bar-graph-group__list {
+      margin-top: 2rem;
     }
-    .fullscreen & {
-        margin: 0 auto;
-    }
-
-    &__list {
-        text-align: left;
-        position: relative;
-        display: block;
-
-        &+.bar-graph-group__list {
-            margin-top: 2rem;
-        }
-    }
+  }
 }
 
 .cube_graph__column {
