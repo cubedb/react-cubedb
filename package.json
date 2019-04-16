@@ -1,6 +1,6 @@
 {
   "name": "react-cubedb",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Ract client to CubeDB",
   "main": "dist/index.js",
   "repository": {
