@@ -302,6 +302,11 @@ class BarList extends React.Component {
           {_(serie)
             .sortBy("c")
             .reverse()
+            .filter(
+              d =>
+                !this.props.filter ||
+                RegExp(this.props.filter, "i").test(d.name)
+            )
             .slice(0, this.props.slice || serie.length)
             .map(d => {
               let comparingData = null;
@@ -310,39 +315,32 @@ class BarList extends React.Component {
                   ? this.props.comparingTo.serie[d.key]
                   : { c: 0 };
               }
-              if (
-                !this.props.filter ||
-                RegExp(this.props.filter, "i").test(d.name)
-              ) {
-                return (
-                  <BarLine
-                    key={d.key}
-                    name={this.props.name}
-                    label={
-                      prefix
-                        ? d.name.startsWith(prefix)
-                          ? d.name.substring(prefix.length)
-                          : d.name
+              return (
+                <BarLine
+                  key={d.key}
+                  name={this.props.name}
+                  label={
+                    prefix
+                      ? d.name.startsWith(prefix)
+                        ? d.name.substring(prefix.length)
                         : d.name
-                    }
-                    total={total}
-                    comparingTotal={
-                      this.props.comparingTo
-                        ? this.props.comparingTo.total
-                        : null
-                    }
-                    max={Math.max(max, comparingMax)}
-                    data={d}
-                    group={this.props.group}
-                    stretched={this.props.stretched}
-                    container={this}
-                    onChange={this.props.onChange}
-                    comparingData={comparingData}
-                    getColor={this.props.getColor}
-                    selected={this.props.selected.indexOf(d.key) >= 0}
-                  />
-                );
-              }
+                      : d.name
+                  }
+                  total={total}
+                  comparingTotal={
+                    this.props.comparingTo ? this.props.comparingTo.total : null
+                  }
+                  max={Math.max(max, comparingMax)}
+                  data={d}
+                  group={this.props.group}
+                  stretched={this.props.stretched}
+                  container={this}
+                  onChange={this.props.onChange}
+                  comparingData={comparingData}
+                  getColor={this.props.getColor}
+                  selected={this.props.selected.indexOf(d.key) >= 0}
+                />
+              );
             })
             .value()}
         </div>
@@ -490,103 +488,104 @@ class BarGraphHeader extends React.Component {
           >
             <Glyphicon glyph="save" />
           </Button>
-          <OverlayTrigger
-            container={this}
-            trigger="click"
-            rootClose
-            placement="bottom"
-            overlay={
-              <Popover
-                className="bar-graph__filter__dimension"
-                id={`popover-${this.props.name}`}
-                title=""
-              >
-                <div>
-                  <ButtonGroup>
-                    <Button
+          <React.Fragment>
+            <OverlayTrigger
+              trigger="click"
+              rootClose
+              placement="bottom"
+              overlay={
+                <Popover
+                  className="bar-graph__filter__dimension"
+                  id={`popover-${this.props.name}`}
+                  title=""
+                >
+                  <div>
+                    <ButtonGroup>
+                      <Button
+                        bsSize="small"
+                        bsStyle="primary"
+                        onClick={this.onClickAddAll}
+                      >
+                        Add all
+                      </Button>
+                      <Button
+                        bsSize="small"
+                        bsStyle="primary"
+                        onClick={this.onClickInvert}
+                        disabled={!_.size(this.props.selectedItems)}
+                      >
+                        Invert selected
+                      </Button>
+                      <Button
+                        bsSize="small"
+                        bsStyle="primary"
+                        onClick={this.onClickRemoveAll}
+                        disabled={!_.size(this.props.selectedItems)}
+                      >
+                        Remove all
+                      </Button>
+                    </ButtonGroup>
+                  </div>
+                  <br />
+                  <div>
+                    <FormGroup
+                      className="bar-graph__list__search"
                       bsSize="small"
-                      bsStyle="primary"
-                      onClick={this.onClickAddAll}
-                    >
-                      Add all
-                    </Button>
-                    <Button
-                      bsSize="small"
-                      bsStyle="primary"
-                      onClick={this.onClickInvert}
-                      disabled={!_.size(this.props.selectedItems)}
-                    >
-                      Invert selected
-                    </Button>
-                    <Button
-                      bsSize="small"
-                      bsStyle="primary"
-                      onClick={this.onClickRemoveAll}
-                      disabled={!_.size(this.props.selectedItems)}
-                    >
-                      Remove all
-                    </Button>
-                  </ButtonGroup>
-                </div>
-                <br />
-                <div>
-                  <FormGroup
-                    className="bar-graph__list__search"
-                    bsSize="small"
-                    validationState={
-                      this.props.filter === false
-                        ? "error"
-                        : this.props.filter
+                      validationState={
+                        this.props.filter === false
+                          ? "error"
+                          : this.props.filter
                           ? "success"
                           : null
-                    }
-                  >
-                    <FormControl
-                      defaultValue={
-                        this.props.filter ? this.props.filter : undefined
                       }
-                      onChange={this.props.onSearch}
-                      placeholder="Looking for..."
-                      type="text"
-                    />
-                    <FormControl.Feedback>
-                      <Glyphicon glyph="search" />
-                    </FormControl.Feedback>
-                  </FormGroup>
-                </div>
-                <br />
-                <div>
-                  <ButtonToolbar>
-                    {_.map(this.props.selectedItems, f => {
-                      return (
-                        <Button
-                          className="bar-graph__filter__dimension__button"
-                          key={`filter-${f}`}
-                          onClick={() => {
-                            this.props.onChange(this.props.name, f);
-                          }}
-                          bsSize="xsmall"
-                        >
-                          {f} <Glyphicon glyph="remove-sign" />
-                        </Button>
-                      );
-                    })}
-                  </ButtonToolbar>
-                </div>
-              </Popover>
-            }
-          >
-            <Button
-              title="Click to change the applied filters"
-              bsStyle={
-                (this.props.selectedItems || this.props.filter || []).length
-                  ? "info"
-                  : "default"
+                    >
+                      <FormControl
+                        defaultValue={
+                          this.props.filter ? this.props.filter : undefined
+                        }
+                        onChange={this.props.onSearch}
+                        placeholder="Looking for..."
+                        type="text"
+                      />
+                      <FormControl.Feedback>
+                        <Glyphicon glyph="search" />
+                      </FormControl.Feedback>
+                    </FormGroup>
+                  </div>
+                  <br />
+                  <div>
+                    <ButtonToolbar>
+                      {_.map(this.props.selectedItems, f => {
+                        return (
+                          <Button
+                            className="bar-graph__filter__dimension__button"
+                            key={`filter-${f}`}
+                            onClick={() => {
+                              this.props.onChange(this.props.name, f);
+                            }}
+                            bsSize="xsmall"
+                          >
+                            {f} <Glyphicon glyph="remove-sign" />
+                          </Button>
+                        );
+                      })}
+                    </ButtonToolbar>
+                  </div>{" "}
+                </Popover>
               }
             >
-              <Glyphicon glyph="filter" />
-            </Button>
-          </OverlayTrigger>
+              <Button
+                title="Click to change the applied filters"
+                bsStyle={
+                  (this.props.selectedItems || this.props.filter || []).length
+                    ? "info"
+                    : "default"
+                }
+              >
+                <Glyphicon glyph="filter" />
+              </Button>
+            </OverlayTrigger>
+          </React.Fragment>
           {this.props.onStretch ? (
             <Button
               title="Click to change the view mode"
