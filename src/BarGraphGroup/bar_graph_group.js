@@ -1,93 +1,13 @@
-import _ from "lodash";
-import { scaleOrdinal, schemeCategory20c } from "d3";
-import React from "react";
-import PropTypes from "prop-types";
-import BarGraph from "./BarGraph";
+// @flow
 
-import "./style/BarGraphGroup.scss";
+import _ from 'lodash';
+import { scaleOrdinal, schemeCategory20c } from 'd3';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class BarGraphColumn extends React.Component {
-  constructor(props) {
-    super(props);
+import BarGraphColumn from './bar_graph_column';
 
-    this.state = {
-      stretched: [],
-      search: []
-    };
-  }
-
-  onStretch = serie => () => {
-    // logAction("graphs", "bar stretch", serie)
-    this.setState({
-      stretched: Object.assign({}, this.state.stretched, {
-        [this.props.name + serie]: !this.state.stretched[
-          this.props.name + serie
-        ]
-      })
-    });
-  };
-
-  onSearch = serie => e => {
-    const search = e.target.value;
-    // logAction("graphs", "bar search", search)
-    if (search.length) {
-      try {
-        new RegExp(search, "i");
-        this.setState({
-          search: Object.assign({}, this.state.search, {
-            [serie]: search
-          })
-        });
-      } catch (e) {
-        this.setState({
-          search: Object.assign({}, this.state.search, {
-            [serie]: false
-          })
-        });
-      }
-    } else {
-      this.setState({
-        search: Object.assign({}, this.state.search, {
-          [serie]: undefined
-        })
-      });
-    }
-  };
-
-  render() {
-    return (
-      <div className="cube_graph__column">
-        {_.map(this.props.data, (serie, key) => {
-          const description = this.props.dataDescription
-            ? this.props.dataDescription[key]
-            : undefined;
-
-          return (
-            <div key={key} className={"bar-graph-group__list"}>
-              <BarGraph
-                name={key}
-                description={description}
-                data={serie}
-                comparingTo={
-                  this.props.comparingTo && this.props.comparingTo[key]
-                }
-                selected={
-                  this.props.selectedItems && this.props.selectedItems[key]
-                }
-                onChange={this.props.onChange}
-                slice={this.props.slice}
-                group={this.props.group}
-                lookup={this.props.lookup}
-                getColor={this.props.getColor}
-                allData={this.props.allData}
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
+import './style/BarGraphGroup.scss';
 
 export default class BarGraphGroup extends React.Component {
   static propTypes = {
