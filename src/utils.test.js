@@ -1,19 +1,19 @@
-import normalizeData from "./normalizeData";
+import { normalizeData } from './utils';
 
 const keyValueData = {
-  "1": {
+  '1': {
     c: 16254
   },
-  "2": {
+  '2': {
     c: 37038
   }
 };
 
 const simpleData = {
-  "1": {
+  '1': {
     c: 16254
   },
-  "2": {
+  '2': {
     c: 37038
   }
 };
@@ -21,15 +21,15 @@ const simpleData = {
 const simpleDataReturn = {
   max: 37038,
   serie: {
-    "1": {
+    '1': {
       c: 16254,
-      key: "1",
-      name: "1"
+      key: '1',
+      name: '1'
     },
-    "2": {
+    '2': {
       c: 37038,
-      key: "2",
-      name: "2"
+      key: '2',
+      name: '2'
     }
   },
   total: 53292
@@ -37,18 +37,18 @@ const simpleDataReturn = {
 
 const groupedData = {
   a: {
-    "1": {
+    '1': {
       c: 16254
     },
-    "2": {
+    '2': {
       c: 37038
     }
   },
   b: {
-    "1": {
+    '1': {
       c: 16254
     },
-    "2": {
+    '2': {
       c: 0
     }
   }
@@ -59,35 +59,35 @@ const groupedDataReturn = {
   serie: {
     a: {
       c: 53292,
-      key: "a",
-      name: "a",
+      key: 'a',
+      name: 'a',
       stack: {
-        "1": {
+        '1': {
           c: 16254,
-          key: "1",
-          name: "1"
+          key: '1',
+          name: '1'
         },
-        "2": {
+        '2': {
           c: 37038,
-          key: "2",
-          name: "2"
+          key: '2',
+          name: '2'
         }
       }
     },
     b: {
       c: 16254,
-      key: "b",
-      name: "b",
+      key: 'b',
+      name: 'b',
       stack: {
-        "1": {
+        '1': {
           c: 16254,
-          key: "1",
-          name: "1"
+          key: '1',
+          name: '1'
         },
-        "2": {
+        '2': {
           c: 0,
-          key: "2",
-          name: "2"
+          key: '2',
+          name: '2'
         }
       }
     }
@@ -96,10 +96,10 @@ const groupedDataReturn = {
 };
 
 const datedData = {
-  "2017-06-13": {
+  '2017-06-13': {
     c: 16254
   },
-  "2017-06-13 14": {
+  '2017-06-13 14': {
     c: 37038
   }
 };
@@ -107,34 +107,34 @@ const datedData = {
 const datedDataReturn = {
   max: 37038,
   serie: {
-    [new Date("2017-06-13T00:00:00.000Z").toString()]: {
+    [new Date('2017-06-13T00:00:00.000Z').toString()]: {
       c: 16254,
-      key: "2017-06-13",
-      name: new Date("2017-06-13T00:00:00.000Z")
+      key: '2017-06-13',
+      name: new Date('2017-06-13T00:00:00.000Z')
     },
-    [new Date("2017-06-13T14:00:00.000Z").toString()]: {
+    [new Date('2017-06-13T14:00:00.000Z').toString()]: {
       c: 37038,
-      key: "2017-06-13 14",
-      name: new Date("2017-06-13T14:00:00.000Z")
+      key: '2017-06-13 14',
+      name: new Date('2017-06-13T14:00:00.000Z')
     }
   },
   total: 53292
 };
 
-describe("utils.normalizeData", () => {
-  it("works with key-value dimension", () => {
+describe('utils.normalizeData', () => {
+  it('works with key-value dimension', () => {
     expect(normalizeData(keyValueData)).toEqual(simpleDataReturn);
   });
 
-  it("works with simple dimension", () => {
+  it('works with simple dimension', () => {
     expect(normalizeData(simpleData)).toEqual(simpleDataReturn);
   });
 
-  it("works with grouped dimension", () => {
+  it('works with grouped dimension', () => {
     expect(normalizeData(groupedData)).toEqual(groupedDataReturn);
   });
 
-  it("works with date-based dimension", () => {
+  it('works with date-based dimension', () => {
     expect(normalizeData(datedData)).toEqual(datedDataReturn);
   });
 });

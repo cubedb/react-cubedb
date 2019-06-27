@@ -1,12 +1,14 @@
-import * as d3 from "d3";
-import { filter, isUndefined, maxBy, sortBy, mapValues, toPairs } from "lodash";
-import React from "react";
-import PropTypes from "prop-types";
+// @flow
 
-import SvgLoadingAnimation from "./utils/SvgLoadingAnimation";
+import * as d3 from 'd3';
+import { filter, isUndefined, maxBy, sortBy, mapValues, toPairs } from 'lodash';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import dateParser from "./utils/dateParser";
-import "./style/TrendingGraph.scss";
+import SvgLoadingAnimation from './SvgLoadingAnimation';
+
+import { dateParser } from './utils';
+import './style/TrendingGraph.scss';
 
 const TRIM_LENGTH = 2;
 
@@ -35,7 +37,7 @@ export default class TrendingGraph extends React.Component {
       path = <SvgLoadingAnimation width={width} height={height} />;
     } else if (this.props.data) {
       const data = sortBy(
-        filter(toPairs(mapValues(this.props.data, "c")), val => {
+        filter(toPairs(mapValues(this.props.data, 'c')), val => {
           return !isUndefined(val) && val.length === 2;
         }),
         0
@@ -60,24 +62,11 @@ export default class TrendingGraph extends React.Component {
 
       const d = getLine(data);
 
-      path = (
-        <path
-          d={d}
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="trending_graph__line"
-        />
-      );
+      path = <path d={d} fill="none" strokeLinecap="round" strokeLinejoin="round" className="trending_graph__line" />;
     }
 
     return (
-      <svg
-        className="trending_graph"
-        viewBox={`0 0 ${width} ${height}`}
-        width={width}
-        height={height}
-      >
+      <svg className="trending_graph" viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
         {path}
       </svg>
     );

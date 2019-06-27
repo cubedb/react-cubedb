@@ -1,17 +1,17 @@
-import _ from "lodash";
-import * as d3 from "d3";
+// @flow
 
-import ReactFauxDOM from "react-faux-dom";
+import _ from 'lodash';
+import * as d3 from 'd3';
 
-import React from "react";
-import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
-import TimeGraphContent from "./TimeGraphContent";
-import saveData from "./utils/saveData";
+import ReactFauxDOM from 'react-faux-dom';
 
-import dateParser from "./utils/dateParser";
+import React from 'react';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import TimeGraphContent from './TimeGraphContent';
+import { saveData, dateParser } from './utils';
 
-import "./style/TimeGraph.scss";
+import './style/TimeGraph.scss';
 
 const xTickSize = {
   month: 105,
@@ -19,7 +19,7 @@ const xTickSize = {
   hour: 105
 };
 
-const numberFormat = d3.format(",d");
+const numberFormat = d3.format(',d');
 const DEFAULT_MARGIN = { left: 80, right: 30, top: 50, bottom: 25 };
 const STACK_LIMIT = 10;
 const MAX_Y_AXIS_TICKS = 5;
@@ -55,7 +55,7 @@ export default class TimeGraph extends React.Component {
 
   static defaultProps = {
     mouseIteractions: true,
-    type: "bar",
+    type: 'bar',
     getColor: d3.scaleOrdinal(d3.schemeCategory20c)
   };
 
@@ -79,11 +79,11 @@ export default class TimeGraph extends React.Component {
   }
 
   componentWillMount() {
-    window.addEventListener("resize", this.updateDimensions, false);
+    window.addEventListener('resize', this.updateDimensions, false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   componentWillReceiveProps(np) {
@@ -92,9 +92,7 @@ export default class TimeGraph extends React.Component {
 
   updateDimensions = (np = this.props) => {
     const el = ReactDOM.findDOMNode(this);
-    const containerWidth = el.parentElement
-      ? el.parentElement.getBoundingClientRect().width
-      : 600;
+    const containerWidth = el.parentElement ? el.parentElement.getBoundingClientRect().width : 600;
 
     if (containerWidth) {
       this.setState({
@@ -105,19 +103,17 @@ export default class TimeGraph extends React.Component {
   };
 
   onDownload = (fromDate, toDate, volume, dataSerie) => () => {
-    const dataLabel = `${this.props.timeDisplay(
-      fromDate
-    )}_to_${this.props.timeDisplay(toDate)}`.replace(/\W/gi, "");
+    const dataLabel = `${this.props.timeDisplay(fromDate)}_to_${this.props.timeDisplay(toDate)}`.replace(/\W/gi, '');
     const defaultDimension = { c: 0 };
-    let stacksLabel = "";
-    const delimiter = ",";
-    const endLine = "\r\n";
+    let stacksLabel = '';
+    const delimiter = ',';
+    const endLine = '\r\n';
 
     const keys = {};
 
     _(dataSerie)
       .map(1)
-      .map("stack")
+      .map('stack')
       .each(d => {
         _.each(d, (n, k) => {
           keys[k] = n.name;
@@ -125,7 +121,7 @@ export default class TimeGraph extends React.Component {
       });
 
     const createLine = (name, count = 0, stack = []) => {
-      let stacks = "";
+      let stacks = '';
 
       if (this.props.group) {
         _.each(keys, (d, i) => {
@@ -143,7 +139,7 @@ export default class TimeGraph extends React.Component {
       .map(d => {
         return createLine(d[0], d[1].c, d[1].stack);
       })
-      .join("");
+      .join('');
 
     if (this.props.group) {
       _.each(keys, d => {
@@ -156,19 +152,14 @@ export default class TimeGraph extends React.Component {
     const header = `Date${stacksLabel}${endLine}`;
     const fileData = header + body;
 
-    const file = new Blob([fileData], { type: "text/plain" });
+    const file = new Blob([fileData], { type: 'text/plain' });
 
-    saveData(
-      `timeseries_${dataLabel}${
-        this.props.group ? `_grouped_by_${this.props.group}` : ""
-      }.csv`,
-      file
-    );
+    saveData(`timeseries_${dataLabel}${this.props.group ? `_grouped_by_${this.props.group}` : ''}.csv`, file);
   };
 
   lookup(p) {
     const defaultLookup = key => {
-      return key === "null" ? "<not defined>" : key;
+      return key === 'null' ? '<not defined>' : key;
     };
     if (this.props.lookups && this.props.lookups[p]) {
       const lookup = this.props.lookups[p];
@@ -186,27 +177,15 @@ export default class TimeGraph extends React.Component {
     });
   };
 
-  drawAxis(
-    width,
-    height,
-    data,
-    margin,
-    fromDate,
-    toDate,
-    xFormatter,
-    yFormatter = numberFormat
-  ) {
+  drawAxis(width, height, data, margin, fromDate, toDate, xFormatter, yFormatter = numberFormat) {
     const dateRange = [
       aggregation[this.props.aggregation].floor(fromDate),
-      aggregation[this.props.aggregation].offset(
-        toDate,
-        this.props.type === "bar" ? +1 : 0
-      )
+      aggregation[this.props.aggregation].offset(toDate, this.props.type === 'bar' ? +1 : 0)
     ];
 
     let maxValue = _(data)
-      .map("1")
-      .map("c")
+      .map('1')
+      .map('c')
       .max();
 
     if (this.props.group) {
@@ -222,18 +201,18 @@ export default class TimeGraph extends React.Component {
       });
 
       const stacks = _(dimensionCount)
-        .sortBy("c")
+        .sortBy('c')
         .reverse()
         .slice(0, STACK_LIMIT)
-        .map("key")
+        .map('key')
         .value();
 
-      if (this.props.type === "line") {
+      if (this.props.type === 'line') {
         maxValue = _(data)
-          .map("1")
+          .map('1')
           .map(d => {
             const stacksC = _(d.stack)
-              .mapValues("c")
+              .mapValues('c')
               .value();
 
             const stacksValue = _(stacksC)
@@ -260,9 +239,7 @@ export default class TimeGraph extends React.Component {
 
     const maxTicks = Math.max(
       2,
-      Math.floor(
-        (width - margin.left - margin.right) / xTickSize[this.props.aggregation]
-      ) - 4
+      Math.floor((width - margin.left - margin.right) / xTickSize[this.props.aggregation]) - 4
     );
 
     const x = d3
@@ -308,7 +285,7 @@ export default class TimeGraph extends React.Component {
       .toPairs()
       .map(p => {
         const dt = aggregation[this.props.aggregation](dateParser(p[0]));
-        if (p[1].hasOwnProperty("c")) {
+        if (p[1].hasOwnProperty('c')) {
           return [dt, p[1]];
         } else {
           let c = 0;
@@ -359,13 +336,13 @@ export default class TimeGraph extends React.Component {
     let [fromDate, toDate] = this.getDateDomain();
     if (this.props.toDate) {
       toDate = this.props.toDate;
-      if (typeof toDate === "number") {
+      if (typeof toDate === 'number') {
         toDate = aggregation[this.props.aggregation](dateParser(toDate));
       }
     }
     if (this.props.fromDate) {
       fromDate = this.props.fromDate;
-      if (typeof fromDate === "number") {
+      if (typeof fromDate === 'number') {
         fromDate = aggregation[this.props.aggregation](dateParser(fromDate));
       }
     }
@@ -383,17 +360,17 @@ export default class TimeGraph extends React.Component {
       this.props.timeDisplay,
       this.props.countFormatter
     );
-    const xAxis = new ReactFauxDOM.Element("g");
+    const xAxis = new ReactFauxDOM.Element('g');
 
     d3.select(xAxis)
-      .attr("class", "xaxis")
-      .attr("transform", `translate(0, ${this.state.height - margin.bottom})`)
+      .attr('class', 'xaxis')
+      .attr('transform', `translate(0, ${this.state.height - margin.bottom})`)
       .call(graph.axis.x);
 
-    const yAxis = new ReactFauxDOM.Element("g");
+    const yAxis = new ReactFauxDOM.Element('g');
     d3.select(yAxis)
-      .attr("class", "yaxis")
-      .attr("transform", `translate(${margin.left},0)`)
+      .attr('class', 'yaxis')
+      .attr('transform', `translate(${margin.left},0)`)
       .call(graph.axis.y);
 
     let range;
@@ -426,76 +403,61 @@ export default class TimeGraph extends React.Component {
     }
 
     return (
-      <svg
-        className="time_graph"
-        width={this.state.width}
-        height={this.state.height}
-      >
+      <svg className="time_graph" width={this.state.width} height={this.state.height}>
         <g className="axis">
           <g>{xAxis.toReact()}</g>
           <g>{yAxis.toReact()}</g>
         </g>
         <g onClick={this.onDownload(fromDate, toDate, this.maxValue, data)}>
           <rect
-            className={"time_graph__download-button"}
+            className={'time_graph__download-button'}
             width={20}
             height={20}
             transform={`translate(${this.state.width - margin.right - 20}, 3)`}
           />
           <path
-            className={"time_graph__download-button__icon"}
-            transform={`matrix(.5 0 0 .5 ${this.state.width -
-              margin.right -
-              17} 5)`}
+            className={'time_graph__download-button__icon'}
+            transform={`matrix(.5 0 0 .5 ${this.state.width - margin.right - 17} 5)`}
             d="M22.857 24q0-0.464-0.339-0.804t-0.804-0.339-0.804 0.339-0.339 0.804 0.339 0.804 0.804 0.339 0.804-0.339 0.339-0.804zM27.429 24q0-0.464-0.339-0.804t-0.804-0.339-0.804 0.339-0.339 0.804 0.339 0.804 0.804 0.339 0.804-0.339 0.339-0.804zM29.714 20v5.714q0 0.714-0.5 1.214t-1.214 0.5h-26.286q-0.714 0-1.214-0.5t-0.5-1.214v-5.714q0-0.714 0.5-1.214t1.214-0.5h8.304l2.411 2.429q1.036 1 2.429 1t2.429-1l2.429-2.429h8.286q0.714 0 1.214 0.5t0.5 1.214zM23.911 9.839q0.304 0.732-0.25 1.25l-8 8q-0.321 0.339-0.804 0.339t-0.804-0.339l-8-8q-0.554-0.518-0.25-1.25 0.304-0.696 1.054-0.696h4.571v-8q0-0.464 0.339-0.804t0.804-0.339h4.571q0.464 0 0.804 0.339t0.339 0.804v8h4.571q0.75 0 1.054 0.696z"
             fill="#000000"
           />
         </g>
         {this.props.metadata && (
-          <g onClick={this.toggleMetadata("release")}>
+          <g onClick={this.toggleMetadata('release')}>
             <rect
-              className={"time_graph__metadata-button"}
+              className={'time_graph__metadata-button'}
               width={70}
               height={14}
-              transform={`translate(${this.state.width -
-                margin.right -
-                100}, 5)`}
+              transform={`translate(${this.state.width - margin.right - 100}, 5)`}
             />
             <text
-              className={"time_graph__metadata-button__text"}
-              style={{ textAnchor: "left" }}
+              className={'time_graph__metadata-button__text'}
+              style={{ textAnchor: 'left' }}
               width={60}
               height={12}
-              transform={`translate(${this.state.width -
-                margin.right -
-                94}, 15)`}
+              transform={`translate(${this.state.width - margin.right - 94}, 15)`}
             >
-              {this.state.metadataFilter.release ? "Hide" : "Show"} Releases
+              {this.state.metadataFilter.release ? 'Hide' : 'Show'} Releases
             </text>
           </g>
         )}
         ``
         {this.props.metadata && (
-          <g onClick={this.toggleMetadata("experiment")}>
+          <g onClick={this.toggleMetadata('experiment')}>
             <rect
-              className={"time_graph__metadata-button"}
+              className={'time_graph__metadata-button'}
               width={80}
               height={14}
-              transform={`translate(${this.state.width -
-                margin.right -
-                190}, 5)`}
+              transform={`translate(${this.state.width - margin.right - 190}, 5)`}
             />
             <text
-              className={"time_graph__metadata-button__text"}
-              style={{ textAnchor: "left" }}
+              className={'time_graph__metadata-button__text'}
+              style={{ textAnchor: 'left' }}
               width={60}
               height={12}
-              transform={`translate(${this.state.width -
-                margin.right -
-                184}, 15)`}
+              transform={`translate(${this.state.width - margin.right - 184}, 15)`}
             >
-              {this.state.metadataFilter.experiment ? "Hide" : "Show"}{" "}
-              Experiments
+              {this.state.metadataFilter.experiment ? 'Hide' : 'Show'} Experiments
             </text>
           </g>
         )}
