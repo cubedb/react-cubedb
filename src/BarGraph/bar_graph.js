@@ -15,7 +15,7 @@ import { normalizeData } from '../utils';
 import BarGraphHeader from './bar_graph_header';
 import BarList from './bar_list';
 
-import './style/BarGraph.scss';
+import '../style/BarGraph.scss';
 
 export default class BarGraph extends React.Component {
   static propTypes = {

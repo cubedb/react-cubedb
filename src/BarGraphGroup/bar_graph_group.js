@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import BarGraphColumn from './bar_graph_column';
 
-import './style/BarGraphGroup.scss';
+import '../style/BarGraphGroup.scss';
 
 export default class BarGraphGroup extends React.Component {
   static propTypes = {
