@@ -23,7 +23,7 @@ import {
 
 import { saveData } from '../utils';
 
-export class BarGraphHeader extends React.Component {
+export default class BarGraphHeader extends React.Component {
   static propTypes = {
     allData: PropTypes.object,
     comparingTo: PropTypes.object,
