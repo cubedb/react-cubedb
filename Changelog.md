@@ -1,4 +1,4 @@
-### 1.3.2
+### 1.3.4
 
 - code refactored for easier maintenance
 - multiple classes per file split to a file per class
