@@ -71,8 +71,6 @@ export default class BarGraph extends React.Component {
   };
 
   onChange = (name, selected) => {
-    // this is it
-    console.log('changing: ', name, selected);
     return this.props.onChange && this.props.onChange(name, selected);
   };
 
