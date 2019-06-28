@@ -1,3 +1,10 @@
+### 1.3.2
+
+- code refactored for easier maintenance
+- multiple classes per file split to a file per class
+- utils were merged
+- SvgLoadingAnimation removed from utils
+
 ### 1.3.1
 
 - fixed a warning on BarGraphHeader
