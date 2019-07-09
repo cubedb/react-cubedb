@@ -1,3 +1,7 @@
+### 1.3.7
+
+- fix lodash import issue on BarGraph
+
 ### 1.3.4
 
 - code refactored for easier maintenance
