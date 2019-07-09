@@ -1,7 +1,6 @@
 // @flow
 
-import _mapValues from 'lodash/mapValues';
-import _chain from 'lodash/chain';
+import _ from 'lodash';
 import React from 'react';
 
 import PropTypes from 'prop-types';
@@ -24,14 +23,14 @@ export default class Bar extends React.Component {
     const { c, name, key, stack } = this.props.data;
 
     if (this.props.group) {
-      const highlights = _chain(stack)
+      const highlights = _.chain(stack)
         .sortBy('c')
         .reverse()
         .slice(0, limit)
         .map('key')
         .value();
       let amount = c;
-      _mapValues(stack, bar => {
+      _.mapValues(stack, bar => {
         if (highlights.includes(bar.key)) {
           amount -= bar.c;
           const proportion = this.props.max > 0 ? bar.c / this.props.max : 0;
