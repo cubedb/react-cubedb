@@ -249,6 +249,8 @@ export default class TimeGraphContent extends React.Component {
         return 24;
       case 'month':
         return 12;
+      case 'week':
+        return 4;
       default:
         return 1;
     }
@@ -260,6 +262,8 @@ export default class TimeGraphContent extends React.Component {
         return d3.utcMonth.count(range[1], range[0]);
       case 'day':
         return d3.utcDay.count(range[1], range[0]);
+      case 'week':
+        return d3.utcWeek.count(range[1], range[0]);
       default:
         return d3.utcHour.count(range[1], range[0]);
     }
