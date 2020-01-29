@@ -16,6 +16,7 @@ import './style/TimeGraph.scss';
 const xTickSize = {
   month: 105,
   day: 85,
+  week: 85,
   hour: 105
 };
 
@@ -27,6 +28,7 @@ const MAX_Y_AXIS_TICKS = 5;
 export const aggregation = {
   hour: d3.utcHour,
   day: d3.utcDay,
+  week: d3.utcWeek,
   month: d3.utcMonth
 };
 
