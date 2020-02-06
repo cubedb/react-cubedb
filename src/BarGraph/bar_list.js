@@ -8,7 +8,7 @@ import _map from 'lodash/map';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { schemeCategory20c } from 'd3';
+import { schemePaired } from 'd3';
 import { scaleOrdinal } from 'd3-scale';
 
 import { getCommonPrefix } from '../utils';
@@ -33,7 +33,7 @@ export default class BarList extends React.Component {
   static defaultProps = {
     hideCommonPrefix: false,
     stretched: false,
-    getColor: scaleOrdinal(schemeCategory20c)
+    getColor: scaleOrdinal(schemePaired)
   };
 
   // shouldComponentUpdate(){
