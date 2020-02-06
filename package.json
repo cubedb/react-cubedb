@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jrfferreira/react-cubedb.git"
+    "url": "https://github.com/cubedb/react-cubedb.git"
   },
   "contributors": [
     "sztanko",
@@ -15,9 +15,9 @@
   ],
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/jrfferreira/react-cubedb/issues"
+    "url": "https://github.com/cubedb/react-cubedb/issues"
   },
-  "homepage": "https://github.com/jrfferreira/react-cubedb",
+  "homepage": "https://github.com/cubedb/react-cubedb",
   "keywords": [
     "react-component",
     "react",
