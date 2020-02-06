@@ -58,7 +58,7 @@ export default class TimeGraph extends React.Component {
   static defaultProps = {
     mouseIteractions: true,
     type: 'bar',
-    getColor: d3.scaleOrdinal(d3.schemeCategory20c)
+    getColor: d3.scaleOrdinal(d3.schemePaired)
   };
 
   constructor(props) {

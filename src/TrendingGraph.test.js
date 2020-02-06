@@ -1,5 +1,5 @@
 import React from "react"; // eslint-disable-line no-unused-vars
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 
 import TrendingGraph from "./TrendingGraph";
 
@@ -13,13 +13,13 @@ const defaultProps = {
 
 describe("TrendingGraph", () => {
   it("default", () => {
-    const component = shallow(<TrendingGraph {...defaultProps} />);
+    const component = render(<TrendingGraph {...defaultProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
   it("no data", () => {
-    const component = shallow(
+    const component = render(
       <TrendingGraph {...defaultProps} data={undefined} />
     );
 
@@ -27,7 +27,7 @@ describe("TrendingGraph", () => {
   });
 
   it("is loading", () => {
-    const component = shallow(
+    const component = render(
       <TrendingGraph {...defaultProps} isLoading={true} />
     );
 
