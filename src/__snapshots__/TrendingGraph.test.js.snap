@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TrendingGraph default 1`] = `
-initialize {
-  "0": Object {
+LoadedCheerio {
+  "0": Node {
     "attribs": Object {
       "class": "trending_graph",
       "height": "50",
@@ -10,7 +10,7 @@ initialize {
       "width": "200",
     },
     "children": Array [
-      Object {
+      Node {
         "attribs": Object {
           "class": "trending_graph__line",
           "fill": "none",
@@ -41,22 +41,17 @@ initialize {
     "name": "svg",
     "namespace": "http://www.w3.org/2000/svg",
     "next": null,
-    "parent": null,
-    "prev": null,
-    "root": Object {
-      "attribs": Object {},
+    "parent": Node {
       "children": Array [
         [Circular],
       ],
       "name": "root",
-      "namespace": "http://www.w3.org/1999/xhtml",
       "next": null,
       "parent": null,
       "prev": null,
       "type": "root",
-      "x-attribsNamespace": Object {},
-      "x-attribsPrefix": Object {},
     },
+    "prev": null,
     "type": "tag",
     "x-attribsNamespace": Object {
       "class": undefined,
@@ -71,20 +66,94 @@ initialize {
       "width": undefined,
     },
   },
-  "_root": [Circular],
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
   "length": 1,
   "options": Object {
     "decodeEntities": true,
-    "normalizeWhitespace": false,
-    "withDomLvl1": true,
     "xml": false,
   },
 }
 `;
 
 exports[`TrendingGraph is loading 1`] = `
-initialize {
-  "0": Object {
+LoadedCheerio {
+  "0": Node {
     "attribs": Object {
       "class": "trending_graph",
       "height": "50",
@@ -92,17 +161,17 @@ initialize {
       "width": "200",
     },
     "children": Array [
-      Object {
+      Node {
         "attribs": Object {},
         "children": Array [
-          Object {
+          Node {
             "attribs": Object {
               "cx": "92.5",
               "cy": "25",
               "r": "5",
             },
             "children": Array [
-              Object {
+              Node {
                 "attribs": Object {
                   "attributeName": "r",
                   "begin": "0s",
@@ -116,7 +185,7 @@ initialize {
                 "children": Array [],
                 "name": "animate",
                 "namespace": "http://www.w3.org/2000/svg",
-                "next": Object {
+                "next": Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -179,7 +248,7 @@ initialize {
                   "values": undefined,
                 },
               },
-              Object {
+              Node {
                 "attribs": Object {
                   "attributeName": "fill-opacity",
                   "begin": "0s",
@@ -195,7 +264,7 @@ initialize {
                 "namespace": "http://www.w3.org/2000/svg",
                 "next": null,
                 "parent": [Circular],
-                "prev": Object {
+                "prev": Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -259,7 +328,7 @@ initialize {
             ],
             "name": "circle",
             "namespace": "http://www.w3.org/2000/svg",
-            "next": Object {
+            "next": Node {
               "attribs": Object {
                 "cx": "102.5",
                 "cy": "25",
@@ -267,7 +336,7 @@ initialize {
                 "r": "3",
               },
               "children": Array [
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -281,7 +350,7 @@ initialize {
                   "children": Array [],
                   "name": "animate",
                   "namespace": "http://www.w3.org/2000/svg",
-                  "next": Object {
+                  "next": Node {
                     "attribs": Object {
                       "attributeName": "fill-opacity",
                       "begin": "0s",
@@ -344,7 +413,7 @@ initialize {
                     "values": undefined,
                   },
                 },
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -360,7 +429,7 @@ initialize {
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": null,
                   "parent": [Circular],
-                  "prev": Object {
+                  "prev": Node {
                     "attribs": Object {
                       "attributeName": "r",
                       "begin": "0s",
@@ -424,14 +493,14 @@ initialize {
               ],
               "name": "circle",
               "namespace": "http://www.w3.org/2000/svg",
-              "next": Object {
+              "next": Node {
                 "attribs": Object {
                   "cx": "112.5",
                   "cy": "25",
                   "r": "5",
                 },
                 "children": Array [
-                  Object {
+                  Node {
                     "attribs": Object {
                       "attributeName": "r",
                       "begin": "0s",
@@ -445,7 +514,7 @@ initialize {
                     "children": Array [],
                     "name": "animate",
                     "namespace": "http://www.w3.org/2000/svg",
-                    "next": Object {
+                    "next": Node {
                       "attribs": Object {
                         "attributeName": "fill-opacity",
                         "begin": "0s",
@@ -508,7 +577,7 @@ initialize {
                       "values": undefined,
                     },
                   },
-                  Object {
+                  Node {
                     "attribs": Object {
                       "attributeName": "fill-opacity",
                       "begin": "0s",
@@ -524,7 +593,7 @@ initialize {
                     "namespace": "http://www.w3.org/2000/svg",
                     "next": null,
                     "parent": [Circular],
-                    "prev": Object {
+                    "prev": Node {
                       "attribs": Object {
                         "attributeName": "r",
                         "begin": "0s",
@@ -633,7 +702,7 @@ initialize {
               "r": undefined,
             },
           },
-          Object {
+          Node {
             "attribs": Object {
               "cx": "102.5",
               "cy": "25",
@@ -641,7 +710,7 @@ initialize {
               "r": "3",
             },
             "children": Array [
-              Object {
+              Node {
                 "attribs": Object {
                   "attributeName": "r",
                   "begin": "0s",
@@ -655,7 +724,7 @@ initialize {
                 "children": Array [],
                 "name": "animate",
                 "namespace": "http://www.w3.org/2000/svg",
-                "next": Object {
+                "next": Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -718,7 +787,7 @@ initialize {
                   "values": undefined,
                 },
               },
-              Object {
+              Node {
                 "attribs": Object {
                   "attributeName": "fill-opacity",
                   "begin": "0s",
@@ -734,7 +803,7 @@ initialize {
                 "namespace": "http://www.w3.org/2000/svg",
                 "next": null,
                 "parent": [Circular],
-                "prev": Object {
+                "prev": Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -798,14 +867,14 @@ initialize {
             ],
             "name": "circle",
             "namespace": "http://www.w3.org/2000/svg",
-            "next": Object {
+            "next": Node {
               "attribs": Object {
                 "cx": "112.5",
                 "cy": "25",
                 "r": "5",
               },
               "children": Array [
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -819,7 +888,7 @@ initialize {
                   "children": Array [],
                   "name": "animate",
                   "namespace": "http://www.w3.org/2000/svg",
-                  "next": Object {
+                  "next": Node {
                     "attribs": Object {
                       "attributeName": "fill-opacity",
                       "begin": "0s",
@@ -882,7 +951,7 @@ initialize {
                     "values": undefined,
                   },
                 },
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -898,7 +967,7 @@ initialize {
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": null,
                   "parent": [Circular],
-                  "prev": Object {
+                  "prev": Node {
                     "attribs": Object {
                       "attributeName": "r",
                       "begin": "0s",
@@ -978,14 +1047,14 @@ initialize {
               },
             },
             "parent": [Circular],
-            "prev": Object {
+            "prev": Node {
               "attribs": Object {
                 "cx": "92.5",
                 "cy": "25",
                 "r": "5",
               },
               "children": Array [
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -999,7 +1068,7 @@ initialize {
                   "children": Array [],
                   "name": "animate",
                   "namespace": "http://www.w3.org/2000/svg",
-                  "next": Object {
+                  "next": Node {
                     "attribs": Object {
                       "attributeName": "fill-opacity",
                       "begin": "0s",
@@ -1062,7 +1131,7 @@ initialize {
                     "values": undefined,
                   },
                 },
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -1078,7 +1147,7 @@ initialize {
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": null,
                   "parent": [Circular],
-                  "prev": Object {
+                  "prev": Node {
                     "attribs": Object {
                       "attributeName": "r",
                       "begin": "0s",
@@ -1171,14 +1240,14 @@ initialize {
               "r": undefined,
             },
           },
-          Object {
+          Node {
             "attribs": Object {
               "cx": "112.5",
               "cy": "25",
               "r": "5",
             },
             "children": Array [
-              Object {
+              Node {
                 "attribs": Object {
                   "attributeName": "r",
                   "begin": "0s",
@@ -1192,7 +1261,7 @@ initialize {
                 "children": Array [],
                 "name": "animate",
                 "namespace": "http://www.w3.org/2000/svg",
-                "next": Object {
+                "next": Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -1255,7 +1324,7 @@ initialize {
                   "values": undefined,
                 },
               },
-              Object {
+              Node {
                 "attribs": Object {
                   "attributeName": "fill-opacity",
                   "begin": "0s",
@@ -1271,7 +1340,7 @@ initialize {
                 "namespace": "http://www.w3.org/2000/svg",
                 "next": null,
                 "parent": [Circular],
-                "prev": Object {
+                "prev": Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -1337,7 +1406,7 @@ initialize {
             "namespace": "http://www.w3.org/2000/svg",
             "next": null,
             "parent": [Circular],
-            "prev": Object {
+            "prev": Node {
               "attribs": Object {
                 "cx": "102.5",
                 "cy": "25",
@@ -1345,7 +1414,7 @@ initialize {
                 "r": "3",
               },
               "children": Array [
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "r",
                     "begin": "0s",
@@ -1359,7 +1428,7 @@ initialize {
                   "children": Array [],
                   "name": "animate",
                   "namespace": "http://www.w3.org/2000/svg",
-                  "next": Object {
+                  "next": Node {
                     "attribs": Object {
                       "attributeName": "fill-opacity",
                       "begin": "0s",
@@ -1422,7 +1491,7 @@ initialize {
                     "values": undefined,
                   },
                 },
-                Object {
+                Node {
                   "attribs": Object {
                     "attributeName": "fill-opacity",
                     "begin": "0s",
@@ -1438,7 +1507,7 @@ initialize {
                   "namespace": "http://www.w3.org/2000/svg",
                   "next": null,
                   "parent": [Circular],
-                  "prev": Object {
+                  "prev": Node {
                     "attribs": Object {
                       "attributeName": "r",
                       "begin": "0s",
@@ -1504,14 +1573,14 @@ initialize {
               "namespace": "http://www.w3.org/2000/svg",
               "next": [Circular],
               "parent": [Circular],
-              "prev": Object {
+              "prev": Node {
                 "attribs": Object {
                   "cx": "92.5",
                   "cy": "25",
                   "r": "5",
                 },
                 "children": Array [
-                  Object {
+                  Node {
                     "attribs": Object {
                       "attributeName": "r",
                       "begin": "0s",
@@ -1525,7 +1594,7 @@ initialize {
                     "children": Array [],
                     "name": "animate",
                     "namespace": "http://www.w3.org/2000/svg",
-                    "next": Object {
+                    "next": Node {
                       "attribs": Object {
                         "attributeName": "fill-opacity",
                         "begin": "0s",
@@ -1588,7 +1657,7 @@ initialize {
                       "values": undefined,
                     },
                   },
-                  Object {
+                  Node {
                     "attribs": Object {
                       "attributeName": "fill-opacity",
                       "begin": "0s",
@@ -1604,7 +1673,7 @@ initialize {
                     "namespace": "http://www.w3.org/2000/svg",
                     "next": null,
                     "parent": [Circular],
-                    "prev": Object {
+                    "prev": Node {
                       "attribs": Object {
                         "attributeName": "r",
                         "begin": "0s",
@@ -1723,22 +1792,17 @@ initialize {
     "name": "svg",
     "namespace": "http://www.w3.org/2000/svg",
     "next": null,
-    "parent": null,
-    "prev": null,
-    "root": Object {
-      "attribs": Object {},
+    "parent": Node {
       "children": Array [
         [Circular],
       ],
       "name": "root",
-      "namespace": "http://www.w3.org/1999/xhtml",
       "next": null,
       "parent": null,
       "prev": null,
       "type": "root",
-      "x-attribsNamespace": Object {},
-      "x-attribsPrefix": Object {},
     },
+    "prev": null,
     "type": "tag",
     "x-attribsNamespace": Object {
       "class": undefined,
@@ -1753,20 +1817,94 @@ initialize {
       "width": undefined,
     },
   },
-  "_root": [Circular],
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
   "length": 1,
   "options": Object {
     "decodeEntities": true,
-    "normalizeWhitespace": false,
-    "withDomLvl1": true,
     "xml": false,
   },
 }
 `;
 
 exports[`TrendingGraph no data 1`] = `
-initialize {
-  "0": Object {
+LoadedCheerio {
+  "0": Node {
     "attribs": Object {
       "class": "trending_graph",
       "height": "50",
@@ -1777,22 +1915,17 @@ initialize {
     "name": "svg",
     "namespace": "http://www.w3.org/2000/svg",
     "next": null,
-    "parent": null,
-    "prev": null,
-    "root": Object {
-      "attribs": Object {},
+    "parent": Node {
       "children": Array [
         [Circular],
       ],
       "name": "root",
-      "namespace": "http://www.w3.org/1999/xhtml",
       "next": null,
       "parent": null,
       "prev": null,
       "type": "root",
-      "x-attribsNamespace": Object {},
-      "x-attribsPrefix": Object {},
     },
+    "prev": null,
     "type": "tag",
     "x-attribsNamespace": Object {
       "class": undefined,
@@ -1807,12 +1940,86 @@ initialize {
       "width": undefined,
     },
   },
-  "_root": [Circular],
+  "_root": LoadedCheerio {
+    "0": Node {
+      "children": Array [
+        Node {
+          "attribs": Object {},
+          "children": Array [
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "head",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "body",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+            Node {
+              "attribs": Object {},
+              "children": Array [],
+              "name": "body",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Node {
+                "attribs": Object {},
+                "children": Array [],
+                "name": "head",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {},
+                "x-attribsPrefix": Object {},
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {},
+              "x-attribsPrefix": Object {},
+            },
+          ],
+          "name": "html",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {},
+          "x-attribsPrefix": Object {},
+        },
+      ],
+      "name": "root",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-mode": "quirks",
+    },
+    "_root": [Circular],
+    "length": 1,
+    "options": Object {
+      "decodeEntities": true,
+      "xml": false,
+    },
+  },
   "length": 1,
   "options": Object {
     "decodeEntities": true,
-    "normalizeWhitespace": false,
-    "withDomLvl1": true,
     "xml": false,
   },
 }
