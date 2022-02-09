@@ -1,13 +1,13 @@
 // @flow
 
-import _ from 'lodash';
-import { scaleOrdinal, schemePaired } from 'd3';
-import React from 'react';
-import PropTypes from 'prop-types';
+import _ from 'lodash'
+import { scaleOrdinal, schemePaired } from 'd3'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import BarGraphColumn from './bar_graph_column';
+import BarGraphColumn from './bar_graph_column'
 
-import '../style/BarGraphGroup.scss';
+import '../style/BarGraphGroup.scss'
 
 export default class BarGraphGroup extends React.Component {
   static propTypes = {
@@ -39,25 +39,25 @@ export default class BarGraphGroup extends React.Component {
   };
 
   getColumns = () => {
-    return this.props.columns || Math.floor(this.props.width / 420);
+    return this.props.columns || Math.floor(this.props.width / 420)
   };
 
   render() {
-    let n = 0;
+    let n = 0
     const content = _(this.props.data)
       .toPairs()
       .sortBy(p => {
-        const index = this.props.fieldOrders.indexOf(p[0]);
-        if (index < 0) return 99999;
-        else return index;
+        const index = this.props.fieldOrders.indexOf(p[0])
+        if (index < 0) return 99999
+        else return index
       })
       .groupBy(() => {
-        return n++ % this.getColumns();
+        return n++ % this.getColumns()
       })
       .map(g => {
         const key = _.reduce(g, (k, e) => {
-          return k + e[0];
-        });
+          return k + e[0]
+        })
         return (
           <BarGraphColumn
             key={key}
@@ -72,10 +72,10 @@ export default class BarGraphGroup extends React.Component {
             selectedItems={this.props.selectedItems}
             getColor={this.props.getColor}
           />
-        );
+        )
       })
-      .value();
+      .value()
 
-    return <div className="bar-graph-group">{content}</div>;
+    return <div className="bar-graph-group">{content}</div>
   }
 }

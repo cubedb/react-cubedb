@@ -1,11 +1,11 @@
 // @flow
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { numberFormat } from '../utils';
+import { numberFormat } from '../utils'
 
-import Bar from './bar';
+import Bar from './bar'
 
 export default class BarLine extends React.Component {
   static propTypes = {
@@ -25,11 +25,11 @@ export default class BarLine extends React.Component {
   };
 
   shouldComponentUpdate() {
-    return true;
+    return true
   }
 
   getIcon(val1, val2) {
-    const percentage = (Math.abs(1 - val1 / val2) * 100).toFixed(1);
+    const percentage = (Math.abs(1 - val1 / val2) * 100).toFixed(1)
     if (val1 > val2) {
       return (
         <div className="bar-graph__variation__wrapper">
@@ -42,7 +42,7 @@ export default class BarLine extends React.Component {
             )}
           </span>
         </div>
-      );
+      )
     } else if (val2 > val1) {
       return (
         <div className="bar-graph__variation__wrapper">
@@ -55,14 +55,14 @@ export default class BarLine extends React.Component {
             )}
           </span>
         </div>
-      );
+      )
     }
 
     return (
       <div className="bar-graph__variation__wrapper">
         <span className="bar-graph__variation">{'='}</span>
       </div>
-    );
+    )
   }
 
   render() {
@@ -117,6 +117,6 @@ export default class BarLine extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

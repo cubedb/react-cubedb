@@ -1,19 +1,19 @@
 // @flow
 
 // TODO remove lodash
-import _ from 'lodash';
-import _isEmpty from 'lodash/isEmpty';
-import _map from 'lodash/map';
+import _ from 'lodash'
+import _isEmpty from 'lodash/isEmpty'
+import _map from 'lodash/map'
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { schemePaired } from 'd3';
-import { scaleOrdinal } from 'd3-scale';
+import { schemePaired } from 'd3'
+import { scaleOrdinal } from 'd3-scale'
 
-import { getCommonPrefix } from '../utils';
+import { getCommonPrefix } from '../utils'
 
-import BarLine from './bar_line';
+import BarLine from './bar_line'
 
 export default class BarList extends React.Component {
   static propTypes = {
@@ -41,16 +41,16 @@ export default class BarList extends React.Component {
   // }
 
   render() {
-    const { serie, max, total } = this.props.dimension;
+    const { serie, max, total } = this.props.dimension
     if (!_isEmpty(serie)) {
-      const comparingMax = this.props.comparingTo ? this.props.comparingTo.max : 0;
+      const comparingMax = this.props.comparingTo ? this.props.comparingTo.max : 0
       const prefix = this.props.hideCommonPrefix
         ? getCommonPrefix(
-            _map(this.props.data, d => {
-              if (d.name !== '<not defined>') return d.name;
-            })
-          )
-        : '';
+          _map(this.props.data, d => {
+            if (d.name !== '<not defined>') return d.name
+          })
+        )
+        : ''
 
       return (
         <div className="cube_bars__list__content">
@@ -60,9 +60,9 @@ export default class BarList extends React.Component {
             .filter(d => !this.props.filter || RegExp(this.props.filter, 'i').test(d.name))
             .slice(0, this.props.slice || serie.length)
             .map(d => {
-              let comparingData = null;
+              let comparingData = null
               if (this.props.comparingTo && this.props.comparingTo.serie) {
-                comparingData = this.props.comparingTo.serie[d.key] ? this.props.comparingTo.serie[d.key] : { c: 0 };
+                comparingData = this.props.comparingTo.serie[d.key] ? this.props.comparingTo.serie[d.key] : { c: 0 }
               }
               return (
                 <BarLine
@@ -81,13 +81,13 @@ export default class BarList extends React.Component {
                   getColor={this.props.getColor}
                   selected={this.props.selected.indexOf(d.key) >= 0}
                 />
-              );
+              )
             })
             .value()}
         </div>
-      );
+      )
     }
 
-    return <div className="cube_bars__list__content--empty">No dimension available</div>;
+    return <div className="cube_bars__list__content--empty">No dimension available</div>
   }
 }

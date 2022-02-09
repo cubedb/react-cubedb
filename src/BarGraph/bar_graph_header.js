@@ -1,13 +1,13 @@
 // @flow
 
 // TODO remove lodash
-import _each from 'lodash/each';
-import _map from 'lodash/map';
-import _difference from 'lodash/difference';
-import _size from 'lodash/size';
+import _each from 'lodash/each'
+import _map from 'lodash/map'
+import _difference from 'lodash/difference'
+import _size from 'lodash/size'
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import {
   FormGroup,
@@ -19,9 +19,9 @@ import {
   Popover,
   Glyphicon,
   Tooltip
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
-import { saveData } from '../utils';
+import { saveData } from '../utils'
 
 export default class BarGraphHeader extends React.Component {
   static propTypes = {
@@ -44,71 +44,71 @@ export default class BarGraphHeader extends React.Component {
   };
 
   onDownload = (dataLabel, volume, dataSerie, comparingTo) => () => {
-    const defaultDimension = { c: 0 };
-    let stacksLabel = '';
-    const delimiter = ',';
-    const endLine = '\r\n';
+    const defaultDimension = { c: 0 }
+    let stacksLabel = ''
+    const delimiter = ','
+    const endLine = '\r\n'
 
     const createLine = (name, count = 0, stack = []) => {
-      const proportion = volume > 0 && count > 0 ? (count || 0) / volume : 0;
-      let stacks = '';
+      const proportion = volume > 0 && count > 0 ? (count || 0) / volume : 0
+      let stacks = ''
 
       if (this.props.group) {
         _each(this.props.allData[this.props.group].serie, (d, i) => {
-          stacks += `${delimiter}${(stack[i] || defaultDimension).c}`;
-        });
+          stacks += `${delimiter}${(stack[i] || defaultDimension).c}`
+        })
       }
 
-      stacks += `${delimiter}${count}`;
+      stacks += `${delimiter}${count}`
 
-      return `${name}${delimiter}${(proportion * 100).toFixed(3)}%${stacks}${endLine}`;
-    };
+      return `${name}${delimiter}${(proportion * 100).toFixed(3)}%${stacks}${endLine}`
+    }
 
     const body = _map(dataSerie, el => {
       if (comparingTo) {
-        const window = comparingTo[el.key] || { count: 0, stack: [] };
+        const window = comparingTo[el.key] || { count: 0, stack: [] }
         return `${createLine(`${el.name}${delimiter}A`, window.c, window.stack)}${createLine(
           `${el.name}${delimiter}B`,
           el.c,
           el.stack
-        )}`;
+        )}`
       } else {
-        return createLine(el.name, el.c, el.stack);
+        return createLine(el.name, el.c, el.stack)
       }
-    }).join('');
+    }).join('')
 
     if (this.props.group) {
       _each(this.props.allData[this.props.group].serie, (d, i) => {
-        stacksLabel += `${delimiter}${d.name || i}`;
-      });
+        stacksLabel += `${delimiter}${d.name || i}`
+      })
     }
 
-    stacksLabel += `${delimiter}event count`;
+    stacksLabel += `${delimiter}event count`
 
     const header = `${dataLabel}${delimiter}${
       comparingTo ? `window${delimiter}` : ''
-    }percentage${stacksLabel}${endLine}`;
-    const fileData = header + body;
+    }percentage${stacksLabel}${endLine}`
+    const fileData = header + body
 
-    const blob = new Blob([fileData], { type: 'text/plain' });
+    const blob = new Blob([fileData], { type: 'text/plain' })
 
     saveData(
       `event_${this.props.name}_serie_${dataLabel}${this.props.group ? `_grouped_by_${this.props.group}` : ''}.csv`,
       blob
-    );
+    )
   };
 
   onClickAddAll = e => {
-    e.preventDefault();
-    this.props.onChange(this.props.name, _difference(this.props.dimensions, this.props.selectedItems));
+    e.preventDefault()
+    this.props.onChange(this.props.name, _difference(this.props.dimensions, this.props.selectedItems))
   };
   onClickInvert = e => {
-    e.preventDefault();
-    this.props.onChange(this.props.name, this.props.dimensions);
+    e.preventDefault()
+    this.props.onChange(this.props.name, this.props.dimensions)
   };
   onClickRemoveAll = e => {
-    e.preventDefault();
-    this.props.onChange(this.props.name, this.props.selectedItems);
+    e.preventDefault()
+    this.props.onChange(this.props.name, this.props.selectedItems)
   };
 
   render() {
@@ -118,7 +118,7 @@ export default class BarGraphHeader extends React.Component {
       </OverlayTrigger>
     ) : (
       this.props.name
-    );
+    )
 
     return (
       <div>
@@ -195,13 +195,13 @@ export default class BarGraphHeader extends React.Component {
                             className="bar-graph__filter__dimension__button"
                             key={`filter-${f}`}
                             onClick={() => {
-                              this.props.onChange(this.props.name, f);
+                              this.props.onChange(this.props.name, f)
                             }}
                             bsSize="xsmall"
                           >
                             {f} <Glyphicon glyph="remove-sign" />
                           </Button>
-                        );
+                        )
                       })}
                     </ButtonToolbar>
                   </div>{' '}
@@ -229,13 +229,13 @@ export default class BarGraphHeader extends React.Component {
             title="Click to change the stacking based in this group"
             bsStyle={this.props.group === this.props.name ? 'primary' : 'default'}
             onClick={() => {
-              this.props.onChange('group', this.props.name);
+              this.props.onChange('group', this.props.name)
             }}
           >
             <Glyphicon glyph="indent-left" />
           </Button>
         </ButtonGroup>
       </div>
-    );
+    )
   }
 }

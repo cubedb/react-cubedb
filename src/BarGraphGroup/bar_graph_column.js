@@ -1,20 +1,20 @@
 // @flow
 
 // TODO remove lodash
-import _map from 'lodash/map';
+import _map from 'lodash/map'
 
-import React from 'react';
+import React from 'react'
 
-import BarGraph from '../BarGraph';
+import BarGraph from '../BarGraph'
 
 export default class BarGraphColumn extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       stretched: [],
       search: []
-    };
+    }
   }
 
   onStretch = serie => () => {
@@ -22,32 +22,32 @@ export default class BarGraphColumn extends React.Component {
       stretched: Object.assign({}, this.state.stretched, {
         [this.props.name + serie]: !this.state.stretched[this.props.name + serie]
       })
-    });
+    })
   };
 
   onSearch = serie => e => {
-    const search = e.target.value;
+    const search = e.target.value
     if (search.length) {
       try {
-        new RegExp(search, 'i');
+        new RegExp(search, 'i')
         this.setState({
           search: Object.assign({}, this.state.search, {
             [serie]: search
           })
-        });
+        })
       } catch (e) {
         this.setState({
           search: Object.assign({}, this.state.search, {
             [serie]: false
           })
-        });
+        })
       }
     } else {
       this.setState({
         search: Object.assign({}, this.state.search, {
           [serie]: undefined
         })
-      });
+      })
     }
   };
 
@@ -55,7 +55,7 @@ export default class BarGraphColumn extends React.Component {
     return (
       <div className="cube_graph__column">
         {_map(this.props.data, (serie, key) => {
-          const description = this.props.dataDescription ? this.props.dataDescription[key] : undefined;
+          const description = this.props.dataDescription ? this.props.dataDescription[key] : undefined
 
           return (
             <div key={key} className={'bar-graph-group__list'}>
@@ -73,9 +73,9 @@ export default class BarGraphColumn extends React.Component {
                 allData={this.props.allData}
               />
             </div>
-          );
+          )
         })}
       </div>
-    );
+    )
   }
 }
