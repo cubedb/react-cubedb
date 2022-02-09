@@ -1,7 +1,7 @@
-import React from "react"; // eslint-disable-line no-unused-vars
-import { render } from "enzyme";
+import React from 'react' // eslint-disable-line no-unused-vars
+import { render } from 'enzyme'
 
-import TrendingGraph from "./TrendingGraph";
+import TrendingGraph from './TrendingGraph'
 
 const defaultProps = {
   data: {
@@ -9,28 +9,28 @@ const defaultProps = {
     1483236000: { c: 2 },
     1483239600: { c: 3 }
   }
-};
+}
 
-describe("TrendingGraph", () => {
-  it("default", () => {
-    const component = render(<TrendingGraph {...defaultProps} />);
+describe('TrendingGraph', () => {
+  it('default', () => {
+    const component = render(<TrendingGraph {...defaultProps} />)
 
-    expect(component).toMatchSnapshot();
-  });
+    expect(component).toMatchSnapshot()
+  })
 
-  it("no data", () => {
+  it('no data', () => {
     const component = render(
       <TrendingGraph {...defaultProps} data={undefined} />
-    );
+    )
 
-    expect(component).toMatchSnapshot();
-  });
+    expect(component).toMatchSnapshot()
+  })
 
-  it("is loading", () => {
+  it('is loading', () => {
     const component = render(
       <TrendingGraph {...defaultProps} isLoading={true} />
-    );
+    )
 
-    expect(component).toMatchSnapshot();
-  });
-});
+    expect(component).toMatchSnapshot()
+  })
+})

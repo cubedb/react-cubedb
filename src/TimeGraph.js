@@ -1,36 +1,36 @@
 // @flow
 
-import _ from 'lodash';
-import * as d3 from 'd3';
+import _ from 'lodash'
+import * as d3 from 'd3'
 
-import ReactFauxDOM from 'react-faux-dom';
+import ReactFauxDOM from 'react-faux-dom'
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import TimeGraphContent from './TimeGraphContent';
-import { saveData, dateParser } from './utils';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ReactDOM from 'react-dom'
+import TimeGraphContent from './TimeGraphContent'
+import { saveData, dateParser } from './utils'
 
-import './style/TimeGraph.scss';
+import './style/TimeGraph.scss'
 
 const xTickSize = {
   month: 105,
   day: 85,
   week: 85,
   hour: 105
-};
+}
 
-const numberFormat = d3.format(',d');
-const DEFAULT_MARGIN = { left: 80, right: 30, top: 50, bottom: 25 };
-const STACK_LIMIT = 10;
-const MAX_Y_AXIS_TICKS = 5;
+const numberFormat = d3.format(',d')
+const DEFAULT_MARGIN = { left: 80, right: 30, top: 50, bottom: 25 }
+const STACK_LIMIT = 10
+const MAX_Y_AXIS_TICKS = 5
 
 export const aggregation = {
   hour: d3.utcHour,
   day: d3.utcDay,
   week: d3.utcWeek,
   month: d3.utcMonth
-};
+}
 
 export default class TimeGraph extends React.Component {
   static propTypes = {
@@ -62,8 +62,8 @@ export default class TimeGraph extends React.Component {
   };
 
   constructor(props) {
-    super(props);
-    this.setP = this.setP.bind(this);
+    super(props)
+    this.setP = this.setP.bind(this)
 
     this.state = {
       width: 600,
@@ -73,102 +73,102 @@ export default class TimeGraph extends React.Component {
         release: false,
         experiment: false
       }
-    };
+    }
   }
 
   componentDidMount() {
-    this.updateDimensions();
+    this.updateDimensions()
   }
 
   componentWillMount() {
-    window.addEventListener('resize', this.updateDimensions, false);
+    window.addEventListener('resize', this.updateDimensions, false)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions)
   }
 
   componentWillReceiveProps(np) {
-    this.updateDimensions(np);
+    this.updateDimensions(np)
   }
 
   updateDimensions = (np = this.props) => {
-    const el = ReactDOM.findDOMNode(this);
-    const containerWidth = el.parentElement ? el.parentElement.getBoundingClientRect().width : 600;
+    const el = ReactDOM.findDOMNode(this)
+    const containerWidth = el.parentElement ? el.parentElement.getBoundingClientRect().width : 600
 
     if (containerWidth) {
       this.setState({
         width: np.width ? np.width : containerWidth,
         height: np.height ? np.height : Math.max(containerWidth * 0.2, 260)
-      });
+      })
     }
   };
 
   onDownload = (fromDate, toDate, volume, dataSerie) => () => {
-    const dataLabel = `${this.props.timeDisplay(fromDate)}_to_${this.props.timeDisplay(toDate)}`.replace(/\W/gi, '');
-    const defaultDimension = { c: 0 };
-    let stacksLabel = '';
-    const delimiter = ',';
-    const endLine = '\r\n';
+    const dataLabel = `${this.props.timeDisplay(fromDate)}_to_${this.props.timeDisplay(toDate)}`.replace(/\W/gi, '')
+    const defaultDimension = { c: 0 }
+    let stacksLabel = ''
+    const delimiter = ','
+    const endLine = '\r\n'
 
-    const keys = {};
+    const keys = {}
 
     _(dataSerie)
       .map(1)
       .map('stack')
       .each(d => {
         _.each(d, (n, k) => {
-          keys[k] = n.name;
-        });
-      });
+          keys[k] = n.name
+        })
+      })
 
     const createLine = (name, count = 0, stack = []) => {
-      let stacks = '';
+      let stacks = ''
 
       if (this.props.group) {
         _.each(keys, (d, i) => {
-          stacks += `${delimiter}${(stack[i] || defaultDimension).c}`;
-        });
+          stacks += `${delimiter}${(stack[i] || defaultDimension).c}`
+        })
       }
 
-      stacks += `${delimiter}${count}`;
+      stacks += `${delimiter}${count}`
 
-      return `${name}${stacks}${endLine}`;
-    };
+      return `${name}${stacks}${endLine}`
+    }
 
     const body = _(dataSerie)
       .sortBy(0)
       .map(d => {
-        return createLine(d[0], d[1].c, d[1].stack);
+        return createLine(d[0], d[1].c, d[1].stack)
       })
-      .join('');
+      .join('')
 
     if (this.props.group) {
       _.each(keys, d => {
-        stacksLabel += `${delimiter}${d}`;
-      });
+        stacksLabel += `${delimiter}${d}`
+      })
     }
 
-    stacksLabel += `${delimiter}total`;
+    stacksLabel += `${delimiter}total`
 
-    const header = `Date${stacksLabel}${endLine}`;
-    const fileData = header + body;
+    const header = `Date${stacksLabel}${endLine}`
+    const fileData = header + body
 
-    const file = new Blob([fileData], { type: 'text/plain' });
+    const file = new Blob([fileData], { type: 'text/plain' })
 
-    saveData(`timeseries_${dataLabel}${this.props.group ? `_grouped_by_${this.props.group}` : ''}.csv`, file);
+    saveData(`timeseries_${dataLabel}${this.props.group ? `_grouped_by_${this.props.group}` : ''}.csv`, file)
   };
 
   lookup(p) {
     const defaultLookup = key => {
-      return key === 'null' ? '<not defined>' : key;
-    };
+      return key === 'null' ? '<not defined>' : key
+    }
     if (this.props.lookups && this.props.lookups[p]) {
-      const lookup = this.props.lookups[p];
+      const lookup = this.props.lookups[p]
       return key => {
-        return lookup[key] || defaultLookup(key);
-      };
-    } else return defaultLookup;
+        return lookup[key] || defaultLookup(key)
+      }
+    } else return defaultLookup
   }
 
   toggleMetadata = type => () => {
@@ -176,38 +176,38 @@ export default class TimeGraph extends React.Component {
       metadataFilter: Object.assign({}, this.state.metadataFilter, {
         [type]: !this.state.metadataFilter[type]
       })
-    });
+    })
   };
 
   drawAxis(width, height, data, margin, fromDate, toDate, xFormatter, yFormatter = numberFormat) {
     const dateRange = [
       aggregation[this.props.aggregation].floor(fromDate),
       aggregation[this.props.aggregation].offset(toDate, this.props.type === 'bar' ? +1 : 0)
-    ];
+    ]
 
     let maxValue = _(data)
       .map('1')
       .map('c')
-      .max();
+      .max()
 
     if (this.props.group) {
-      const dimensionCount = {};
+      const dimensionCount = {}
 
       _.each(data, d => {
         _.each(d[1].stack, (b, k) => {
           dimensionCount[k] = {
             key: k,
             c: dimensionCount[k] ? dimensionCount[k].c + b.c : b.c
-          };
-        });
-      });
+          }
+        })
+      })
 
       const stacks = _(dimensionCount)
         .sortBy('c')
         .reverse()
         .slice(0, STACK_LIMIT)
         .map('key')
-        .value();
+        .value()
 
       if (this.props.type === 'line') {
         maxValue = _(data)
@@ -215,113 +215,113 @@ export default class TimeGraph extends React.Component {
           .map(d => {
             const stacksC = _(d.stack)
               .mapValues('c')
-              .value();
+              .value()
 
             const stacksValue = _(stacksC)
               .filter((d, k) => {
-                return stacks.indexOf(k) > -1;
+                return stacks.indexOf(k) > -1
               })
-              .value();
+              .value()
 
             const otherSum = _(stacksC)
               .filter((d, k) => {
-                return stacks.indexOf(k) < 0;
+                return stacks.indexOf(k) < 0
               })
-              .sum();
+              .sum()
 
             return _(stacksValue)
               .concat(otherSum)
-              .max();
+              .max()
           })
-          .max();
+          .max()
       }
     }
 
-    const valueRange = [0, 1.1 * maxValue];
+    const valueRange = [0, 1.1 * maxValue]
 
     const maxTicks = Math.max(
       2,
       Math.floor((width - margin.left - margin.right) / xTickSize[this.props.aggregation]) - 4
-    );
+    )
 
     const x = d3
       .scaleTime()
       .domain(dateRange)
-      .range([margin.left, width - margin.right]);
+      .range([margin.left, width - margin.right])
 
     const y = d3
       .scaleLinear()
       .domain(valueRange)
-      .rangeRound([height - margin.bottom, margin.top]);
+      .rangeRound([height - margin.bottom, margin.top])
 
     const xAxis = d3
       .axisBottom(x)
       .tickFormat(xFormatter)
-      .ticks(maxTicks);
+      .ticks(maxTicks)
 
     const yAxis = d3
       .axisLeft(y)
       .tickFormat(yFormatter)
       .ticks(maxValue < MAX_Y_AXIS_TICKS ? maxValue : MAX_Y_AXIS_TICKS)
-      .tickSize(-width + margin.right + margin.left);
+      .tickSize(-width + margin.right + margin.left)
 
     const lineFunc = d3
       .line()
       .x(function(d) {
-        return x(d[0]);
+        return x(d[0])
       })
       .y(function(d) {
-        return y(d[1]);
+        return y(d[1])
       })
-      .curve(d3.curveStep);
+      .curve(d3.curveStep)
 
     return {
       lineFunc: lineFunc,
       scale: { x: x, y: y },
       axis: { x: xAxis, y: yAxis }
-    };
+    }
   }
 
   preProcess(data, timeBounds) {
     return _(this.props.data)
       .toPairs()
       .map(p => {
-        const dt = aggregation[this.props.aggregation](dateParser(p[0]));
-        if (p[1].hasOwnProperty('c')) {
-          return [dt, p[1]];
+        const dt = aggregation[this.props.aggregation](dateParser(p[0]))
+        if (Object.prototype.hasOwnProperty.call(p[1], 'c')) {
+          return [dt, p[1]]
         } else {
-          let c = 0;
+          let c = 0
           _.each(p[1], (e, k) => {
-            c += e.c;
-            e.name = this.lookup(this.props.group)(k);
-          });
+            c += e.c
+            e.name = this.lookup(this.props.group)(k)
+          })
           const dimension = {
             c: c,
             stack: p[1]
-          };
-          return [dt, dimension];
+          }
+          return [dt, dimension]
         }
       })
       .filter(p => {
-        return p[0] >= timeBounds[0];
+        return p[0] >= timeBounds[0]
       })
-      .value();
+      .value()
   }
 
   setP = range => {
-    range.sort();
-    this.props.onChange(range);
+    range.sort()
+    this.props.onChange(range)
   };
 
   getDateDomain() {
     const dates = _(this.props.data)
       .map((p, k) => {
-        return aggregation[this.props.aggregation](dateParser(k));
+        return aggregation[this.props.aggregation](dateParser(k))
       })
       .sortBy(dt => dt.getTime())
-      .value();
+      .value()
 
-    return [dates[0], dates[dates.length - 1]];
+    return [dates[0], dates[dates.length - 1]]
   }
 
   render() {
@@ -332,26 +332,26 @@ export default class TimeGraph extends React.Component {
             no data to render
           </text>
         </svg>
-      );
+      )
     }
 
-    let [fromDate, toDate] = this.getDateDomain();
+    let [fromDate, toDate] = this.getDateDomain()
     if (this.props.toDate) {
-      toDate = this.props.toDate;
+      toDate = this.props.toDate
       if (typeof toDate === 'number') {
-        toDate = aggregation[this.props.aggregation](dateParser(toDate));
+        toDate = aggregation[this.props.aggregation](dateParser(toDate))
       }
     }
     if (this.props.fromDate) {
-      fromDate = this.props.fromDate;
+      fromDate = this.props.fromDate
       if (typeof fromDate === 'number') {
-        fromDate = aggregation[this.props.aggregation](dateParser(fromDate));
+        fromDate = aggregation[this.props.aggregation](dateParser(fromDate))
       }
     }
 
-    const margin = Object.assign({}, DEFAULT_MARGIN, this.props.margin);
+    const margin = Object.assign({}, DEFAULT_MARGIN, this.props.margin)
 
-    const data = this.preProcess(this.props.data, [fromDate, toDate]);
+    const data = this.preProcess(this.props.data, [fromDate, toDate])
     const graph = this.drawAxis(
       this.state.width,
       this.state.height,
@@ -361,47 +361,47 @@ export default class TimeGraph extends React.Component {
       toDate,
       this.props.timeDisplay,
       this.props.countFormatter
-    );
-    const xAxis = new ReactFauxDOM.Element('g');
+    )
+    const xAxis = new ReactFauxDOM.Element('g')
 
     d3.select(xAxis)
       .attr('class', 'xaxis')
       .attr('transform', `translate(0, ${this.state.height - margin.bottom})`)
-      .call(graph.axis.x);
+      .call(graph.axis.x)
 
-    const yAxis = new ReactFauxDOM.Element('g');
+    const yAxis = new ReactFauxDOM.Element('g')
     d3.select(yAxis)
       .attr('class', 'yaxis')
       .attr('transform', `translate(${margin.left},0)`)
-      .call(graph.axis.y);
+      .call(graph.axis.y)
 
-    let range;
+    let range
     if (this.props.filter) {
       range = _.chain(this.props.filter)
         .map(v => {
-          return aggregation[this.props.aggregation](dateParser(v));
+          return aggregation[this.props.aggregation](dateParser(v))
         })
-        .value();
+        .value()
     }
 
-    const metadata = {};
+    const metadata = {}
     if (this.props.metadata) {
       _.each(this.props.metadata, ({ date, data }, mk) => {
-        let hasData = false;
-        const filteredData = {};
+        let hasData = false
+        const filteredData = {}
         _.each(data, (d, k) => {
           if (this.state.metadataFilter[d.type]) {
-            hasData = true;
-            filteredData[k] = d;
+            hasData = true
+            filteredData[k] = d
           }
-        });
+        })
         if (hasData) {
           metadata[mk] = {
             date,
             data: filteredData
-          };
+          }
         }
-      });
+      })
     }
 
     return (
@@ -482,6 +482,6 @@ export default class TimeGraph extends React.Component {
           metadata={this.props.metadata ? metadata : null}
         />
       </svg>
-    );
+    )
   }
 }

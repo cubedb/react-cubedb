@@ -1,6 +1,7 @@
 ![CubeDb][image_logo]
 
-[![Build Status](https://travis-ci.org/cubedb/react-cubedb.svg?branch=master)](https://travis-ci.org/cubedb/react-cubedb)
+[![Build status](https://github.com/cubedb/react-cubedb/actions/workflows/test.yml/badge.svg)](https://github.com/cubedb/react-cubedb/actions/workflows/test.yml)
+
 # react-cudedb
 
 This package contain a serie of [React][react] components, using [Reat-Bootstrap][react-bootstrap] and [D3][d3] to generate graphs based on [CubeDB][cubedb]'s data.

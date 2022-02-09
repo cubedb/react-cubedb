@@ -1,5 +1,5 @@
 // @flow
 
-import BarGraphGroup from './bar_graph_group';
+import BarGraphGroup from './bar_graph_group'
 
-export default BarGraphGroup;
+export default BarGraphGroup

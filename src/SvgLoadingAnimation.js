@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React from 'react'
 
 type Props = {
   width?: number,
@@ -11,17 +11,17 @@ class SvgLoadingAnimation extends React.Component {
   props: Props;
 
   render() {
-    const width = this.props.width || 15;
-    const height = this.props.height || 9;
+    const width = this.props.width || 15
+    const height = this.props.height || 9
 
-    const circleToAnimateSize = height * 0.1;
-    const circleVerticalPosition = height / 2;
-    const circleHorizontalPosition = width / 2 - circleToAnimateSize * 2.5;
+    const circleToAnimateSize = height * 0.1
+    const circleVerticalPosition = height / 2
+    const circleHorizontalPosition = width / 2 - circleToAnimateSize * 2.5
 
-    const opacityStart = 0.2;
-    const opacityEnd = 0.5;
+    const opacityStart = 0.2
+    const opacityEnd = 0.5
 
-    const animationDuration = "1.2s";
+    const animationDuration = '1.2s'
 
     return (
       <g>
@@ -108,8 +108,8 @@ class SvgLoadingAnimation extends React.Component {
           />
         </circle>
       </g>
-    );
+    )
   }
 }
 
-export default SvgLoadingAnimation;
+export default SvgLoadingAnimation

@@ -1,4 +1,4 @@
-import { normalizeData } from './utils';
+import { normalizeData } from './utils'
 
 const keyValueData = {
   '1': {
@@ -7,7 +7,7 @@ const keyValueData = {
   '2': {
     c: 37038
   }
-};
+}
 
 const simpleData = {
   '1': {
@@ -16,7 +16,7 @@ const simpleData = {
   '2': {
     c: 37038
   }
-};
+}
 
 const simpleDataReturn = {
   max: 37038,
@@ -33,7 +33,7 @@ const simpleDataReturn = {
     }
   },
   total: 53292
-};
+}
 
 const groupedData = {
   a: {
@@ -52,7 +52,7 @@ const groupedData = {
       c: 0
     }
   }
-};
+}
 
 const groupedDataReturn = {
   max: 53292,
@@ -93,7 +93,7 @@ const groupedDataReturn = {
     }
   },
   total: 69546
-};
+}
 
 const datedData = {
   '2017-06-13': {
@@ -102,7 +102,7 @@ const datedData = {
   '2017-06-13 14': {
     c: 37038
   }
-};
+}
 
 const datedDataReturn = {
   max: 37038,
@@ -119,22 +119,22 @@ const datedDataReturn = {
     }
   },
   total: 53292
-};
+}
 
 describe('utils.normalizeData', () => {
   it('works with key-value dimension', () => {
-    expect(normalizeData(keyValueData)).toEqual(simpleDataReturn);
-  });
+    expect(normalizeData(keyValueData)).toEqual(simpleDataReturn)
+  })
 
   it('works with simple dimension', () => {
-    expect(normalizeData(simpleData)).toEqual(simpleDataReturn);
-  });
+    expect(normalizeData(simpleData)).toEqual(simpleDataReturn)
+  })
 
   it('works with grouped dimension', () => {
-    expect(normalizeData(groupedData)).toEqual(groupedDataReturn);
-  });
+    expect(normalizeData(groupedData)).toEqual(groupedDataReturn)
+  })
 
   it('works with date-based dimension', () => {
-    expect(normalizeData(datedData)).toEqual(datedDataReturn);
-  });
-});
+    expect(normalizeData(datedData)).toEqual(datedDataReturn)
+  })
+})
