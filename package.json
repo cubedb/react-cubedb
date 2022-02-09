@@ -68,7 +68,7 @@
     "@storybook/react": "^3.1.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^25.1.0",
+    "babel-jest": "^27.5.1",
     "cpy-cli": "^3.0.0",
     "css-loader": "^3.4.2",
     "enzyme": "^3.11.0",
