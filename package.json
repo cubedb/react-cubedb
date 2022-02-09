@@ -84,7 +84,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
     "jsdom": "^16.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.1",
     "react": "^16.12.0",
     "react-addons-test-utils": "^15.6.2",
     "react-doc-generator": "^1.2.5",
