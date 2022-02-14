@@ -78,7 +78,7 @@
     "eslint-plugin-jasmine": "^4.1.0",
     "eslint-plugin-jest": "^26.1.0",
     "eslint-plugin-jsx-control-statements": "^2.2.0",
-    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-mocha": "^10.0.3",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.18.3",
     "identity-obj-proxy": "^3.0.0",
