@@ -99,13 +99,13 @@
     "d3": "^4.9.1",
     "lodash": "^4.17.4",
     "react": "^15.5.0 || ^16.0.0",
-    "react-bootstrap": "2.2.2",
+    "react-bootstrap": "2.2.3",
     "react-dom": "^15.5.0 || ^16.0.0"
   },
   "dependencies": {
     "d3": "^6.7.0",
     "lodash": "^4.17.15",
-    "react-bootstrap": "2.2.2",
+    "react-bootstrap": "2.2.3",
     "react-faux-dom": "^4.0.3"
   },
   "jest": {
