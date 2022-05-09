@@ -77,7 +77,7 @@
     "eslint-plugin-flowtype": "^7.0.0",
     "eslint-plugin-jasmine": "^4.1.0",
     "eslint-plugin-jest": "^26.1.0",
-    "eslint-plugin-jsx-control-statements": "^2.2.0",
+    "eslint-plugin-jsx-control-statements": "^3.0.0",
     "eslint-plugin-mocha": "^9.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.18.3",
