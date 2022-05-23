@@ -524,12 +524,12 @@
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
 
 "@babel/plugin-proposal-pipeline-operator@^7.0.0":
-  version "7.17.6"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.17.6.tgz#1d8902fe9177ff92f7c5ce3824ef1a1b35f1ea6a"
-  integrity sha512-n1jaBJW05mRSShsMwK6ObEN9C925w3bleGZlzvPRdEJ0ZNvXoSncAJMGSzLKo7NScfZdWuLtf7BQtBMfFTHP+g==
+  version "7.17.12"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.17.12.tgz#54d7fc6aaf5bdb260961fa10fa0c7893202e4f30"
+  integrity sha512-YMEADWY6q4+u4QQ7CypEQn2RndArsSOEeeKV7KGspQOiLCWa4AM7iOWmCyqv+UnQidw8faEAlgkOkPBHZwILiw==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.16.7"
-    "@babel/plugin-syntax-pipeline-operator" "^7.17.0"
+    "@babel/helper-plugin-utils" "^7.17.12"
+    "@babel/plugin-syntax-pipeline-operator" "^7.17.12"
 
 "@babel/plugin-proposal-private-methods@^7.12.1", "@babel/plugin-proposal-private-methods@^7.16.11":
   version "7.16.11"
@@ -719,12 +719,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.0"
 
-"@babel/plugin-syntax-pipeline-operator@^7.17.0":
-  version "7.17.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-pipeline-operator/-/plugin-syntax-pipeline-operator-7.17.0.tgz#de7a8cd265de1172170a9db318ba068c5fbe3ca1"
-  integrity sha512-vNE+4pNAOk2Q0BkyTf+XMwZ53vMDJ7Ic/Z85sruaJfJJ+4O5k/61z2a4Xj3CSl9kKRlXOALbsxWca0vZz7ENbw==
+"@babel/plugin-syntax-pipeline-operator@^7.17.12":
+  version "7.17.12"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-pipeline-operator/-/plugin-syntax-pipeline-operator-7.17.12.tgz#32526ba110f79f922405a9646a4041d641362d5e"
+  integrity sha512-rYgUOy6afpBBghcDE60HjwqiwY6YSCoaJb3XcFEIH6Sx4q2W1a40zJbTbIWN4oXe9yzpUle1Q9eiyy3HHvmnDw==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.16.7"
+    "@babel/helper-plugin-utils" "^7.17.12"
 
 "@babel/plugin-syntax-private-property-in-object@^7.14.5":
   version "7.14.5"
