@@ -446,9 +446,9 @@
     "@babel/plugin-syntax-function-bind" "^7.16.7"
 
 "@babel/plugin-proposal-function-sent@^7.0.0":
-  version "7.17.12"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-function-sent/-/plugin-proposal-function-sent-7.17.12.tgz#29cf0004323185740a8488b3726049f2520c901a"
-  integrity sha512-gmg9gutLxaVFWz7l9QkedjArYK0KUBe9zUR/SVGVzeiJ/3AVTllBzh1A6PPBq+fvoWzGVuRSp49yD/jKaFP3Zg==
+  version "7.18.2"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-function-sent/-/plugin-proposal-function-sent-7.18.2.tgz#460a3c6ceac16da8e50a93b6068fd99265e56c75"
+  integrity sha512-JKAqbpAh6/ZA9satxaP02oL9lmyF1XxzItEONAPHd+jhZtzxBu5sR4L2LhnzjUwR3uJzExaiuHLGuUMNMt/t5A==
   dependencies:
     "@babel/helper-plugin-utils" "^7.17.12"
     "@babel/helper-wrap-function" "^7.16.8"
@@ -524,9 +524,9 @@
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
 
 "@babel/plugin-proposal-pipeline-operator@^7.0.0":
-  version "7.17.12"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.17.12.tgz#54d7fc6aaf5bdb260961fa10fa0c7893202e4f30"
-  integrity sha512-YMEADWY6q4+u4QQ7CypEQn2RndArsSOEeeKV7KGspQOiLCWa4AM7iOWmCyqv+UnQidw8faEAlgkOkPBHZwILiw==
+  version "7.18.2"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-pipeline-operator/-/plugin-proposal-pipeline-operator-7.18.2.tgz#8bfd2d3b47cc4808aa29cd9a42a098618b910be1"
+  integrity sha512-EeXGb75lqRe+BRJeRRgyPJtbYykdgoCZtIXMWohhGvxnAwmrQv/x4d6WYtk6pGk+wAkqIqVb8ySUp5rJNBTDAA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.17.12"
     "@babel/plugin-syntax-pipeline-operator" "^7.17.12"
